@@ -3,25 +3,26 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
 const filesArray = [
-    '../dataFiles/Factions.csv',
+    // was ../../, but when run through the server.js, it takes that as initial spot
+    'dataFiles/Factions.csv',
     // '../dataFiles/Source.csv', // dont use
-    '../dataFiles/Datasheets.csv', 
-    '../dataFiles/Datasheets_abilities.csv',
-    '../dataFiles/Datasheets_keywords.csv',
-    '../dataFiles/Datasheets_models.csv',
-    '../dataFiles/Datasheets_options.csv',
-    '../dataFiles/Datasheets_wargear.csv',
-    '../dataFiles/Datasheets_unit_composition.csv',
-    '../dataFiles/Datasheets_models_cost.csv',
-    // '../dataFiles/Datasheets_stratagems.csv',
-    // '../dataFiles/Datasheets_enhancements.csv',
-    // '../dataFiles/Datasheets_detachment_abilities.csv',
-    // '../dataFiles/Datasheets_leader.csv',
-    // '../dataFiles/Stratagems.csv', // dont use
-    '../dataFiles/Abilities.csv',
-    '../dataFiles/Enhancements.csv',
-    '../dataFiles/Detachment_abilities.csv',
-    '../dataFiles/Last_update.csv'
+    'dataFiles/Datasheets.csv', 
+    'dataFiles/Datasheets_abilities.csv',
+    'dataFiles/Datasheets_keywords.csv',
+    'dataFiles/Datasheets_models.csv',
+    'dataFiles/Datasheets_options.csv',
+    'dataFiles/Datasheets_wargear.csv',
+    'dataFiles/Datasheets_unit_composition.csv',
+    'dataFiles/Datasheets_models_cost.csv',
+    // '../../dataFiles/Datasheets_stratagems.csv',
+    // '../../dataFiles/Datasheets_enhancements.csv',
+    // '../../dataFiles/Datasheets_detachment_abilities.csv',
+    // '../../dataFiles/Datasheets_leader.csv',
+    // '../../dataFiles/Stratagems.csv', // dont use
+    'dataFiles/Abilities.csv',
+    'dataFiles/Enhancements.csv',
+    'dataFiles/Detachment_abilities.csv',
+    'dataFiles/Last_update.csv'
 ];
 
 // function readAllData(file) {
@@ -44,7 +45,7 @@ async function getFactionData() {
         allFactions[factionId] = [...allFactions[factionId], await getFactionAbilities(filesArray[9], factionId)]
         allFactions[factionId] = [...allFactions[factionId], await getDetachmentEnhancements(filesArray[10], factionId)]
     }
-    return
+    return allFactions
 }
 
 async function getThisFactionsUnits(factionId) {
@@ -166,11 +167,17 @@ async function getFractionNames(file) {
     return factionNames;
 }
 
-async function initialiseProgram() {
-    // const data = await getDatasheetOptions()
-    // console.log(data)
-    // const data = await getFactionData()
-    console.log(await getThisFactionsUnits('WE'))
+// async function initialiseProgram() {
+//     // const data = await getDatasheetOptions()
+//     // console.log(data)
+//     // const data = await getFactionData()
+//     console.log(await getThisFactionsUnits('WE'))
+// // }
+// initialiseProgram()
+
+const FactionInfo = {
+    getThisFactionsUnits,
+    getFactionData
 }
 
-initialiseProgram()
+module.exports = FactionInfo
