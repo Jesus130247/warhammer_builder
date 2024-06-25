@@ -118,13 +118,17 @@ async function getDatasheetWargear(file, unitId) {
 async function getDatasheetOptions(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let wargearOptions = reformatData(data).filter((data) => data[0] === unitId)
-    return wargearOptions[0][3]
+    if (wargearOptions[0]) {
+        return wargearOptions[0][3]
+    }
 }
 
 async function getUnitData(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitData = reformatData(data).filter((data) => data[0] === unitId)
-    return unitData[0].slice(3,10)
+    if (unitData[0]) {
+        return unitData[0].slice(3,11)
+    }
 }
 
 async function getUnitAbilities(file, unitId) {

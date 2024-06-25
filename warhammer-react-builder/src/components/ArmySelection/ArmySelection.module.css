@@ -1,0 +1,9 @@
+.ArmySelection {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.containerForUnits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

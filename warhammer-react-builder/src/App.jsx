@@ -1,18 +1,28 @@
 import { useState } from 'react'
-import './components/ArmySelection/ArmySelection'
-import './components/Dashboard/Dashboard'
 import './App.css'
-import Dashboard from './components/Dashboard/Dashboard'
 import ArmySelection from './components/ArmySelection/ArmySelection'
+import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [create, setCreate] = useState(false)
+  function handleClick() {
+      setCreate(!create)
+  }
 
   return (
     <>
-    <Dashboard />
-    <ArmySelection />
-    </>
+    {create 
+    ? <>
+        <button onClick={handleClick}>Submit Army</button>
+        <ArmySelection />
+      </>
+    : <>
+        <button onClick={handleClick}>Create an Army +</button>
+        <Dashboard />
+      </>
+    }
+    <footer>Powered by Wahapedia</footer>
+</>
   )
 }
 
