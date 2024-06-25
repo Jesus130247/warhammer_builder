@@ -41,7 +41,7 @@ export default function UnitRules({unitInfo, addUnit}) {
             <p>Composition: {unitComp}</p>
             <p>UnitCost: {ptsCost[1]} pts</p>
         </div>
-        <button onClick={() => addUnit(ptsCost[1])}>Add this unit to your army</button>
+        <button onClick={() => addUnit(ptsCost[1], unitName)}>Add this unit to your army</button>
         </>
     )
 }

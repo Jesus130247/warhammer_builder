@@ -9,9 +9,14 @@ export default function ArmySelection() {
     const [selectedArmyState, setSelectedArmyState] = useState(false)
     const [armyPoints ,setArmyPoints] = useState(2000)
     const [isLoading, setisLoading] = useState(true)
+    const [usersArmy, setUsersArmy] = useState([])
 
-    function addUnit(pts) {
+    function addUnit(pts, unitName) {
         setArmyPoints(armyPoints-pts)
+        setUsersArmy([...usersArmy, unitName])
+    }
+    function removeUnit(e) {
+        setUsersArmy(usersArmy.filter(unit => unit !== e.target.value))
     }
 
     useEffect(() => {
@@ -44,6 +49,13 @@ export default function ArmySelection() {
                         )
                     })}
                     <p>{army.army} w/ {armyPoints} pts remaining</p>
+                    <ul> Your Army So far:
+                        {usersArmy.map((unit,idx) => {
+                            return (
+                                <li key={idx}>{unit}<button value={unit} onClick={removeUnit}>delete this unit</button></li>
+                            )
+                        })}
+                    </ul>
                 </ul>
             </div>
             <div className={styles.containerForUnits}>
