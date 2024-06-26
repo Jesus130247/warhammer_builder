@@ -1,28 +1,10 @@
-import { useState } from "react"
-import { useEffect } from "react"
 
-export default function ArmyChoices({}) {
-    const [factionIds, setFactionIds] = useState({})
-
-    useEffect(() => {
-        fetch('/api/factions')
-            .then(res=> res.json())
-            .then(res => {
-                let IdsAndNames = {}
-                for (let factionId in res) {
-                    IdsAndNames[factionId] = res[factionId][0]
-                }
-                setFactionIds(IdsAndNames)
-            })
-    },[])
-
-
-    
+export default function ArmyChoices({factions}) {
     return (
         <>        
-        {Object.keys(factionIds).map((idx,faction) => {
+        {Object.keys(factions).map(idx => {
             return (
-                <option key={idx} value={`${idx}|${factionIds[idx]}`}>{factionIds[idx]}</option>
+                <option key={idx} value={idx}>{factions[idx][0]}</option>
             )
         })}
         </>

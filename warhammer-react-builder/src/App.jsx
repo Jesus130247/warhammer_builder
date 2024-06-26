@@ -8,7 +8,7 @@ import PopUp from './components/army-selection-popup/PopUp'
 function App() {
   const [create, setCreate] = useState(false)
   const [buttonTrigger, setButtonTrigger] = useState(false)
-  const [selectedArmy, setSelectedArmy] = useState({ armyId: 'AoI', army: 'Agents of the Imperium' })
+  const [selectedArmy, setSelectedArmy] = useState()
 
   return (
     <>
@@ -28,6 +28,7 @@ function App() {
     trigger={buttonTrigger} 
     setTrigger={setButtonTrigger} 
     setCreate={setCreate} 
+    selectedArmy={selectedArmy}
     setSelectedArmy={setSelectedArmy}
     />
 </>

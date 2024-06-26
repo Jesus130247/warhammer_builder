@@ -1,7 +1,9 @@
 
 export default function UnitRules({unitInfo, addUnit}) {
     let [unitName, 
-        abilityArray,
+        role,
+        startingWargear,
+        abilityObject,
         armyKeyWordArray,
         statsArray,
         wargearOptionsHTML,
@@ -17,13 +19,14 @@ export default function UnitRules({unitInfo, addUnit}) {
         invulSaveConditions,
         wounds,
         leaderShip,
-        OC
+        ...OC
     ] = statsArray
+    console.log(ptsCost)
     return(
         <>
         <h3>Rules For {unitName}</h3>
         <div className="UnitRules">
-            <p>Abilites: {abilityArray.join(', ')}</p>
+            <p>Abilites: {Object.keys(abilityObject).join(', ')}</p>
             <p>KeyWords: {armyKeyWordArray}</p>
             <div>unit stats: 
                 <ul>
@@ -38,10 +41,16 @@ export default function UnitRules({unitInfo, addUnit}) {
             </div>
             <p dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></p>
             <p dangerouslySetInnerHTML={{__html : weaponRules}}></p>
-            <p>Composition: {unitComp}</p>
-            <p>UnitCost: {ptsCost[1]} pts</p>
+            <p dangerouslySetInnerHTML={{__html : unitComp}}></p>
+            {ptsCost.map((option,idx) => {
+                return (
+                <>
+                    <p key={idx}>{option[0]} for {option[1]}</p>
+                    <button onClick={() => addUnit(option[1], unitName)}>Add this unit to your army</button>
+                </>
+                )
+            })}
         </div>
-        <button onClick={() => addUnit(ptsCost[1], unitName)}>Add this unit to your army</button>
         </>
     )
 }

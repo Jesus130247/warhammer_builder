@@ -5,7 +5,6 @@ const readFile = util.promisify(fs.readFile);
 const filesArray = [
     // was ../../, but when run through the server.js, it takes that as initial spot
     'dataFiles/Factions.csv', //0
-    // '../dataFiles/Source.csv', // dont use
     'dataFiles/Datasheets.csv', //1
     'dataFiles/Datasheets_abilities.csv', //2
     'dataFiles/Datasheets_keywords.csv', //3
@@ -23,6 +22,7 @@ const filesArray = [
     'dataFiles/Enhancements.csv', //10
     'dataFiles/Detachment_abilities.csv', //11
     'dataFiles/Last_update.csv' //12
+    // 'dataFiles/Source.csv', // dont use // 13
 ];
 
 // function readAllData(file) {
@@ -64,24 +64,29 @@ async function getThisFactionsUnits(factionId) {
 
 async function getDetachmentEnhancements(file, factionId) {
     const data = await readFile(file, 'utf-8');
-    let factionEnhancement= reformatData(data).filter((data) => data[0] === factionId)
+    let factionEnhancement = reformatData(data).filter((data) => data[0] === factionId)
     let enhancementChoices = {}
     for (let enhancement of factionEnhancement) {
         let detachment = enhancement[6]
         if(enhancementChoices[detachment]) {
-            enhancementChoices[detachment].push([enhancement[2],enhancement[4], 'cost ' + enhancement[5]])
+            enhancementChoices[detachment].push([enhancement[2],enhancement[4], enhancement[5]]) // name of enhancment, rule, points cost
         } else {
-            enhancementChoices['Detachments'] = await getDetachmentAbilties(filesArray[11], detachment)
-            enhancementChoices[detachment] = [[enhancement[2]]]
+            let deatchmentRule = await getDetachmentAbilties(filesArray[11], factionId, detachment)
+            enhancementChoices[detachment] = [deatchmentRule, [enhancement[2], enhancement[4], enhancement[5]]]
         }
     }
     return enhancementChoices
 }
 
-async function getDetachmentAbilties(file, detachment) {
+async function getDetachmentAbilties(file, factionId, detachment) {
     const data = await readFile(file, 'utf-8');
-    let detachmentRules = reformatData(data).filter((data) => data[5] === detachment)
-    return  { [detachmentRules[0][2]] : detachmentRules[0][4] }
+    let detachmentRules = reformatData(data).filter((data) => data[1] === factionId)
+    let detachmentRulesReturn = {}
+    for (let detachmentRule of detachmentRules) {
+        if (detachment === detachmentRule[5]) {
+            return detachmentRule[4]
+        }
+    }
 }
 
 async function getFactionAbilities(file, factionId) {
