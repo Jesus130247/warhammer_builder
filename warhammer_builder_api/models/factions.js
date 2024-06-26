@@ -4,25 +4,25 @@ const readFile = util.promisify(fs.readFile);
 
 const filesArray = [
     // was ../../, but when run through the server.js, it takes that as initial spot
-    'dataFiles/Factions.csv',
+    'dataFiles/Factions.csv', //0
     // '../dataFiles/Source.csv', // dont use
-    'dataFiles/Datasheets.csv', 
-    'dataFiles/Datasheets_abilities.csv',
-    'dataFiles/Datasheets_keywords.csv',
-    'dataFiles/Datasheets_models.csv',
-    'dataFiles/Datasheets_options.csv',
-    'dataFiles/Datasheets_wargear.csv',
-    'dataFiles/Datasheets_unit_composition.csv',
-    'dataFiles/Datasheets_models_cost.csv',
+    'dataFiles/Datasheets.csv', //1
+    'dataFiles/Datasheets_abilities.csv', //2
+    'dataFiles/Datasheets_keywords.csv', //3
+    'dataFiles/Datasheets_models.csv', //4
+    'dataFiles/Datasheets_options.csv', //5
+    'dataFiles/Datasheets_wargear.csv', //6
+    'dataFiles/Datasheets_unit_composition.csv', //7
+    'dataFiles/Datasheets_models_cost.csv', //8
     // '../../dataFiles/Datasheets_stratagems.csv',
     // '../../dataFiles/Datasheets_enhancements.csv',
     // '../../dataFiles/Datasheets_detachment_abilities.csv',
     // '../../dataFiles/Datasheets_leader.csv',
     // '../../dataFiles/Stratagems.csv', // dont use
-    'dataFiles/Abilities.csv',
-    'dataFiles/Enhancements.csv',
-    'dataFiles/Detachment_abilities.csv',
-    'dataFiles/Last_update.csv'
+    'dataFiles/Abilities.csv', //9
+    'dataFiles/Enhancements.csv', //10
+    'dataFiles/Detachment_abilities.csv', //11
+    'dataFiles/Last_update.csv' //12
 ];
 
 // function readAllData(file) {
@@ -95,7 +95,7 @@ async function getUnitCost(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitCost = reformatData(data).filter((data) => data[0] === unitId)
     if (unitCost[0]) {
-        return unitCost[0].slice(2,4)
+        return unitCost.map(cost => [cost[2], cost[3]])
     }
 }
 
@@ -103,7 +103,7 @@ async function getUnitComposition(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitComp = reformatData(data).filter((data) => data[0] === unitId)
     if (unitComp[0]) {
-        return unitComp[0][2]
+        return unitComp.map(comp => comp[2])
     }
 }
 
@@ -111,7 +111,7 @@ async function getDatasheetWargear(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let wargearOptions = reformatData(data).filter((data) => data[0] === unitId)
     if (wargearOptions[0]) {
-        return wargearOptions[0].slice(4,13)
+        return wargearOptions.map(option => option.slice(4,13))
     }
 }
 
@@ -133,17 +133,27 @@ async function getUnitData(file, unitId) {
 
 async function getUnitAbilities(file, unitId) {
     const data = await readFile(file, 'utf-8');
+    const unitSpecialAbilities = await readFile(filesArray[9], 'utf-8');
+    let coreAbilities = reformatData(unitSpecialAbilities)
     let abilties = reformatData(data).filter((data) => data[0] === unitId)
-    let allAbilties = []
+    let allAbilties = {}
+    let specialAbilities = []
     for (let singleUnitAbilites of abilties) {
-        allAbilties.push(singleUnitAbilites[4])
+        if (singleUnitAbilites[2] !== '') {
+            let coreAbility = coreAbilities.filter(ruleId => ruleId[0] === singleUnitAbilites[2])
+            specialAbilities.push(coreAbility[0][1] + ' ' + singleUnitAbilites[7])
+        }
+        if (singleUnitAbilites[4] !== '') {
+            allAbilties[singleUnitAbilites[4]] = singleUnitAbilites[5] // ability = ability description 
+        }
     }
-    return allAbilties.filter(data => data !== '')
+    allAbilties['core abilities'] = specialAbilities
+    return allAbilties
 }
 
 async function getUnitKeyWords(file, unitId) {
     const data = await readFile(file, 'utf-8');
-    let keyWords = reformatData(data).filter((data) => data[0] === unitId && data[3] === 'true')
+    let keyWords = reformatData(data).filter((data) => data[0] === unitId)
     let allKeyWords = []
     for (let singleUnitKeyWords of keyWords) {
         allKeyWords.push(singleUnitKeyWords[1])
@@ -153,8 +163,8 @@ async function getUnitKeyWords(file, unitId) {
 
 async function getFactionUnits(file, name) {  // allows me to search by faction initials
     const data = await readFile(file, 'utf-8');
-    let unitNames = reformatData(data).filter(data => data[2] === name).reduce((accum,unitInfo) =>  {
-        accum[unitInfo[0]] = [unitInfo[1]]
+    let unitNames = reformatData(data).filter(data => data[2] === name && data[4] !== '').reduce((accum,unitInfo) =>  {
+        accum[unitInfo[0]] = [unitInfo[1],unitInfo[5],unitInfo[6]] // [name, role, loadout]
         return accum
     }, {});
     return unitNames;
