@@ -23,7 +23,11 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
         setSelectedUnitState(e.target)
         setUnitInfoState(unitInfo)
     }
-
+    let characters = Object.entries(unitsInfo).filter(log => log[1][1] === 'Characters')
+    let battleline = Object.entries(unitsInfo).filter(log => log[1][1] === 'Battleline')
+    let dedicatedTransports = Object.entries(unitsInfo).filter(log => log[1][1] === 'Dedicated Transports')
+    let other = Object.entries(unitsInfo).filter(log => log[1][1] === 'Other')
+    console.log(characters);
     return (
         <>
         <div className={styles.UnitSelection}>
@@ -31,13 +35,40 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             {isLoading 
             ? <div>loading...</div>
             : 
+            <>
+            <h3>Characters</h3>
             <ul>
-                {Object.keys(unitsInfo).map((unitId,unit) => {
-                    return(
-                        <li key={unitId} id={unitId} onClick={(event) => handleClick(event,unitsInfo[unitId])}> {unitsInfo[unitId][0]} </li>
+                {characters.map((unitId, idx) => {
+                    return( 
+                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
                     )
                 })}
             </ul>
+            <h3>Battleline</h3>
+            <ul> 
+                {battleline.map((unitId, idx) => {
+                    return( 
+                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                    )
+                })}
+            </ul>
+            <h3>Dedicated Transports</h3>
+            <ul> 
+                {dedicatedTransports.map((unitId, idx) => {
+                    return( 
+                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                    )
+                })}
+            </ul>
+            <h3>Other</h3>
+            <ul> 
+                {other.map((unitId, idx) => {
+                    return( 
+                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                    )
+                })}
+            </ul>
+            </>
             }
         </div>
         <div className='showUnit'>

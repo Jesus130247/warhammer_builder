@@ -9,6 +9,7 @@ function App() {
   const [create, setCreate] = useState(false)
   const [buttonTrigger, setButtonTrigger] = useState(false)
   const [selectedArmy, setSelectedArmy] = useState()
+  const [selectedSubFaction, setselectedSubFaction] = useState()
 
   return (
     <>
@@ -16,7 +17,7 @@ function App() {
     ? <>
         <button onClick={() => setCreate(false)}>Submit Army</button>
         <button onClick={() => setCreate(false)}>Go back</button>
-        <ArmySelection selectedArmy={selectedArmy}/>
+        <ArmySelection selectedArmy={selectedArmy} selectedSubFaction={selectedSubFaction}/>
       </>
     : <>
         <button onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
@@ -30,6 +31,7 @@ function App() {
     setCreate={setCreate} 
     selectedArmy={selectedArmy}
     setSelectedArmy={setSelectedArmy}
+    setselectedSubFaction={setselectedSubFaction}
     />
 </>
   )

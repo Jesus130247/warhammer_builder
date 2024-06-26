@@ -21,7 +21,6 @@ export default function UnitRules({unitInfo, addUnit}) {
         leaderShip,
         ...OC
     ] = statsArray
-    console.log(ptsCost)
     return(
         <>
         <h3>Rules For {unitName}</h3>
@@ -44,10 +43,10 @@ export default function UnitRules({unitInfo, addUnit}) {
             <p dangerouslySetInnerHTML={{__html : unitComp}}></p>
             {ptsCost.map((option,idx) => {
                 return (
-                <>
-                    <p key={idx}>{option[0]} for {option[1]}</p>
+                <div key={idx} >
+                    <p>{option[0]} for {option[1]}</p>
                     <button onClick={() => addUnit(option[1], unitName)}>Add this unit to your army</button>
-                </>
+                </div>
                 )
             })}
         </div>

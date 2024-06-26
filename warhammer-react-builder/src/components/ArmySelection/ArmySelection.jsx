@@ -3,9 +3,11 @@ import { useEffect } from "react"
 import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
 
-export default function ArmySelection({setCreate, selectedArmy, army}) {
+export default function ArmySelection({selectedArmy, selectedSubFaction}) {
     const [armyPoints ,setArmyPoints] = useState(2000)
     const [usersArmy, setUsersArmy] = useState([])
+    
+    console.log(selectedSubFaction)
 
     function addUnit(pts, unitName) {
         setArmyPoints(armyPoints-pts)
@@ -18,7 +20,9 @@ export default function ArmySelection({setCreate, selectedArmy, army}) {
     return (
         <div className={styles.ArmySelection}>  
             <div className="container-for-army-selection">
-                <p>{selectedArmy.army} w/ {armyPoints} pts remaining</p>
+                <h2>{selectedArmy.factionInfo[0]}</h2>
+                <h3>{selectedSubFaction}</h3>
+                <p>w/ {armyPoints} pts remaining</p>
                 <ul> Your Army So far:
                     {usersArmy.map((unit,idx) => {
                         return (
@@ -28,7 +32,7 @@ export default function ArmySelection({setCreate, selectedArmy, army}) {
                 </ul>
             </div>
             <div className={styles.containerForUnits}>
-                <ArmyCreation addUnit={addUnit} armyId={selectedArmy.armyId} armyName={selectedArmy.army}/>    
+                <ArmyCreation addUnit={addUnit} armyId={selectedArmy.factionId} armyName={selectedArmy.factionInfo[0]}/>    
             </div>
         </div>
     )

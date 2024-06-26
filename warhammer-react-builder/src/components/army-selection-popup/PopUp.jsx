@@ -4,7 +4,7 @@ import SubFactionChoice from './SubFactionChoices/SubFactionChoices'
 import { useState } from "react"
 import { useEffect } from "react"
 
-export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, setSelectedArmy}) {
+export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, setSelectedArmy, setselectedSubFaction}) {
     const [factions, setFactions] = useState()
 
     useEffect(() => {
@@ -18,27 +18,33 @@ export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, set
         setTrigger(false)
         setCreate(true)
     }
-    function handleChange(e) {
+    function changeArmy(e) {
         let target = e.target.value
         if (target !== 'dontSelectThis') {
             return setSelectedArmy({factionId: target, factionInfo: factions[target]})
         } else {
             return setSelectedArmy()
         }
-
     }
+    function changeSubFaction(e) {
+        if (e.target.value !== 'none') {
+            setselectedSubFaction(e.target.value)   
+        }
+    }
+
     return (trigger ? (
         <div className={styles.popup}>
             <div className={styles.popupInner}>
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="">Select Faction</label>
-                    <select name="" id="" onChange={handleChange}>
+                    <select name="" id="" onChange={changeArmy}>
                         <option value='dontSelectThis'>All Factions</option>
                         <ArmyChoices factions={factions} />
                     </select>
                     <label htmlFor="">Select sub-Faction</label>
-                    <select name="" id="">
-                        <SubFactionChoice factions={factions} selectedArmy={selectedArmy} />
+                    <select name="" id="" onChange={changeSubFaction}>
+                        <option key="none" value='None'>Select a Faction</option>
+                        <SubFactionChoice factions={factions} selectedArmy={selectedArmy}/>
                     </select>
                     <label htmlFor="">your army name?</label>
                     <textarea></textarea>
