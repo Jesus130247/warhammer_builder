@@ -7,14 +7,12 @@ export default function ArmySelection({selectedArmy, selectedSubFaction}) {
     const [armyPoints ,setArmyPoints] = useState(2000)
     const [usersArmy, setUsersArmy] = useState([])
     
-    console.log(selectedSubFaction)
 
     function addUnit(pts, unitName) {
         setArmyPoints(armyPoints-pts)
         setUsersArmy([...usersArmy, unitName])
     }
     function removeUnit(e) {
-        console.log(e.target)
         setUsersArmy(usersArmy.filter((unit,idx) => idx !== Number(e.target.id)))
     }
     return (

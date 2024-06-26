@@ -21,6 +21,9 @@ export default function UnitRules({unitInfo, addUnit}) {
         leaderShip,
         ...OC
     ] = statsArray
+    let rangedWeapons = weaponRules.filter(weapon => weapon[2] !== 'Melee')
+    let meleeWeapons = weaponRules.filter(weapon => weapon[2] === 'Melee')
+    console.log(rangedWeapons[0])
     return(
         <>
         <h3>Rules For {unitName}</h3>
@@ -38,8 +41,12 @@ export default function UnitRules({unitInfo, addUnit}) {
                     <li>OC: {OC}</li>
                 </ul>
             </div>
+            <h3>wargear options:</h3>
             <p dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></p>
-            <p dangerouslySetInnerHTML={{__html : weaponRules}}></p>
+            <h3>ranged weapons:</h3>
+            <p dangerouslySetInnerHTML={{__html : rangedWeapons}}></p>
+            <h3>melee weapons:</h3>
+            <p dangerouslySetInnerHTML={{__html : meleeWeapons}}></p>
             <p dangerouslySetInnerHTML={{__html : unitComp}}></p>
             {ptsCost.map((option,idx) => {
                 return (

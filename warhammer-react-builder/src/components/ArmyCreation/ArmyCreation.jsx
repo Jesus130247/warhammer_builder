@@ -27,7 +27,6 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
     let battleline = Object.entries(unitsInfo).filter(log => log[1][1] === 'Battleline')
     let dedicatedTransports = Object.entries(unitsInfo).filter(log => log[1][1] === 'Dedicated Transports')
     let other = Object.entries(unitsInfo).filter(log => log[1][1] === 'Other')
-    console.log(characters);
     return (
         <>
         <div className={styles.UnitSelection}>
