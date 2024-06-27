@@ -1,0 +1,13 @@
+.specialRules {
+    display: flex;
+    flex-direction: column;
+}
+
+.rowEven {
+    background-color: #555555;
+    color: #dadada;
+}
+.rowOdd {
+    background-color: #242424;
+    color: #dadada;
+}

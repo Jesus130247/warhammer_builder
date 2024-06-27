@@ -8,6 +8,21 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
     const [isLoading, setisLoading] = useState(true)
     const [selectedUnitState, setSelectedUnitState] = useState(false)
 
+    function sortThis(object) {
+        return Object.entries(object)
+        .sort((a, b) => {
+            let first = a[1][1][0];
+            let second = b[1][1][0];
+        
+            if (first < second) {
+            return -1;
+            }
+            if (first > second) {
+            return 1;
+            }
+            return 0;
+        })
+    }
     useEffect(() => {
         fetch(`/api/faction/units/${armyId}`)
         .then(res=>res.json())
@@ -23,10 +38,14 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
         setSelectedUnitState(e.target)
         setUnitInfoState(unitInfo)
     }
-    let characters = Object.entries(unitsInfo).filter(log => log[1][1] === 'Characters')
-    let battleline = Object.entries(unitsInfo).filter(log => log[1][1] === 'Battleline')
-    let dedicatedTransports = Object.entries(unitsInfo).filter(log => log[1][1] === 'Dedicated Transports')
-    let other = Object.entries(unitsInfo).filter(log => log[1][1] === 'Other')
+    let characters = Object.entries(unitsInfo).filter(unit => unit[1][1] === 'Characters')
+    characters= sortThis(characters)
+    let battleline = Object.entries(unitsInfo).filter(unit => unit[1][1] === 'Battleline')
+    battleline= sortThis(battleline)
+    let dedicatedTransports = Object.entries(unitsInfo).filter(unit => unit[1][1] === 'Dedicated Transports')
+    dedicatedTransports= sortThis(dedicatedTransports)
+    let other = Object.entries(unitsInfo).filter(unit => unit[1][1] === 'Other')
+    other= sortThis(other)
     return (
         <>
         <div className={styles.UnitSelection}>
@@ -39,7 +58,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             <ul>
                 {characters.map((unitId, idx) => {
                     return( 
-                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                        <li key={idx} id={unitId[1][0]} onClick={(event) => handleClick(event,unitsInfo[unitId[1][0]])}>{unitId[1][1][0]}</li>
                     )
                 })}
             </ul>
@@ -47,7 +66,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             <ul> 
                 {battleline.map((unitId, idx) => {
                     return( 
-                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                        <li key={idx} id={unitId[1][0]} onClick={(event) => handleClick(event,unitsInfo[unitId[1][0]])}>{unitId[1][1][0]}</li>
                     )
                 })}
             </ul>
@@ -55,7 +74,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             <ul> 
                 {dedicatedTransports.map((unitId, idx) => {
                     return( 
-                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                        <li key={idx} id={unitId[1][0]} onClick={(event) => handleClick(event,unitsInfo[unitId[1][0]])}>{unitId[1][1][0]}</li>
                     )
                 })}
             </ul>
@@ -63,7 +82,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             <ul> 
                 {other.map((unitId, idx) => {
                     return( 
-                        <li key={idx} id={unitId[0]} onClick={(event) => handleClick(event,unitsInfo[unitId[0]])}>{unitId[1][0]}</li>
+                        <li key={idx} id={unitId[1][0]} onClick={(event) => handleClick(event,unitsInfo[unitId[1][0]])}>{unitId[1][1][0]}</li>
                     )
                 })}
             </ul>

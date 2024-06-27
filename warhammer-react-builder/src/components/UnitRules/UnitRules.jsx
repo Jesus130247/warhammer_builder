@@ -1,4 +1,5 @@
 import styles from './UnitRules.module.css'
+import Weapon from './weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit}) {
     let [unitName, 
@@ -27,67 +28,97 @@ export default function UnitRules({unitInfo, addUnit}) {
     return(
     <div className={styles.showUnitRules}>
         <h2>{unitName}</h2>
-            <div className={styles.stats}>
-                <div>M:  <div>{movement}</div></div>
-                <div>T:  <div>{toughess}</div></div>
-                <div>Sv:  <div>{armourSave}</div></div>
-                <div>W:  <div>{wounds}</div></div>
-                <div>Ld:  <div>{leaderShip}</div></div>
-                <div>OC:  <div>{OC}</div></div>
-            </div>
-            <div className={styles.inVuln}>
-                {invulSave}+ Invulnerable save
-                <span>*{invulSaveConditions}*</span>
-            </div>
-        <div className={styles.unitRules}> 
-            <p dangerouslySetInnerHTML={{__html : startingWargear}}></p>
-            <h3>wargear options:</h3>
-            <p dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></p>
-            <div className={styles.containerForRules}>
-                <div className={styles.weapons}>
-                    <h3>ranged weapons
-                        <div>Range
-                            <div>A</div>
-                            <div>BS</div>
-                            <div>S</div>
-                            <div>AP</div>
-                            <div>D</div>
-                        </div>
-                    </h3>
-                    <p dangerouslySetInnerHTML={{__html : rangedWeapons}}></p>
-                    <h3>melee weapons
-                        <div>Range
-                            <div>A</div>
-                            <div>BS</div>
-                            <div>S</div>
-                            <div>AP</div>
-                            <div>D</div>
-                        </div>
-                    </h3>
-                    <p dangerouslySetInnerHTML={{__html : meleeWeapons}}></p>
+        <div className={styles.stats}>
+            <div>M  <div>{movement}</div></div>
+            <div>T  <div>{toughess}</div></div>
+            <div>Sv  <div>{armourSave}</div></div>
+            <div>W  <div>{wounds}</div></div>
+            <div>Ld  <div>{leaderShip}</div></div>
+            <div>OC  <div>{OC}</div></div>
+        </div>
+        <div className={styles.inVuln}>
+            {invulSave}+ Invulnerable save
+            <span>{invulSaveConditions}</span>
+        </div>
+        <div className={styles.containerForRules}>
+            <div className="left">
+                <div>{rangedWeapons.length 
+                    ? <table className={styles.table}>
+                        <tr className={styles.tableTitle}>
+                            <td className={styles.weaponTitle}>Ranged weapons</td>
+                            <td>Range</td>
+                            <td>A</td>
+                            <td>BS</td>
+                            <td>S</td>
+                            <td>AP</td>
+                            <td>D</td>
+                        </tr>
+                        {rangedWeapons.map((weaponStats,idx) => {
+                            return (
+                                <Weapon weaponStats={weaponStats} idx={idx} />
+                            )
+                        })}
+                    </table> : <></>}
+                    <table className={styles.table}>
+                        <tr className={styles.tableTitle}>
+                            <td className={styles.weaponTitle}>Melee weapons</td>
+                            <td>Range</td>
+                            <td>A</td>
+                            <td>BS</td>
+                            <td>S</td>
+                            <td>AP</td>
+                            <td>D</td>
+                        </tr>
+                        {meleeWeapons.map((weaponStats,idx) => {
+                            return (
+                                <Weapon weaponStats={weaponStats} idx={idx} />
+                            )
+                        })}
+                    </table>
                 </div>
-                <div> <h4>Abilities</h4>
-                    {Object.keys(abilityObject).map(ability => {
-                        if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
-                            return (ability)
-                        } else {
-                            return <p>{abilityObject[ability].join(' ')}</p>
+            </div>
+            <div className="right">
+                <div>
+                    {Object.keys(abilityObject).map((ability,idx) => {
+                        if (ability === 'coreAbilities' || ability === 'factionKeyword') {
+                            return (<div key={idx} className={styles.abilityName}>{abilityObject[ability].join(' ')}</div>)
                         }
                     })}
-                    <p dangerouslySetInnerHTML={{__html : unitComp}}></p>
+                </div>
+                <p dangerouslySetInnerHTML={{__html : startingWargear}}></p>
+            </div>
+            <div className="left2">
+                <h3>wargear options:</h3>
+                <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
+                <div> <p className={styles.abilityName}>Abilities:</p>
+                    {Object.keys(abilityObject).map((ability,idx) => {
+                        if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
+                            return (<div key={idx}>
+                            <div className={styles.abilityName}>{ability} : </div>
+                            <div className={styles.abilityDes} dangerouslySetInnerHTML={{__html: abilityObject[ability]}}></div>
+                            </div>)
+                        }
+                    })}
                 </div>
             </div>
-
-            {ptsCost.map((option,idx) => {
-                return (
-                <div key={idx} >
-                    <p>{option[0]} for {option[1]}</p>
-                    <button onClick={() => addUnit(option[1], unitName)}>Add this unit to your army</button>
+            <div className="right2">
+                <span>
+                    <h4>Unit Composiiton</h4>
+                    <div dangerouslySetInnerHTML={{__html : unitComp}}></div>
+                </span> 
+                <div className={styles.unitRules}> 
+                {ptsCost.map((option,idx) => {
+                    return (
+                        <div key={idx} >
+                        <h4>{option[0]} for {option[1]} pts</h4>
+                        <button className={styles.btn}onClick={() => addUnit(option[1], unitName)}>Add this type to your army</button>
+                    </div>
+                    )
+                })}
                 </div>
-                )
-            })}
-            <h4>Keywords: {armyKeyWordArray.join(', ')}</h4>
+            </div>
         </div>
+            <h4>Keywords: {armyKeyWordArray.join(', ')}</h4>
     </div>
     )
 }

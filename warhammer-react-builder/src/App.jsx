@@ -16,14 +16,16 @@ function App() {
   const [armyName, setArmyName] = useState()
   const [pointLimit, setPointLimit] = useState(1000)
 
-  return (<div className='everything'>
-    <Nav />
-    <Header />
+  return (<div className='body'>
+    <div className="centerThis">
+      <Nav />
+      <Header />
+    </div>
     <div className="create_!">
       {create 
       ? <>
-          <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
           <button className='btn' onClick={() => setCreate(false)}>Go back</button>
+          <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
           <ArmySelection 
             armyName={armyName} 
             selectedArmy={selectedArmy} 
@@ -31,13 +33,15 @@ function App() {
             pointLimit={pointLimit}
           />
         </>
-      : <>
+      : <div className="centerThis">
           <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
           <ArmyList />
-        </>
+          </div>
       }
     </div>
-    <Footer />
+    <div className="centerThis">
+      <Footer />  
+    </div>
     <PopUp  
       trigger={buttonTrigger} 
       setTrigger={setButtonTrigger} 

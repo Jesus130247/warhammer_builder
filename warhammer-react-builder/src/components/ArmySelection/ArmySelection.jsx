@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
+import UserArmy from "./userArmy/UserArmy"
 
 export default function ArmySelection({selectedArmy, selectedSubFaction, armyName, pointLimit}) {
     const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
@@ -10,29 +11,33 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, armyNam
 
     function addUnit(pts, unitName) {
         setRemainingPoints(remainingPoints-pts)
-        setUsersArmy([...usersArmy, unitName])
+        setUsersArmy([...usersArmy, [unitName, pts]])
     }
     function removeUnit(e) {
-        setUsersArmy(usersArmy.filter((unit,idx) => idx !== Number(e.target.id)))
+        let pts
+        setUsersArmy(usersArmy.filter((unit,idx) => {
+            pts = Number(unit[1])
+            return idx !== Number(e.target.id)
+        }))
+        setRemainingPoints(remainingPoints+pts)
     }
     return (
         <div className={styles.ArmySelection}>  
             <div className={styles.containerForUnits}>
-                <ArmyCreation addUnit={addUnit} armyId={selectedArmy.factionId} armyName={selectedArmy.factionInfo[0]}/>    
+                <ArmyCreation 
+                addUnit={addUnit} 
+                armyId={selectedArmy.factionId} 
+                armyName={selectedArmy.factionInfo[0]}/>    
             </div>
-            <div className="container-for-army-selection">
-                <h2>{selectedArmy.factionInfo[0]}</h2>
-                <h3>{selectedSubFaction}</h3>
-                <h3>{armyName}</h3>
-                <p>point limit: {pointLimit} <span>w/ {remainingPoints} pts remaining</span></p>
-                <ul> Your Army So far:
-                    {usersArmy.map((unit,idx) => {
-                        return (
-                            <li key={idx}>{unit}<button value={unit}  id={idx} onClick={removeUnit}>delete this unit</button></li>
-                        )
-                    })}
-                </ul>
-            </div>
+            <UserArmy 
+            armyName={armyName} 
+            selectedArmy={selectedArmy} 
+            selectedSubFaction={selectedSubFaction}
+            pointLimit={pointLimit}
+            removeUnit={removeUnit}
+            usersArmy={usersArmy}
+            remainingPoints={remainingPoints}
+            />
         </div>
     )
 }

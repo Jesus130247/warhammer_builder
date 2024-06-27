@@ -1,7 +1,7 @@
-* {
+.centerThis {
     text-align: center;
 }
-.everything {
+.body {
     height: 100%;
     color: #dadada;
 }
@@ -23,6 +23,7 @@ html {
     color: #dadada;
     padding: 0.5rem;
     font-size: medium;
+    margin-bottom: 15px;
 }
 
 .btn:hover {
@@ -35,3 +36,4 @@ html {
     background-color: #ffffff;
     color: #000000;
 }
+
