@@ -18,7 +18,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
         setisLoading(true)
     },[armyId])
     function handleClick(e, unitInfo) {
-        selectedUnitState ? selectedUnitState.style.color = 'black' : <></>
+        selectedUnitState ? selectedUnitState.style.color = '#dadada' : <></>
         e.target.style.color = 'red'
         setSelectedUnitState(e.target)
         setUnitInfoState(unitInfo)
@@ -70,12 +70,12 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
             </>
             }
         </div>
-        <div className='showUnit'>
+        <>
             {selectedUnitState 
             ? <UnitRules addUnit={addUnit} unitInfo={unitInfoState} />
             : <h3>waiting on unit to be seleceted</h3>
             }
-        </div>
+        </>
         </>
     )
 }

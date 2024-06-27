@@ -3,13 +3,13 @@ import { useEffect } from "react"
 import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
 
-export default function ArmySelection({selectedArmy, selectedSubFaction}) {
-    const [armyPoints ,setArmyPoints] = useState(2000)
+export default function ArmySelection({selectedArmy, selectedSubFaction, armyName, pointLimit}) {
+    const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
     const [usersArmy, setUsersArmy] = useState([])
     
 
     function addUnit(pts, unitName) {
-        setArmyPoints(armyPoints-pts)
+        setRemainingPoints(remainingPoints-pts)
         setUsersArmy([...usersArmy, unitName])
     }
     function removeUnit(e) {
@@ -17,10 +17,14 @@ export default function ArmySelection({selectedArmy, selectedSubFaction}) {
     }
     return (
         <div className={styles.ArmySelection}>  
+            <div className={styles.containerForUnits}>
+                <ArmyCreation addUnit={addUnit} armyId={selectedArmy.factionId} armyName={selectedArmy.factionInfo[0]}/>    
+            </div>
             <div className="container-for-army-selection">
                 <h2>{selectedArmy.factionInfo[0]}</h2>
                 <h3>{selectedSubFaction}</h3>
-                <p>w/ {armyPoints} pts remaining</p>
+                <h3>{armyName}</h3>
+                <p>point limit: {pointLimit} <span>w/ {remainingPoints} pts remaining</span></p>
                 <ul> Your Army So far:
                     {usersArmy.map((unit,idx) => {
                         return (
@@ -28,9 +32,6 @@ export default function ArmySelection({selectedArmy, selectedSubFaction}) {
                         )
                     })}
                 </ul>
-            </div>
-            <div className={styles.containerForUnits}>
-                <ArmyCreation addUnit={addUnit} armyId={selectedArmy.factionId} armyName={selectedArmy.factionInfo[0]}/>    
             </div>
         </div>
     )

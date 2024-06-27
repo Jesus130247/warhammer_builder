@@ -1,0 +1,37 @@
+* {
+    text-align: center;
+}
+.everything {
+    height: 100%;
+    color: #dadada;
+}
+a {
+    text-decoration: none;
+    color: #dadada;
+    font-weight: 700;
+}
+
+html {
+    height: 100%;
+    background-color: #3c3c3c;
+}
+
+.btn {
+    border: 1px solid #dadada;
+    border-radius: 25px;
+    background-color: #3c3c3c;
+    color: #dadada;
+    padding: 0.5rem;
+    font-size: medium;
+}
+
+.btn:hover {
+    background-color: #5e5e5e;
+    color: #e2e2e2;
+    transition: 0.1s;
+}
+
+.btn:active {
+    background-color: #ffffff;
+    color: #000000;
+}

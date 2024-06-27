@@ -4,7 +4,9 @@ import SubFactionChoice from './SubFactionChoices/SubFactionChoices'
 import { useState } from "react"
 import { useEffect } from "react"
 
-export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, setSelectedArmy, setselectedSubFaction}) {
+export default function PopUp({trigger, setTrigger, setCreate, 
+    selectedArmy, setSelectedArmy, setselectedSubFaction, 
+    setArmyName, setPointLimit }) {
     const [factions, setFactions] = useState()
 
     useEffect(() => {
@@ -34,7 +36,7 @@ export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, set
 
     return (trigger ? (
         <div className={styles.popup}>
-            <div className={styles.popupInner}>
+            <div className={styles.popupLeft}>
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="">Select Faction</label>
                     <select name="" id="" onChange={changeArmy}>
@@ -43,19 +45,41 @@ export default function PopUp({trigger, setTrigger, setCreate, selectedArmy, set
                     </select>
                     <label htmlFor="">Select sub-Faction</label>
                     <select name="" id="" onChange={changeSubFaction}>
+                    {/* {selectedSubFaction ? <option key="none" value='None'>{selectedSubFaction}</option>
+                        :  */}
                         <option key="none" value='None'>Select a Faction</option>
+                    {/* } */}
                         <SubFactionChoice factions={factions} selectedArmy={selectedArmy}/>
                     </select>
-                    <label htmlFor="">your army name?</label>
-                    <textarea></textarea>
+                    <label htmlFor="">Army Name</label>
+                    <textarea onChange={(e) => setArmyName(e.target.value)}></textarea>
                     <label htmlFor="">Select points limit</label>
-                    <select name="" id="">
-                        <option value="">2000 pts</option>
+                    <select name="" id="" onChange={(e) => setPointLimit(e.target.value)}>
+                        <option value="1000">1000 pts</option>
+                        <option value="1500">1500 pts</option>
+                        <option value="2000">2000 pts</option>
+                        <option value="2500">2500 pts</option>
+                        <option value="3000">3000 pts</option>
                     </select>
-                    <button>Create Army +</button>
+                    {selectedArmy ? <button className={styles.createBtn}>Create Army +</button>
+                    : <div>Must select an Faction</div>
+                    }
                 </form>
                 <button className={styles.closeBtn} onClick={()=>setTrigger(false)}>Close This popUp</button>
             </div>
+            {/* <div className={styles.popupRight}>
+            <form action="" onSubmit={handleSubmit}>
+                    <label htmlFor="">Select Faction</label>
+                    <div className="content" value={selectedArmy}></div>
+                    <label htmlFor="">Select sub-Faction</label>
+                    <div className="content" value={selectedSubFaction}></div>
+                    <label htmlFor="">your army name?</label>
+                    <div className="content" value={armyName}></div>
+                    <label htmlFor="">Select points limit</label>
+                    <div className="content"></div>
+                </form>
+                <button className={styles.closeBtn} onClick={()=>setTrigger(false)}>Close This popUp</button>
+            </div> */}
         </div>
     ) : "")
 }

@@ -1,0 +1,48 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(77, 77, 77, 0.418);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.popupLeft, .popupRight  {
+    background-color: #d4d4d4;
+    color: black;
+    border-radius: 15px;
+    padding: 24px 32px;
+    max-width: 640px;
+}
+
+.popupLeft form, .popupRight form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    border: 1px solid #dadada;
+    border-radius: 25px;
+    background-color: #d4d4d4;
+    color: black;
+    padding: 0.5rem;
+    font-size: medium;
+}
+
+.closeBtn:hover {
+    background-color: #5e5e5e;
+    color: #e2e2e2;
+    transition: 0.1s;
+}
+
+.closeBtn:active {
+    background-color: #ffffff;
+    color: #000000;
+}

@@ -1,0 +1,41 @@
+
+.showUnitRules {
+    overflow-y: scroll;
+}
+
+.containerForRules {
+    display: flex;
+}
+.stats {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}   
+.stats div {
+    display: flex;
+    flex-direction: column;
+}
+.inVuln {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.weapons * {
+    padding: 0;
+    margin: 0;
+}
+.weapons {
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+}
+.weapons h3 {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+}
+.weapons div {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+}

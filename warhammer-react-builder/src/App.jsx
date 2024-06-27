@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import ArmySelection from './components/ArmySelection/ArmySelection'
-import Dashboard from './components/Dashboard/Dashboard'
-import PopUp from './components/army-selection-popup/PopUp'
+import Header from './components/Header/Header'
+import PopUp from './components/PopUp/PopUp'
+import Nav from './components/nav/nav'
+import Footer from './components/footer/footer'
+import ArmyList from './components/ArmyList/ArmyList'
 
 
 function App() {
@@ -10,30 +13,44 @@ function App() {
   const [buttonTrigger, setButtonTrigger] = useState(false)
   const [selectedArmy, setSelectedArmy] = useState()
   const [selectedSubFaction, setselectedSubFaction] = useState()
+  const [armyName, setArmyName] = useState()
+  const [pointLimit, setPointLimit] = useState(1000)
 
-  return (
-    <>
-    {create 
-    ? <>
-        <button onClick={() => setCreate(false)}>Submit Army</button>
-        <button onClick={() => setCreate(false)}>Go back</button>
-        <ArmySelection selectedArmy={selectedArmy} selectedSubFaction={selectedSubFaction}/>
-      </>
-    : <>
-        <button onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
-        <Dashboard />
-      </>
-    }
-    <footer>Powered by Wahapedia</footer>
+  return (<div className='everything'>
+    <Nav />
+    <Header />
+    <div className="create_!">
+      {create 
+      ? <>
+          <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
+          <button className='btn' onClick={() => setCreate(false)}>Go back</button>
+          <ArmySelection 
+            armyName={armyName} 
+            selectedArmy={selectedArmy} 
+            selectedSubFaction={selectedSubFaction}
+            pointLimit={pointLimit}
+          />
+        </>
+      : <>
+          <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
+          <ArmyList />
+        </>
+      }
+    </div>
+    <Footer />
     <PopUp  
-    trigger={buttonTrigger} 
-    setTrigger={setButtonTrigger} 
-    setCreate={setCreate} 
-    selectedArmy={selectedArmy}
-    setSelectedArmy={setSelectedArmy}
-    setselectedSubFaction={setselectedSubFaction}
+      trigger={buttonTrigger} 
+      setTrigger={setButtonTrigger} 
+      setCreate={setCreate} 
+      selectedArmy={selectedArmy}
+      setSelectedArmy={setSelectedArmy}
+      setselectedSubFaction={setselectedSubFaction}
+      selectedSubFaction={selectedSubFaction}
+      setArmyName={setArmyName}
+      armyName={armyName}
+      setPointLimit={setPointLimit}
     />
-</>
+  </div>
   )
 }
 

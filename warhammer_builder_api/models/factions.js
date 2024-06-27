@@ -152,7 +152,8 @@ async function getUnitAbilities(file, unitId) {
             allAbilties[singleUnitAbilites[4]] = singleUnitAbilites[5] // ability = ability description 
         }
     }
-    allAbilties['core abilities'] = specialAbilities
+    allAbilties['coreAbilities'] = specialAbilities.slice(0,-1)
+    allAbilties['factionKeyword'] = specialAbilities.slice(-1)
     return allAbilties
 }
 
