@@ -2,56 +2,79 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
-// const filesArray = [ // use for current api
-//     // was ../../, but when run through the server.js, it takes that as initial spot
-//     'dataFiles/Factions.csv', //0
-//     'dataFiles/Datasheets.csv', //1
-//     'dataFiles/Datasheets_abilities.csv', //2
-//     'dataFiles/Datasheets_keywords.csv', //3
-//     'dataFiles/Datasheets_models.csv', //4
-//     'dataFiles/Datasheets_options.csv', //5
-//     'dataFiles/Datasheets_wargear.csv', //6
-//     'dataFiles/Datasheets_unit_composition.csv', //7
-//     'dataFiles/Datasheets_models_cost.csv', //8
-//     // '../../dataFiles/Datasheets_stratagems.csv',
-//     // '../../dataFiles/Datasheets_enhancements.csv',
-//     // '../../dataFiles/Datasheets_detachment_abilities.csv',
-//     // '../../dataFiles/Stratagems.csv', // dont use
-//     'dataFiles/Abilities.csv', //9
-//     'dataFiles/Enhancements.csv', //10
-//     'dataFiles/Detachment_abilities.csv', //11
-//     'dataFiles/Last_update.csv', //12
-//     'dataFiles/Datasheets_leader.csv', //13
-//     // 'dataFiles/Source.csv', // dont use // 13
-// ];
-
-const filesArray = [
+const filesArray = [ // use for current api
     // was ../../, but when run through the server.js, it takes that as initial spot
-    '../dataFiles/Factions.csv', //0
-    '../dataFiles/Datasheets.csv', //1
-    '../dataFiles/Datasheets_abilities.csv', //2
-    '../dataFiles/Datasheets_keywords.csv', //3
-    '../dataFiles/Datasheets_models.csv', //4
-    '../dataFiles/Datasheets_options.csv', //5
-    '../dataFiles/Datasheets_wargear.csv', //6
-    '../dataFiles/Datasheets_unit_composition.csv', //7
-    '../dataFiles/Datasheets_models_cost.csv', //8
+    'dataFiles/Factions.csv', //0
+    'dataFiles/Datasheets.csv', //1
+    'dataFiles/Datasheets_abilities.csv', //2
+    'dataFiles/Datasheets_keywords.csv', //3
+    'dataFiles/Datasheets_models.csv', //4
+    'dataFiles/Datasheets_options.csv', //5
+    'dataFiles/Datasheets_wargear.csv', //6
+    'dataFiles/Datasheets_unit_composition.csv', //7
+    'dataFiles/Datasheets_models_cost.csv', //8
     // '../../dataFiles/Datasheets_stratagems.csv',
     // '../../dataFiles/Datasheets_enhancements.csv',
     // '../../dataFiles/Datasheets_detachment_abilities.csv',
     // '../../dataFiles/Stratagems.csv', // dont use
-    '../dataFiles/Abilities.csv', //9
-    '../dataFiles/Enhancements.csv', //10
-    '../dataFiles/Detachment_abilities.csv', //11
-    '../dataFiles/Last_update.csv', //12
-    '../dataFiles/Datasheets_leader.csv', //13
+    'dataFiles/Abilities.csv', //9
+    'dataFiles/Enhancements.csv', //10
+    'dataFiles/Detachment_abilities.csv', //11
+    'dataFiles/Last_update.csv', //12
+    'dataFiles/Datasheets_leader.csv', //13
     // 'dataFiles/Source.csv', // dont use // 13
 ];
 
+// const filesArray = [ // for uplaoding to database
+//     // was ../../, but when run through the server.js, it takes that as initial spot
+//     '../dataFiles/Factions.csv', //0
+//     '../dataFiles/Datasheets.csv', //1
+//     '../dataFiles/Datasheets_abilities.csv', //2
+//     '../dataFiles/Datasheets_keywords.csv', //3
+//     '../dataFiles/Datasheets_models.csv', //4
+//     '../dataFiles/Datasheets_options.csv', //5
+//     '../dataFiles/Datasheets_wargear.csv', //6
+//     '../dataFiles/Datasheets_unit_composition.csv', //7
+//     '../dataFiles/Datasheets_models_cost.csv', //8
+//     // '../../dataFiles/Datasheets_stratagems.csv',
+//     // '../../dataFiles/Datasheets_enhancements.csv',
+//     // '../../dataFiles/Datasheets_detachment_abilities.csv',
+//     // '../../dataFiles/Stratagems.csv', // dont use
+//     '../dataFiles/Abilities.csv', //9
+//     '../dataFiles/Enhancements.csv', //10
+//     '../dataFiles/Detachment_abilities.csv', //11
+//     '../dataFiles/Last_update.csv', //12
+//     '../dataFiles/Datasheets_leader.csv', //13
+//     // 'dataFiles/Source.csv', // dont use // 13
+// ];
+
+// const filesArray = [ // for testing here
+//     // was ../../, but when run through the server.js, it takes that as initial spot
+//     '../../dataFiles/Factions.csv', //0
+//     '../../dataFiles/Datasheets.csv', //1
+//     '../../dataFiles/Datasheets_abilities.csv', //2
+//     '../../dataFiles/Datasheets_keywords.csv', //3
+//     '../../dataFiles/Datasheets_models.csv', //4
+//     '../../dataFiles/Datasheets_options.csv', //5
+//     '../../dataFiles/Datasheets_wargear.csv', //6
+//     '../../dataFiles/Datasheets_unit_composition.csv', //7
+//     '../../dataFiles/Datasheets_models_cost.csv', //8
+//     // '../../dataFiles/Datasheets_stratagems.csv',
+//     // '../../dataFiles/Datasheets_enhancements.csv',
+//     // '../../dataFiles/Datasheets_detachment_abilities.csv',
+//     // '../../dataFiles/Stratagems.csv', // dont use
+//     '../../dataFiles/Abilities.csv', //9
+//     '../../dataFiles/Enhancements.csv', //10
+//     '../../dataFiles/Detachment_abilities.csv', //11
+//     '../../dataFiles/Last_update.csv', //12
+//     '../../dataFiles/Datasheets_leader.csv', //13
+//     // 'dataFiles/Source.csv', // dont use // 13
+// ];
 function reformatData(data) {
     let dataArray = data.split('\n').map(line => line.split('|'))
     return dataArray
 }
+
 
 async function getFactionData() {
     let allFactions = await getFractionNames(filesArray[0])
@@ -62,6 +85,8 @@ async function getFactionData() {
     return allFactions
 }
 
+
+// getThisFactionsUnits('SM')
 async function getThisFactionsUnits(factionId) {
     let factionUnits = await getFactionUnits(filesArray[1],factionId)
     for (let unitId in factionUnits) {

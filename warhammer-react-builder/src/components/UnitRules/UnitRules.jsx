@@ -2,17 +2,20 @@ import styles from './UnitRules.module.css'
 import Weapon from './weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit, colour}) {
+    console.log(unitInfo)
     let [unitName, 
         role,
         startingWargear,
         abilityObject,
         armyKeyWordArray,
         statsArray,
-        wargearOptionsHTML,
-        weaponRules,
-        unitComp,
-        ptsCost
-    ] = unitInfo
+        wargearOptionsArray,
+        weaponRulesArray,
+        unitCompArray,
+        ptsCost,
+        somethingElse
+    ] = unitInfo.unit_data
+    console.log(unitName)
     let [
         movement,
         toughess,
@@ -23,8 +26,8 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
         leaderShip,
         ...OC
     ] = statsArray
-    let rangedWeapons = weaponRules.filter(weapon => weapon[2] !== 'Melee')
-    let meleeWeapons = weaponRules.filter(weapon => weapon[2] === 'Melee')
+    let rangedWeapons = weaponRulesArray.filter(weapon => weapon[2] !== 'Melee')
+    let meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
     return(
     <div className={styles.showUnitRules}>
         <h2 style={{color: colour}}>{unitName}</h2>
@@ -89,7 +92,9 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             </div>
             <div className="left2">
                 <h3>wargear options:</h3>
-                <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
+                {wargearOptionsArray.map(wargearOptionsHTML => {
+                    <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
+                })}
                 <div> <p className={styles.abilityName}>Abilities:</p>
                     {Object.keys(abilityObject).map((ability,idx) => {
                         if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
@@ -104,7 +109,9 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             <div className="right2">
                 <span>
                     <h4>Unit Composiiton</h4>
+                    {unitCompArray.map(unitComp => {
                     <div dangerouslySetInnerHTML={{__html : unitComp}}></div>
+                })}
                 </span> 
                 <div className={styles.unitRules}> 
                 {ptsCost.map((option,idx) => {

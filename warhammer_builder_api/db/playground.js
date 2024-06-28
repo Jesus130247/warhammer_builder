@@ -23,11 +23,17 @@ async function storeUnitData(faction_id) {
     for (let unit_id in res) {
         sql = `INSERT INTO units 
         (faction_id, unit_id, unit_data) 
-        VALUES ($1, $2, $3)`
-        db.query(sql, [faction_id, unit_id, JSON.stringify(res[unit_id])], (res, err) => {
-            if (err) console.log(err)
-        })
+        VALUES ($1, $2, $3);`
+        db.query(sql, [faction_id, unit_id, JSON.stringify(res[unit_id])])
     }
     return
 }
-storeFactionData()
+
+
+
+storeUnitData('AM')
+
+// WE AoI GC TL GK AE AdM 
+// NEC UN TS ORK TAU LoV QT 
+// QI AC CSM TYR DRU AM
+ 

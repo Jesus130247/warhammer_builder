@@ -16,7 +16,7 @@ CREATE TABLE factions (
 CREATE TABLE units (
     id SERIAL PRIMARY KEY,
     faction_id TEXT NOT NULL,
-    unit_id INT NOT NULL,
+    unit_id TEXT NOT NULL,
     unit_data JSONB
 );
 
@@ -31,5 +31,5 @@ CREATE TABLE army (
 );
 
 
-`INSERT INTO factions (faction_id, faction_info) VALUES ($1, $2)`
-`INSERT INTO units (faction_id, unit_id, unit_data) VALUES ($1, $2, $3)`
+`INSERT INTO factions (faction_id, faction_info) VALUES ($1, $2);`
+`INSERT INTO units (faction_id, unit_id, unit_data) VALUES ($1, $2, $3);`

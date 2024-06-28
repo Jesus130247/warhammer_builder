@@ -10,7 +10,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
     const [factions, setFactions] = useState() 
 
     useEffect(() => {
-        fetch('/api/factions')
+        fetch('/api/factions/psql')
             .then(res=> res.json())
             .then(res => setFactions(res))
     },[])
@@ -21,10 +21,11 @@ export default function PopUp({trigger, setTrigger, setCreate,
         setCreate(true)
     }
     function changeArmy(e) {
-        let target = e.target.value.split('|')
-        if (target[0] !== 'dontSelectThis') {
-            setColour(target[1])
-            return setSelectedArmy({factionId: target[0], factionInfo: factions[target[0]]})
+        let target = e.target.value
+        if (target !== 'dontSelectThis') {
+            setSelectedArmy(factions[target])
+            setColour(factions[target].faction_info[1])
+            return
         } else {
             return setSelectedArmy()
         }
@@ -54,13 +55,13 @@ export default function PopUp({trigger, setTrigger, setCreate,
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="">Select Faction</label>
                     <select name="" id="" onChange={changeArmy} className={styles.dropdown}>
-                        <option value='dontSelectThis|'>All Factions</option>
+                        <option value='dontSelectThis'>All Factions</option>
                         <ArmyChoices factions={factions} />
                     </select>
                     <label htmlFor="">Select sub-Faction</label>
                     <select name="" id="" onChange={changeSubFaction} className={styles.dropdown}>
                         <option key="none" value='None'>Select a Faction</option>
-                        <SubFactionChoice factions={factions} selectedArmy={selectedArmy}/>
+                        <SubFactionChoice selectedArmy={selectedArmy}/>
                     </select>
                     <label htmlFor="">Army Name <span className={styles.Span}>- 40 char limit</span></label>
 
