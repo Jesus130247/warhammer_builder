@@ -29,8 +29,9 @@ async function storeUnitData(faction_id) {
     return
 }
 
+async function addMoreSMData() {
 
-
+}
 storeUnitData('SM')
 
 // WE AoI GC TL GK AE AdM 

@@ -4,7 +4,7 @@ import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
 import UserArmy from "./userArmy/UserArmy"
 
-export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour}) {
+export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName}) {
     const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
     const [usersArmy, setUsersArmy] = useState([])
 
@@ -30,7 +30,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
             </div>
             <UserArmy 
             colour={colour}
-            armyName={selectedArmy.faction_info[0]} 
+            armyName={armyName} 
             selectedArmy={selectedArmy} 
             selectedSubFaction={selectedSubFaction}
             pointLimit={pointLimit}

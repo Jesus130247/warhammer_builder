@@ -13,7 +13,7 @@
 .containerForRules {
     margin-left: 3px;
     display: grid;
-    gap: 3px;
+    gap: 10px;
     grid-template-columns: 2fr 1fr;
 }
 .stats {

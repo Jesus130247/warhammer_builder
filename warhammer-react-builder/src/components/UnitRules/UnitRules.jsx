@@ -2,7 +2,7 @@ import styles from './UnitRules.module.css'
 import Weapon from './weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit, colour}) {
-    let [unitName, 
+    let [factionName, 
         role,
         startingWargear,
         abilityObject,
@@ -28,7 +28,7 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
     let meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
     return(
     <div className={styles.showUnitRules}>
-        <h2 style={{color: colour}}>{unitName}</h2>
+        <h2 style={{color: colour}}>{factionName}</h2>
         <div className={styles.stats}>
             <div>M  <div>{movement}</div></div>
             <div>T  <div>{toughess}</div></div>
@@ -46,13 +46,13 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                 <div>{rangedWeapons.length 
                     ? <table className={styles.table}>
                         <tr className={styles.tableTitle}>
-                            <td className={styles.weaponTitle}>Ranged weapons</td>
-                            <td>Range</td>
-                            <td>A</td>
-                            <td>BS</td>
-                            <td>S</td>
-                            <td>AP</td>
-                            <td>D</td>
+                            <td className={styles.weaponTitle} style={{color: colour}}>Ranged weapons</td>
+                            <td style={{color: colour}}>Range</td>
+                            <td style={{color: colour}}>A</td>
+                            <td style={{color: colour}}>BS</td>
+                            <td style={{color: colour}}>S</td>
+                            <td style={{color: colour}}>AP</td>
+                            <td style={{color: colour}}>D</td>
                         </tr>
                         {rangedWeapons.map((weaponStats,idx) => {
                             return (
@@ -62,17 +62,17 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                     </table> : <></>}
                     <table className={styles.table}>
                         <tr className={styles.tableTitle}>
-                            <td className={styles.weaponTitle}>Melee weapons</td>
-                            <td>Range</td>
-                            <td>A</td>
-                            <td>WS</td>
-                            <td>S</td>
-                            <td>AP</td>
-                            <td>D</td>
+                            <td className={styles.weaponTitle} style={{color: colour}}>Melee weapons</td>
+                            <td style={{color: colour}}>Range</td>
+                            <td style={{color: colour}}>A</td>
+                            <td style={{color: colour}}>WS</td>
+                            <td style={{color: colour}}>S</td>
+                            <td style={{color: colour}}>AP</td>
+                            <td style={{color: colour}}>D</td>
                         </tr>
                         {meleeWeapons.map((weaponStats,idx) => {
                             return (
-                                <Weapon weaponStats={weaponStats} idx={idx} />
+                                <Weapon weaponStats={weaponStats} idx={idx} colour={colour} />
                             )
                         })}
                     </table>
@@ -89,11 +89,13 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                 <p dangerouslySetInnerHTML={{__html : startingWargear}}></p>
             </div>
             <div className="left2">
-                <h3>wargear options:</h3>
+                <h3 style={{color: colour}}>Wargear options:</h3>
                 {wargearOptionsArray ? wargearOptionsArray.map(wargearOptionsHTML => {
+                    return (
                     <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
+                    )
                 }) : <>None</>}
-                <div> <p className={styles.abilityName}>Abilities:</p>
+                <div> <p className={styles.abilityName} style={{color: colour}}>Abilities:</p>
                     {Object.keys(abilityObject).map((ability,idx) => {
                         if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
                             return (<div key={idx}>
@@ -106,7 +108,7 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             </div>
             <div className="right2">
                 <span>
-                    <h4>Unit Composiiton</h4>
+                    <h4 style={{color: colour}}>Unit Composiiton</h4>
                     {unitCompArray.map(unitComp => {
                     <div dangerouslySetInnerHTML={{__html : unitComp}}></div>
                 })}
@@ -116,18 +118,20 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                     return (
                         <div key={idx} >
                         <h4>{option[0]} for {option[1]} pts</h4>
-                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(option[1], unitName)}>Add this type to your army</button>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(option[1], factionName)}>Add this type to your army</button>
                     </div>
                     )
                 })}
                 </div>
                 {role === "Characters" && leader.length > 0 ? <>
                 <div className={styles.leader} style={{color: colour}}>This modal can lead:</div>
-                <div>{leader.join('\n')}</div>
+                {leader.map(unit => {
+                    return (<div>{unit}</div>)
+                })}
                 </>: <></>} 
             </div>
         </div>
-            <h4>Keywords: {armyKeyWordArray.join(', ')}</h4>
+            <h4 style={{color: colour}}>Keywords: {armyKeyWordArray.join(', ')}</h4>
     </div>
     )
 }
