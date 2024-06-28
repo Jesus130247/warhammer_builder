@@ -31,7 +31,7 @@ async function storeUnitData(faction_id) {
 
 
 
-storeUnitData('AM')
+storeUnitData('SM')
 
 // WE AoI GC TL GK AE AdM 
 // NEC UN TS ORK TAU LoV QT 

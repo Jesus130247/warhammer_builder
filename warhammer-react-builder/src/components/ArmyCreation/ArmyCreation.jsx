@@ -4,9 +4,9 @@ import styles from './ArmyCreation.module.css'
 
 export default function ArmyCreation({armyId, addUnit, colour}) {
     const [unitsInfo, setUnitsInfo] = useState({})
-    const [unitInfoState, setUnitInfoState] = useState()
+    const [showUnit, setShowUnit] = useState(false)
     const [isLoading, setisLoading] = useState(true)
-    const [selectedUnitState, setSelectedUnitState] = useState(false)
+    const [selectedUnit, setSelectedUnit] = useState()
 
     function sortThis(object) {
         return Object.entries(object)
@@ -32,11 +32,12 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
         })
         setisLoading(true)
     },[])
-    function handleClick(e, unitInfo) {
-        selectedUnitState ? selectedUnitState.style.color = '#dadada' : <></>
+    
+    function handleClick(e, unitData) {
+        showUnit ? showUnit.style.color = '#dadada' : <></>
         e.target.style.color = colour
-        setSelectedUnitState(e.target)
-        setUnitInfoState(unitInfo)
+        setSelectedUnit(unitData)
+        setShowUnit(e.target)
     }
     
     if (unitsInfo.length) {
@@ -60,7 +61,7 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
                 <ul>
                     {characters.map((unitId, idx) => {
                         return( 
-                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event,unitsInfo[idx])}>{unitId[1].unit_data[0]}</li>
+                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
                     })}
                 </ul>
@@ -68,7 +69,7 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
                 <ul> 
                     {battleline.map((unitId, idx) => {
                            return( 
-                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event,unitsInfo[idx])}>{unitId[1].unit_data[0]}</li>
+                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
                     })}
                 </ul>
@@ -76,7 +77,7 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
                 <ul> 
                     {dedicatedTransports.map((unitId, idx) => {
                          return( 
-                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event,unitsInfo[idx])}>{unitId[1].unit_data[0]}</li>
+                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
                     })}
                 </ul>
@@ -84,7 +85,7 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
                 <ul> 
                     {other.map((unitId, idx) => {
                       return( 
-                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event,unitsInfo[idx])}>{unitId[1].unit_data[0]}</li>
+                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
                     })}
                 </ul>
@@ -92,8 +93,8 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
                 }
             </div>
             <>
-                {selectedUnitState 
-                ? <UnitRules colour={colour} addUnit={addUnit} unitInfo={unitInfoState} />
+                {showUnit 
+                ? <UnitRules colour={colour} addUnit={addUnit} unitInfo={selectedUnit} />
                 : <h3>waiting on unit to be seleceted</h3>
                 }
             </>

@@ -2,7 +2,6 @@ import styles from './UnitRules.module.css'
 import Weapon from './weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit, colour}) {
-    console.log(unitInfo)
     let [unitName, 
         role,
         startingWargear,
@@ -13,9 +12,8 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
         weaponRulesArray,
         unitCompArray,
         ptsCost,
-        somethingElse
-    ] = unitInfo.unit_data
-    console.log(unitName)
+        leader
+    ] = unitInfo[1].unit_data
     let [
         movement,
         toughess,
@@ -92,9 +90,9 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             </div>
             <div className="left2">
                 <h3>wargear options:</h3>
-                {wargearOptionsArray.map(wargearOptionsHTML => {
+                {wargearOptionsArray ? wargearOptionsArray.map(wargearOptionsHTML => {
                     <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
-                })}
+                }) : <>None</>}
                 <div> <p className={styles.abilityName}>Abilities:</p>
                     {Object.keys(abilityObject).map((ability,idx) => {
                         if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
@@ -123,6 +121,10 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                     )
                 })}
                 </div>
+                {role === "Characters" && leader.length > 0 ? <>
+                <div className={styles.leader} style={{color: colour}}>This modal can lead:</div>
+                <div>{leader.join('\n')}</div>
+                </>: <></>} 
             </div>
         </div>
             <h4>Keywords: {armyKeyWordArray.join(', ')}</h4>
