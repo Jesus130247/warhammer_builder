@@ -16,23 +16,37 @@ const filesArray = [
     // '../../dataFiles/Datasheets_stratagems.csv',
     // '../../dataFiles/Datasheets_enhancements.csv',
     // '../../dataFiles/Datasheets_detachment_abilities.csv',
-    // '../../dataFiles/Datasheets_leader.csv',
     // '../../dataFiles/Stratagems.csv', // dont use
     'dataFiles/Abilities.csv', //9
     'dataFiles/Enhancements.csv', //10
     'dataFiles/Detachment_abilities.csv', //11
-    'dataFiles/Last_update.csv' //12
+    'dataFiles/Last_update.csv', //12
+    'dataFiles/Datasheets_leader.csv', //13
     // 'dataFiles/Source.csv', // dont use // 13
 ];
 
-// function readAllData(file) {
-//     // files.forEach(file => {
-//         fs.readFile(file, 'utf-8', (err, data) => {
-//             if (err) console.log(err)
-//             console.log(reformatData(data))
-//         })
-//     // })
-// }
+// const filesArray = [
+//     // was ../../, but when run through the server.js, it takes that as initial spot
+//     '../../dataFiles/Factions.csv', //0
+//     '../../dataFiles/Datasheets.csv', //1
+//     '../../dataFiles/Datasheets_abilities.csv', //2
+//     '../../dataFiles/Datasheets_keywords.csv', //3
+//     '../../dataFiles/Datasheets_models.csv', //4
+//     '../../dataFiles/Datasheets_options.csv', //5
+//     '../../dataFiles/Datasheets_wargear.csv', //6
+//     '../../dataFiles/Datasheets_unit_composition.csv', //7
+//     '../../dataFiles/Datasheets_models_cost.csv', //8
+//     // '../../dataFiles/Datasheets_stratagems.csv',
+//     // '../../dataFiles/Datasheets_enhancements.csv',
+//     // '../../dataFiles/Datasheets_detachment_abilities.csv',
+//     // '../../dataFiles/Stratagems.csv', // dont use
+//     '../../dataFiles/Abilities.csv', //9
+//     '../../dataFiles/Enhancements.csv', //10
+//     '../../dataFiles/Detachment_abilities.csv', //11
+//     '../../dataFiles/Last_update.csv', //12
+//     '../../dataFiles/Datasheets_leader.csv', //13
+//     // 'dataFiles/Source.csv', // dont use // 13
+// ];
 
 function reformatData(data) {
     let dataArray = data.split('\n').map(line => line.split('|'))
@@ -58,10 +72,28 @@ async function getThisFactionsUnits(factionId) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getDatasheetWargear(filesArray[6], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitComposition(filesArray[7], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitCost(filesArray[8], unitId)]
+        factionUnits[unitId] = [...factionUnits[unitId] , await getLeader(filesArray[13], unitId)]
     }
     return factionUnits
 }
 
+async function getLeader(file, unitId) {
+    const data = await readFile(file,'utf-8');
+    const leader = reformatData(data).filter(data => data[0] === unitId)
+    let canLead = []
+    for (let unitLed of leader) {
+        canLead.push( await getUnitName(filesArray[1],unitLed[1]))
+    }
+    return canLead
+}
+
+async function getUnitName(file, unitId) {
+    const data = await readFile(file,'utf-8');
+    let unit = reformatData(data).filter(data => data[0] === unitId)
+    if (unit[0]) {
+        return unit[0][1]
+    }
+}
 async function getDetachmentEnhancements(file, factionId) {
     const data = await readFile(file, 'utf-8');
     let factionEnhancement = reformatData(data).filter((data) => data[0] === factionId)
@@ -123,8 +155,13 @@ async function getDatasheetWargear(file, unitId) {
 async function getDatasheetOptions(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let wargearOptions = reformatData(data).filter((data) => data[0] === unitId)
+    let options = []
     if (wargearOptions[0]) {
-        return wargearOptions[0][3]
+        for (let wargear of wargearOptions) {
+            options.push(wargear[3])
+        }
+        // for (let options of wargearOptions)
+        return options
     }
 }
 
