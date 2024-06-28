@@ -6,8 +6,8 @@ import { useEffect } from "react"
 
 export default function PopUp({trigger, setTrigger, setCreate, 
     selectedArmy, setSelectedArmy, setselectedSubFaction, 
-    setArmyName, setPointLimit }) {
-    const [factions, setFactions] = useState()
+    setArmyName, setPointLimit, setColour, armyName }) {
+    const [factions, setFactions] = useState() 
 
     useEffect(() => {
         fetch('/api/factions')
@@ -21,9 +21,10 @@ export default function PopUp({trigger, setTrigger, setCreate,
         setCreate(true)
     }
     function changeArmy(e) {
-        let target = e.target.value
-        if (target !== 'dontSelectThis') {
-            return setSelectedArmy({factionId: target, factionInfo: factions[target]})
+        let target = e.target.value.split('|')
+        if (target[0] !== 'dontSelectThis') {
+            setColour(target[1])
+            return setSelectedArmy({factionId: target[0], factionInfo: factions[target[0]]})
         } else {
             return setSelectedArmy()
         }
@@ -34,27 +35,40 @@ export default function PopUp({trigger, setTrigger, setCreate,
         }
     }
 
+    
+    let barWidth = ((armyName.length)/40) *100
+    if (barWidth > 100) {barWidth = 100}
+
+    function handlesetArmyName(e) {
+        var maxLength = 40;
+        if (e.target.value.length >= maxLength) {
+            return false;
+        }
+        setArmyName(e.target.value)
+        return true;
+    }
+
     return (trigger ? (
         <div className={styles.popup}>
             <div className={styles.popupLeft}>
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="">Select Faction</label>
-                    <select name="" id="" onChange={changeArmy}>
-                        <option value='dontSelectThis'>All Factions</option>
+                    <select name="" id="" onChange={changeArmy} className={styles.dropdown}>
+                        <option value='dontSelectThis|'>All Factions</option>
                         <ArmyChoices factions={factions} />
                     </select>
                     <label htmlFor="">Select sub-Faction</label>
-                    <select name="" id="" onChange={changeSubFaction}>
-                    {/* {selectedSubFaction ? <option key="none" value='None'>{selectedSubFaction}</option>
-                        :  */}
+                    <select name="" id="" onChange={changeSubFaction} className={styles.dropdown}>
                         <option key="none" value='None'>Select a Faction</option>
-                    {/* } */}
                         <SubFactionChoice factions={factions} selectedArmy={selectedArmy}/>
                     </select>
-                    <label htmlFor="">Army Name</label>
-                    <textarea onChange={(e) => setArmyName(e.target.value)}></textarea>
+                    <label htmlFor="">Army Name <span className={styles.Span}>- 40 char limit</span></label>
+
+                    <div className={styles.bar} style={{ width: barWidth+"%"}}></div>
+
+                    <textarea onChange={handlesetArmyName} className={styles.Textarea}></textarea>
                     <label htmlFor="">Select points limit</label>
-                    <select name="" id="" onChange={(e) => setPointLimit(e.target.value)}>
+                    <select name="" id="" onChange={(e) => setPointLimit(e.target.value)} className={styles.dropdown}>
                         <option value="1000">1000 pts</option>
                         <option value="1500">1500 pts</option>
                         <option value="2000">2000 pts</option>

@@ -21,28 +21,67 @@
 .popupLeft form, .popupRight form {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 7px;
+    font-size: 1.1rem;
 }
 
 .closeBtn {
     position: absolute;
-    top: 50px;
-    right: 50px;
-    border: 1px solid #dadada;
+    top: 150px;
+    right: 150px;
+    border: 1px solid black;
     border-radius: 25px;
-    background-color: #d4d4d4;
-    color: black;
+    color: white;
     padding: 0.5rem;
     font-size: medium;
+    background-color: #e460b881
 }
 
-.closeBtn:hover {
+.closeBtn:hover, .createBtn:hover {
     background-color: #5e5e5e;
     color: #e2e2e2;
     transition: 0.1s;
 }
 
-.closeBtn:active {
+.closeBtn:active, .createBtn:active {
     background-color: #ffffff;
     color: #000000;
+}
+
+.dropdown {
+    padding: 8px 4px;
+    border-radius: 5px;
+    background-color: #e460b881
+}
+.dropdown:hover,
+.dropdown:focus {
+    outline: none;
+    border: 1px solid rgb(167, 166, 166);
+}
+.dropdown option {
+    background-color: #e2e2e2;
+}
+
+.Textarea {
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+}
+
+.Span {
+    font-size: 0.8rem;
+}
+
+.bar {
+    height: 1rem;
+    background-color: #e460b881
+}
+
+.createBtn {
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: #e460b881;
+    color: black;
+    padding: 0.5rem;
+    font-size: medium;
 }

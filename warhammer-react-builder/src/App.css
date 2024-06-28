@@ -1,3 +1,6 @@
+* {
+    font-family:'Courier New', Courier, monospace;
+}
 .centerThis {
     text-align: center;
 }
@@ -10,6 +13,10 @@ a {
     color: #dadada;
     font-weight: 700;
 }
+span>a, div>a {
+    pointer-events: none;
+    cursor: default;
+}
 
 html {
     height: 100%;
@@ -19,7 +26,7 @@ html {
 .btn {
     border: 1px solid #dadada;
     border-radius: 25px;
-    background-color: #3c3c3c;
+    background-color: #e460b881;
     color: #dadada;
     padding: 0.5rem;
     font-size: medium;

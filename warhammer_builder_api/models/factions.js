@@ -180,7 +180,7 @@ async function getFractionNames(file) {
     const data = await readFile(file, 'utf-8');
     let factionNames = reformatData(data).reduce((accum,factionInfo) => {
         if (factionInfo[1] !== 'name' && factionInfo[1] !== undefined) {
-            accum[factionInfo[0]] = [factionInfo[1]]
+            accum[factionInfo[0]] = [factionInfo[1], factionInfo[3]]
         }
         return accum
     }, {});

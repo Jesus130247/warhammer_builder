@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import UnitRules from "../UnitRules/UnitRules"
 import styles from './ArmyCreation.module.css'
 
-export default function ArmyCreation({armyId, armyName, addUnit}) {
+export default function ArmyCreation({armyId, armyName, addUnit, colour}) {
     const [unitsInfo, setUnitsInfo] = useState({})
     const [unitInfoState, setUnitInfoState] = useState()
     const [isLoading, setisLoading] = useState(true)
@@ -34,7 +34,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
     },[armyId])
     function handleClick(e, unitInfo) {
         selectedUnitState ? selectedUnitState.style.color = '#dadada' : <></>
-        e.target.style.color = 'red'
+        e.target.style.color = colour
         setSelectedUnitState(e.target)
         setUnitInfoState(unitInfo)
     }
@@ -49,12 +49,12 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
     return (
         <>
         <div className={styles.UnitSelection}>
-            <h3>Units that belong to selected army</h3>
+            <h3 >Units that belong to selected army</h3>
             {isLoading 
             ? <div>loading...</div>
             : 
             <>
-            <h3>Characters</h3>
+            <h3 style={{color: colour}}>Characters</h3>
             <ul>
                 {characters.map((unitId, idx) => {
                     return( 
@@ -62,7 +62,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
                     )
                 })}
             </ul>
-            <h3>Battleline</h3>
+            <h3 style={{color: colour}}>Battleline</h3>
             <ul> 
                 {battleline.map((unitId, idx) => {
                     return( 
@@ -70,7 +70,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
                     )
                 })}
             </ul>
-            <h3>Dedicated Transports</h3>
+            <h3 style={{color: colour}}>Dedicated Transports</h3>
             <ul> 
                 {dedicatedTransports.map((unitId, idx) => {
                     return( 
@@ -78,7 +78,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
                     )
                 })}
             </ul>
-            <h3>Other</h3>
+            <h3 style={{color: colour}}>Other</h3>
             <ul> 
                 {other.map((unitId, idx) => {
                     return( 
@@ -91,7 +91,7 @@ export default function ArmyCreation({armyId, armyName, addUnit}) {
         </div>
         <>
             {selectedUnitState 
-            ? <UnitRules addUnit={addUnit} unitInfo={unitInfoState} />
+            ? <UnitRules colour={colour} addUnit={addUnit} unitInfo={unitInfoState} />
             : <h3>waiting on unit to be seleceted</h3>
             }
         </>

@@ -1,7 +1,7 @@
 import styles from './UnitRules.module.css'
 import Weapon from './weaponStats/Weapon'
 
-export default function UnitRules({unitInfo, addUnit}) {
+export default function UnitRules({unitInfo, addUnit, colour}) {
     let [unitName, 
         role,
         startingWargear,
@@ -27,7 +27,7 @@ export default function UnitRules({unitInfo, addUnit}) {
     let meleeWeapons = weaponRules.filter(weapon => weapon[2] === 'Melee')
     return(
     <div className={styles.showUnitRules}>
-        <h2>{unitName}</h2>
+        <h2 style={{color: colour}}>{unitName}</h2>
         <div className={styles.stats}>
             <div>M  <div>{movement}</div></div>
             <div>T  <div>{toughess}</div></div>
@@ -64,7 +64,7 @@ export default function UnitRules({unitInfo, addUnit}) {
                             <td className={styles.weaponTitle}>Melee weapons</td>
                             <td>Range</td>
                             <td>A</td>
-                            <td>BS</td>
+                            <td>WS</td>
                             <td>S</td>
                             <td>AP</td>
                             <td>D</td>
@@ -111,7 +111,7 @@ export default function UnitRules({unitInfo, addUnit}) {
                     return (
                         <div key={idx} >
                         <h4>{option[0]} for {option[1]} pts</h4>
-                        <button className={styles.btn}onClick={() => addUnit(option[1], unitName)}>Add this type to your army</button>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(option[1], unitName)}>Add this type to your army</button>
                     </div>
                     )
                 })}

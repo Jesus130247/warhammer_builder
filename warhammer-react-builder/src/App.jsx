@@ -13,8 +13,9 @@ function App() {
   const [buttonTrigger, setButtonTrigger] = useState(false)
   const [selectedArmy, setSelectedArmy] = useState()
   const [selectedSubFaction, setselectedSubFaction] = useState()
-  const [armyName, setArmyName] = useState()
+  const [armyName, setArmyName] = useState('')
   const [pointLimit, setPointLimit] = useState(1000)
+  const [colour, setColour] = useState('#dadada')
 
   return (<div className='body'>
     <div className="centerThis">
@@ -24,13 +25,16 @@ function App() {
     <div className="create_!">
       {create 
       ? <>
-          <button className='btn' onClick={() => setCreate(false)}>Go back</button>
-          <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
+        <div className="centerThis">
+            <button className='btn' onClick={() => setCreate(false)}>Go back</button>
+            <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
+        </div>
           <ArmySelection 
             armyName={armyName} 
             selectedArmy={selectedArmy} 
             selectedSubFaction={selectedSubFaction}
             pointLimit={pointLimit}
+            colour={colour}
           />
         </>
       : <div className="centerThis">
@@ -53,6 +57,7 @@ function App() {
       setArmyName={setArmyName}
       armyName={armyName}
       setPointLimit={setPointLimit}
+      setColour={setColour}
     />
   </div>
   )
