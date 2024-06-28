@@ -10,14 +10,14 @@ CREATE TABLE users (
 CREATE TABLE factions (
     id SERIAL PRIMARY KEY, 
     faction_id TEXT NOT NULL,
-    faction_info JSON
+    faction_info JSONB
 );
 
 CREATE TABLE units (
     id SERIAL PRIMARY KEY,
     faction_id TEXT NOT NULL,
     unit_id INT NOT NULL,
-    unit_data JSON,
+    unit_data JSONB
 );
 
 CREATE TABLE army (
@@ -29,3 +29,7 @@ CREATE TABLE army (
     points INT NOT NULL,
     user_army_array INT[]
 );
+
+
+`INSERT INTO factions (faction_id, faction_info) VALUES ($1, $2)`
+`INSERT INTO units (faction_id, unit_id, unit_data) VALUES ($1, $2, $3)`
