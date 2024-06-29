@@ -3,7 +3,7 @@ import './App.css'
 import ArmySelection from './components/ArmySelection/ArmySelection'
 import Header from './components/Header/Header'
 import PopUp from './components/PopUp/PopUp'
-import Nav from './components/nav/nav'
+import Nav from './nav'
 import Footer from './components/footer/footer'
 import ArmyList from './components/ArmyList/ArmyList'
 
@@ -21,7 +21,7 @@ function App() {
     setCreate(false)
     setselectedSubFaction()
     setSelectedArmy()
-    setArmyName()
+    setArmyName('')
   }
 
   return (<div className='body'>

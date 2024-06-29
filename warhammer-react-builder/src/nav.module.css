@@ -3,20 +3,20 @@
     justify-content: space-between;
     margin: 10px 100px 0 100px;
 }
-.nav a {
+.nav Link {
     padding: 10px 25px;
     border-radius: 25px;
     border: 1px solid black;
     background-color: #49d43c71;
 }
 
-.nav a:hover {
+.nav Link:hover {
     background-color: #5e5e5e;
     color: #e2e2e2;
     transition: 0.1s;
 }
 
-.nav a:active {
+.nav Link:active {
     background-color: #ffffff;
     color: #000000;
 }
