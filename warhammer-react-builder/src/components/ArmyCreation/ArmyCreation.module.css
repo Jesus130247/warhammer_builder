@@ -10,6 +10,9 @@
     width: fit-content;
     cursor: pointer;
 }
+.UnitSelection li:hover {
+    background-color: #5e5e5e;
+}
 .UnitSelection h3 {
     text-align: start;
     padding-left: 5px;
@@ -21,4 +24,13 @@
     border: 1px solid black;
     margin: 15px 0;
 }
+.UnitSelection>h2 {
+    margin: 0;
+    background-color: #242424;
+    padding: 15px;
+}
+.UnitSelection>h3 {
+    margin: 8px 0 ;
+} 
+
 

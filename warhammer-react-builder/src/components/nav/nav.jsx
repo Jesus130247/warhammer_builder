@@ -1,8 +1,10 @@
+import styles from './nav.module.css'
 
 export default function Nav() {
     return (
-      <nav>
-        <a href="/">home</a>
+      <nav className={styles.nav}>
+        <a href="/">Home</a>
+        <a href="/">Login</a>
       </nav> 
     )
 }

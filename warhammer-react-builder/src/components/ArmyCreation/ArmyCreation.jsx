@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import UnitRules from "../UnitRules/UnitRules"
 import styles from './ArmyCreation.module.css'
 
-export default function ArmyCreation({armyId, addUnit, colour}) {
+export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
     const [unitsInfo, setUnitsInfo] = useState({})
     const [showUnit, setShowUnit] = useState(false)
     const [isLoading, setisLoading] = useState(true)
@@ -52,7 +52,7 @@ export default function ArmyCreation({armyId, addUnit, colour}) {
         return (
             <>
             <div className={styles.UnitSelection}>
-                <h3 >Units that belong to selected army</h3>
+                <h2 style={{color: colour}}>{selectedArmy.faction_info[0]}</h2>
                 {isLoading 
                 ? <div>loading...</div>
                 : 

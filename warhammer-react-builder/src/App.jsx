@@ -26,8 +26,8 @@ function App() {
       {create 
       ? <>
         <div className="centerThis">
-            <button className='btn' onClick={() => setCreate(false)}>Go back</button>
-            <button className='btn' onClick={() => setCreate(false)}>Submit Army</button>
+            <button className='btn' onClick={() => setCreate(false)}>Cancel</button>
+            <button className='btn' onClick={() => setCreate(false)}>Save Army</button>
         </div>
           <ArmySelection 
             armyName={armyName} 

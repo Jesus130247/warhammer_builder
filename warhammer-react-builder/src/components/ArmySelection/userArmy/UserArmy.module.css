@@ -1,0 +1,40 @@
+.list {
+    text-align: start;
+    width: fit-content;
+    height: 50px;
+}
+
+.deleteBtn {
+    border-radius: 25px;
+    border: 1px solid #dadada;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #3c3c3c;
+    color: #dadada;
+    padding: 0 0.4rem;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteBtn:hover {
+    background-color: #5e5e5e;
+}
+
+.unit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerForArmySelection {
+    overflow-y: scroll;
+    border: 1px solid black;
+    margin: 15px 0;
+    height: 43rem;
+}
+.containerForArmySelection>h2 {
+    margin: 0;
+    background-color: #242424;
+    padding: 15px;
+}

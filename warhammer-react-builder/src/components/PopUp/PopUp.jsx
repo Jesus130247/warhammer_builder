@@ -80,7 +80,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     : <div>Must select an Faction</div>
                     }
                 </form>
-                <button className={styles.closeBtn} onClick={()=>setTrigger(false)}>Close This popUp</button>
+                <button className={styles.closeBtn} onClick={()=>setTrigger(false)}>X</button>
             </div>
             {/* <div className={styles.popupRight}>
             <form action="" onSubmit={handleSubmit}>

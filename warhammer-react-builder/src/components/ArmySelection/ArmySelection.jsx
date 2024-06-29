@@ -26,7 +26,8 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
                 <ArmyCreation 
                 addUnit={addUnit} 
                 armyId={selectedArmy.faction_id}
-                colour={colour}/>    
+                colour={colour}
+                selectedArmy={selectedArmy}/>    
             </div>
             <UserArmy 
             colour={colour}

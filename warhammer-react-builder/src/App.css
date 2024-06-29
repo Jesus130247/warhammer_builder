@@ -4,6 +4,12 @@
 .centerThis {
     text-align: center;
 }
+
+.centerThis h1 {
+    margin: 10px;
+    font-size: 3rem;
+    color: #49d43c;
+}
 .body {
     height: 100%;
     color: #dadada;
@@ -24,13 +30,14 @@ html {
 }
 
 .btn {
-    border: 1px solid #dadada;
+    border: 1px solid black;
     border-radius: 25px;
-    background-color: #e460b881;
+    background-color: #49d43c71;
     color: #dadada;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     font-size: medium;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .btn:hover {
@@ -42,5 +49,12 @@ html {
 .btn:active {
     background-color: #ffffff;
     color: #000000;
+}
+
+.footer {
+    font-weight: 700;
+}
+footer>a {
+    color: #3adb2b;
 }
 

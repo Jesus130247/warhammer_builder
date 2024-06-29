@@ -1,3 +1,4 @@
+import styles from './UserArmy.module.css'
 
 export default function UserArmy(
     {
@@ -5,15 +6,23 @@ export default function UserArmy(
     pointLimit,remainingPoints,selectedArmy,removeUnit, colour
     }) {
     return (
-    <div className="container-for-army-selection">
-        <h2 style={{color: colour}}>{selectedArmy.faction_info[0]}</h2>
+    <div className={styles.containerForArmySelection}>
+        {armyName ? <h2 style={{color: colour}}>{armyName}</h2>
+        : <h2 style={{color: colour}}>Your Army:</h2>
+        }
         <h3>{selectedSubFaction}</h3>
-        <h3>{armyName}</h3>
-        <p>point limit: {pointLimit} <span>w/ {remainingPoints} pts remaining</span></p>
-        <ul> Your Army So far:
+        <p>Point Limit: {pointLimit} w/ <span style={{fontWeight: 700}}>{remainingPoints}</span> pts remaining</p>
+        <div style={{fontWeight: 700}}>Your Army So far:</div>
+        <ul> 
             {usersArmy.map((unit,idx) => {
                 return (
-                    <li key={idx}>{unit}<button value={unit}  id={idx} onClick={removeUnit}>delete this unit</button></li>
+                    <div className={styles.unit}>
+                        <li className={styles.list} key={idx}>
+                            <span>{unit[0]}</span><br />
+                            <span style={{color: colour}}>{unit[1]} pts</span>
+                        </li>
+                        <div className={styles.deleteBtn} value={unit}  id={idx} onClick={removeUnit} style={{color: colour}}>delete this unit</div>
+                    </div>
                 )
             })}
         </ul>

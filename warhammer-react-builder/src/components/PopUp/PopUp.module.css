@@ -27,14 +27,14 @@
 
 .closeBtn {
     position: absolute;
-    top: 150px;
-    right: 150px;
+    top: 100px;
+    right: 100px;
     border: 1px solid black;
     border-radius: 25px;
     color: white;
-    padding: 0.5rem;
-    font-size: medium;
-    background-color: #e460b881
+    padding: 0.9rem 2rem;
+    font-size: 2.3rem;
+    background-color: #49d43c71
 }
 
 .closeBtn:hover, .createBtn:hover {
@@ -51,7 +51,7 @@
 .dropdown {
     padding: 8px 4px;
     border-radius: 5px;
-    background-color: #e460b881
+    background-color: #49d43c71
 }
 .dropdown:hover,
 .dropdown:focus {
@@ -74,13 +74,13 @@
 
 .bar {
     height: 1rem;
-    background-color: #dd49acce
+    background-color: #17b408
 }
 
 .createBtn {
     border: 1px solid black;
     border-radius: 25px;
-    background-color: #e460b881;
+    background-color: #49d43c71;
     color: black;
     padding: 0.5rem;
     font-size: medium;
