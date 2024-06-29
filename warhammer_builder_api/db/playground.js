@@ -34,9 +34,7 @@ async function addMoreSMData() {
 }
 // storeUnitData('SM')
 // no unaligned forces data or space marines
+ 
+// AoI  AM GC TL GK AE AdM UN NEC TS ORK TAU LoV QT WE QI AC CSM TYR DRU
 
 // data gathered 
-// WE AoI GC TL GK AE AdM 
-// NEC UN TS ORK TAU LoV QT 
-// QI AC CSM TYR DRU AM
- 

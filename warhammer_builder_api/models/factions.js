@@ -48,28 +48,28 @@ const readFile = util.promisify(fs.readFile);
 //     // 'dataFiles/Source.csv', // dont use // 13
 // ];
 
-// const filesArray = [ // for testing here
-//     // was ../../, but when run through the server.js, it takes that as initial spot
-//     '../../dataFiles/Factions.csv', //0
-//     '../../dataFiles/Datasheets.csv', //1
-//     '../../dataFiles/Datasheets_abilities.csv', //2
-//     '../../dataFiles/Datasheets_keywords.csv', //3
-//     '../../dataFiles/Datasheets_models.csv', //4
-//     '../../dataFiles/Datasheets_options.csv', //5
-//     '../../dataFiles/Datasheets_wargear.csv', //6
-//     '../../dataFiles/Datasheets_unit_composition.csv', //7
-//     '../../dataFiles/Datasheets_models_cost.csv', //8
-//     // '../../dataFiles/Datasheets_stratagems.csv',
-//     // '../../dataFiles/Datasheets_enhancements.csv',
-//     // '../../dataFiles/Datasheets_detachment_abilities.csv',
-//     // '../../dataFiles/Stratagems.csv', // dont use
-//     '../../dataFiles/Abilities.csv', //9
-//     '../../dataFiles/Enhancements.csv', //10
-//     '../../dataFiles/Detachment_abilities.csv', //11
-//     '../../dataFiles/Last_update.csv', //12
-//     '../../dataFiles/Datasheets_leader.csv', //13
-//     // 'dataFiles/Source.csv', // dont use // 13
-// ];
+const filesArray = [ // for testing here
+    // was ../../, but when run through the server.js, it takes that as initial spot
+    '../../dataFiles/Factions.csv', //0
+    '../../dataFiles/Datasheets.csv', //1
+    '../../dataFiles/Datasheets_abilities.csv', //2
+    '../../dataFiles/Datasheets_keywords.csv', //3
+    '../../dataFiles/Datasheets_models.csv', //4
+    '../../dataFiles/Datasheets_options.csv', //5
+    '../../dataFiles/Datasheets_wargear.csv', //6
+    '../../dataFiles/Datasheets_unit_composition.csv', //7
+    '../../dataFiles/Datasheets_models_cost.csv', //8
+    // '../../dataFiles/Datasheets_stratagems.csv',
+    // '../../dataFiles/Datasheets_enhancements.csv',
+    // '../../dataFiles/Datasheets_detachment_abilities.csv',
+    // '../../dataFiles/Stratagems.csv', // dont use
+    '../../dataFiles/Abilities.csv', //9
+    '../../dataFiles/Enhancements.csv', //10
+    '../../dataFiles/Detachment_abilities.csv', //11
+    '../../dataFiles/Last_update.csv', //12
+    '../../dataFiles/Datasheets_leader.csv', //13
+    // 'dataFiles/Source.csv', // dont use // 13
+];
 function reformatData(data) {
     let dataArray = data.split('\n').map(line => line.split('|'))
     return dataArray
@@ -107,7 +107,6 @@ async function getLeader(file, unitId) {
     for (let unitLed of leader) {
         canLead.push( await getUnitName(filesArray[1],unitLed[1]))
     }
-    console.log(unitId)
     return canLead
 }
 
@@ -192,8 +191,12 @@ async function getDatasheetOptions(file, unitId) {
 async function getUnitData(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitData = reformatData(data).filter((data) => data[0] === unitId)
+    let allUnitData = []
     if (unitData[0]) {
-        return unitData[0].slice(3,11)
+        for (let data of unitData) {
+            allUnitData.push(data.slice(3,11))
+        }
+        return allUnitData
     }
 }
 
