@@ -194,7 +194,7 @@ async function getUnitData(file, unitId) {
     let allUnitData = []
     if (unitData[0]) {
         for (let data of unitData) {
-            allUnitData.push(data.slice(3,11))
+            allUnitData.push(data.slice(2,11))
         }
         return allUnitData
     }

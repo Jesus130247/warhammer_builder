@@ -2,7 +2,7 @@ import styles from './UnitRules.module.css'
 import Weapon from './weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit, colour}) {
-    let [factionName, 
+    let [unitname, 
         role,
         startingWargear,
         abilityObject,
@@ -15,6 +15,7 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
         leader
     ] = unitInfo[1].unit_data
     let [
+        unitname2,
         movement,
         toughess,
         armourSave,
@@ -23,12 +24,34 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
         wounds,
         leaderShip,
         ...OC
-    ] = statsArray
+    ] = statsArray[0]
+    let leaderName
+    let movementExarch
+    let toughess2
+    let armourSave2
+    let invulSave2
+    let invulSaveConditions2
+    let wounds2
+    let leaderShip2
+    let  oC2
+    if (statsArray[1]) {
+        [
+            leaderName,
+            movementExarch,
+            toughess2,
+            armourSave2,
+            invulSave2,
+            invulSaveConditions2,
+            wounds2,
+            leaderShip2,
+            oC2
+        ] = statsArray[1]
+    }
     let rangedWeapons = weaponRulesArray.filter(weapon => weapon[2] !== 'Melee')
     let meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
     return(
     <div className={styles.showUnitRules}>
-        <h2 style={{color: colour}}>{factionName}</h2>
+        <h2 style={{color: colour}}>{unitname}</h2>
         <div className={styles.stats}>
             <div>M  <div>{movement}</div></div>
             <div>T  <div>{toughess}</div></div>
@@ -36,7 +59,20 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             <div>W  <div>{wounds}</div></div>
             <div>Ld  <div>{leaderShip}</div></div>
             <div>OC  <div>{OC}</div></div>
+            <div></div>
         </div>
+        {statsArray[1] 
+        ? <div className={styles.stats}>
+            <div>M  <div>{movementExarch}</div></div>
+            <div>T  <div>{toughess2}</div></div>
+            <div>Sv  <div>{armourSave2}</div></div>
+            <div>W  <div>{wounds2}</div></div>
+            <div>Ld  <div>{leaderShip2}</div></div>
+            <div>OC  <div>{oC2}</div></div>
+            <div> - {leaderName}</div>
+        </div>
+        : <></> }
+
         <div className={styles.inVuln}>
             {invulSave}+ Invulnerable save
             <span>{invulSaveConditions}</span>
@@ -114,21 +150,27 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                 })}
                 </span> 
                 <div className={styles.unitRules}> 
-                {ptsCost.map((option,idx) => {
+                {ptsCost ? ptsCost.map((option,idx) => {
                     return (
                         <div key={idx} >
                         <h4>{option[0]} for {option[1]} pts</h4>
-                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(option[1], factionName)}>Add this type to your army</button>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(option[1], unitname)}>Add this type to your army</button>
                     </div>
                     )
-                })}
+                }) : <>
+                    <div >
+                        <h4>1 Model for 165 pts</h4>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(165, unitname)}>Add this type to your army</button>
+                    </div></>}
                 </div>
-                {role === "Characters" && leader.length > 0 ? <>
+                {role === "Characters" && leader.length > 0 
+                ? <>
                 <div className={styles.leader} style={{color: colour}}>This modal can lead:</div>
                 {leader.map(unit => {
                     return (<div>{unit}</div>)
                 })}
-                </>: <></>} 
+                </>
+                : <></> } 
             </div>
         </div>
             <h4 style={{color: colour}}>Keywords: {armyKeyWordArray.join(', ')}</h4>
