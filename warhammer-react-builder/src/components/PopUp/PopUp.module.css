@@ -1,7 +1,6 @@
-.popup {
+.popupLeft {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(77, 77, 77, 0.418);
@@ -10,7 +9,7 @@
     align-items: center;
     gap: 10px;
 }
-.popupLeft, .popupRight  {
+.popupLeftInner  {
     background-color: #d4d4d4;
     color: black;
     border-radius: 15px;
@@ -18,7 +17,7 @@
     max-width: 640px;
 }
 
-.popupLeft form, .popupRight form {
+.popupLeftInner form{
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -28,13 +27,13 @@
 .closeBtn {
     position: absolute;
     top: 100px;
-    right: 100px;
+    left: 100px;
     border: 1px solid black;
     border-radius: 25px;
     color: white;
     padding: 0.9rem 2rem;
     font-size: 2.3rem;
-    background-color: #49d43c71
+    background-color: #41c535e3;
 }
 
 .closeBtn:hover, .createBtn:hover {
@@ -84,4 +83,31 @@
     color: black;
     padding: 0.5rem;
     font-size: medium;
+}
+
+.popupRightInner {
+    width: fit-content;
+    font-size: 0.75rem;
+    background-color: #d4d4d4;
+    color: black;
+    border-radius: 15px;
+    padding: 24px 32px;
+    max-width: 900px;
+    margin-right: 20px;
+}
+.popupRightInner a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    pointer-events: none;
+    cursor: default;
+}
+
+.popupRightInner * {
+    margin: 0 0;
+    padding: 0;
+    list-style: none;
+}
+.popupRightInner>div {
+    margin: 5px 0;
 }

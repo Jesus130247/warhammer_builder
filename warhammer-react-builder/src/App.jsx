@@ -17,6 +17,13 @@ function App() {
   const [pointLimit, setPointLimit] = useState(1000)
   const [colour, setColour] = useState('#dadada')
 
+  function handleCancel(e) {
+    setCreate(false)
+    setselectedSubFaction()
+    setSelectedArmy()
+    setArmyName()
+  }
+
   return (<div className='body'>
     <div className="centerThis">
       <Nav />
@@ -26,7 +33,7 @@ function App() {
       {create 
       ? <>
         <div className="centerThis">
-            <button className='btn' onClick={() => setCreate(false)}>Cancel</button>
+            <button className='btn' onClick={handleCancel}>Cancel</button>
             <button className='btn' onClick={() => setCreate(false)}>Save Army</button>
         </div>
           <ArmySelection 

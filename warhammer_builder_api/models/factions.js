@@ -82,6 +82,7 @@ async function getFactionData() {
         allFactions[factionId] = [...allFactions[factionId], await getFactionAbilities(filesArray[9], factionId)]
         allFactions[factionId] = [...allFactions[factionId], await getDetachmentEnhancements(filesArray[10], factionId)]
     }
+    console.log(allFactions)
     return allFactions
 }
 
@@ -97,6 +98,7 @@ async function getThisFactionsUnits(factionId) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitCost(filesArray[8], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getLeader(filesArray[13], unitId)]
     }
+    console.log(factionUnits)
     return factionUnits
 }
 
