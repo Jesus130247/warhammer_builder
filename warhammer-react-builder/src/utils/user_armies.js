@@ -6,6 +6,11 @@ export async function SaveArmy(user_id, faction_chosen_id, subfaction_chosen, ar
     return res.rows
 }
 
+export async function DeleteArmy(armyId) {
+    let res = await axios.delete(`/api/delete/army/${armyId}`) 
+    return res.data
+}
+
 // export async function GetMyArmies(userId) {
 //     let res = await axios.get(`/api/getMyArmies/${userId}`) 
 //     console.log(res)

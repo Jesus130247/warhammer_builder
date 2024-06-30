@@ -36,18 +36,28 @@ function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, poi
     return db.query(sql, [user_id, faction_chosen_id, subfaction_chosen, army_name, points, user_army_array])
 }
 
-function getMyArmies(user_id) {
+function getMyArmies(userId) {
     let sql = `
     SELECT * FROM army
     where user_id = $1;`
-    return db.query(sql, [user_id])
+    return db.query(sql, [userId])
+}
+
+function deleteArmy(armyId) {
+    console.log(armyId)
+    sql = `
+    DELETE FROM army
+    WHERE id=$1;
+    `
+    return db.query(sql, [armyId])
 }
 
 const User = {
     findByEmail,
     createUser,
     saveArmy,
-    getMyArmies
+    getMyArmies,
+    deleteArmy
 }
 
 module.exports = User

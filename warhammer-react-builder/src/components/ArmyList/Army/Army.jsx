@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 // import { GetMyArmies } from "../../../utils/user_armies"
 import styles from './Army.module.css'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import About from '../../../pages/displayArmy';
+import { DeleteArmy } from "../../../utils/user_armies"
 
 export default function Army({user}) {
     const [getArmysFromDataBase, setGetArmysFromDataBase] = useState()
@@ -23,8 +22,8 @@ export default function Army({user}) {
         setUsersSelectedArmy(army.user_army_array)
         setViewArmy(true)
     }
-    function handleDelete(army) {
-        console.log(army.id)
+    async function handleDelete(army) {
+        await DeleteArmy(army.id)
     }
     return ( <>
         {viewArmy ? <>
