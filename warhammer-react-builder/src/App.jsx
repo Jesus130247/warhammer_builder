@@ -7,6 +7,7 @@ import Footer from './components/footer/footer'
 import ArmyList from './components/ArmyList/ArmyList'
 import Login from './pages/Login.jsx'
 import { getUserFromLocalStorage } from './utils/auth_service.js'
+import { SaveArmy } from './utils/user_armies.js'
 
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
   const [armyName, setArmyName] = useState('')
   const [pointLimit, setPointLimit] = useState(1000)
   const [colour, setColour] = useState('#dadada')
-  console.log(user)
-
+  const [usersArmy, setUsersArmy] = useState([])
+  const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
   function onLogin(userInfo) {
     setUser(userInfo)
   }
@@ -33,8 +34,15 @@ function App() {
     setselectedSubFaction()
     setSelectedArmy()
     setArmyName('')
+    setUsersArmy([])
   }
-
+  // function saveArmy(user_id, faction_chosen_id, subfaction_chosen, army_name, points, user_army_array) {}
+  function handleSave() {
+    let armyUnitsIdArray = usersArmy.map(unit => unit[0])
+    SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
+      Number(pointLimit - remainingPoints), armyUnitsIdArray )
+    handleCancel()
+  }
 
   return ( <> 
     {user ? 
@@ -51,7 +59,6 @@ function App() {
       ? <>
         <div className="centerThis">
             <button className='btn' onClick={handleCancel}>Cancel</button>
-            <button className='btn' onClick={() => setCreate(false)}>Save Army</button>
         </div>
         <ArmySelection 
           armyName={armyName} 
@@ -59,11 +66,17 @@ function App() {
           selectedSubFaction={selectedSubFaction}
           pointLimit={pointLimit}
           colour={colour}
+          handleCancel={handleCancel}
+          usersArmy={usersArmy}
+          setUsersArmy={setUsersArmy}
+          handleSave={handleSave}
+          remainingPoints={remainingPoints}
+          setRemainingPoints={setRemainingPoints}
           />
         </>
       : <div className="centerThis">
           <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
-          <ArmyList />
+          <ArmyList user={user} />
         </div>
       }
       </div>
@@ -82,6 +95,7 @@ function App() {
         armyName={armyName}
         setPointLimit={setPointLimit}
         setColour={setColour}
+        setRemainingPoints={setRemainingPoints}
         />
     </div>
     : <Login onLogin={onLogin} />} 

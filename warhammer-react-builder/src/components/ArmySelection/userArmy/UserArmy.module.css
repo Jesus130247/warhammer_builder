@@ -38,3 +38,24 @@
     background-color: #242424;
     padding: 15px;
 }
+.saveBtn {
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: #49d43c71;
+    color: #dadada;
+    padding: 0.5rem 1rem;
+    font-size: medium;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.saveBtn:hover {
+    background-color: #5e5e5e;
+    color: #e2e2e2;
+    transition: 0.1s;
+}
+
+.saveBtn:active {
+    background-color: #ffffff;
+    color: #000000;
+}

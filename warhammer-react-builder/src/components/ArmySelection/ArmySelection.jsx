@@ -4,22 +4,25 @@ import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
 import UserArmy from "./userArmy/UserArmy"
 
-export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName}) {
-    const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
-    const [usersArmy, setUsersArmy] = useState([])
+export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, 
+    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints}) {
 
-    function addUnit(pts, unitName) {
+    function addUnit(unitId,pts, unitName) {
         setRemainingPoints(remainingPoints-pts)
-        setUsersArmy([...usersArmy, [unitName, pts]])
+        setUsersArmy([...usersArmy, [unitId, unitName, pts]])
     }
+
     function removeUnit(e) {
         let pts
         setUsersArmy(usersArmy.filter((unit,idx) => {
-            pts = Number(unit[1])
+            if (idx === Number(e.target.id)) {
+                pts = Number(unit[2])
+            }
             return idx !== Number(e.target.id)
         }))
         setRemainingPoints(remainingPoints+pts)
     }
+
     return (
         <div className={styles.ArmySelection}>  
             <div className={styles.containerForUnits}>
@@ -30,6 +33,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
                 selectedArmy={selectedArmy}/>    
             </div>
             <UserArmy 
+            handleCancel={handleCancel}
             colour={colour}
             armyName={armyName} 
             selectedArmy={selectedArmy} 
@@ -38,6 +42,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
             removeUnit={removeUnit}
             usersArmy={usersArmy}
             remainingPoints={remainingPoints}
+            handleSave={handleSave}
             />
         </div>
     )

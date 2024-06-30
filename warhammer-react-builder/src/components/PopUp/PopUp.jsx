@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 export default function PopUp({trigger, setTrigger, setCreate, 
-    selectedArmy, setSelectedArmy, setselectedSubFaction, 
+    selectedArmy, setSelectedArmy, setselectedSubFaction, setRemainingPoints,
     setArmyName, setPointLimit, setColour, armyName, selectedSubFaction }) {
     const [factions, setFactions] = useState() 
     const [subFactionSelectedIndex, setSubFactionSelectedIndex] = useState('')
@@ -85,7 +85,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
                 <div className={styles.bar} style={{ width: barWidth+"%"}}></div>
                 <textarea onChange={handlesetArmyName} className={styles.Textarea}></textarea>
                 <label htmlFor="">Select points limit</label>
-                <select name="" id="" onChange={(e) => setPointLimit(e.target.value)} className={styles.dropdown}>
+                <select name="" id="" onChange={(e) => {setPointLimit(e.target.value); setRemainingPoints(e.target.value)}} className={styles.dropdown}>
                     <option value="1000">1000 pts</option>
                     <option value="1500">1500 pts</option>
                     <option value="2000">2000 pts</option>
