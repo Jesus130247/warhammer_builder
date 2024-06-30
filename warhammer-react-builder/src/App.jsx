@@ -21,6 +21,8 @@ function App() {
   const [colour, setColour] = useState('#dadada')
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
+  const [getArmysFromDataBase, setGetArmysFromDataBase] = useState()
+
   function onLogin(userInfo) {
     setUser(userInfo)
   }
@@ -41,6 +43,9 @@ function App() {
     let armyUnitsIdArray = usersArmy.map(unit => unit[0])
     SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
       Number(pointLimit - remainingPoints), armyUnitsIdArray )
+    fetch(`/api/getMyArmies/${user.id}`)
+    .then(res=> res.json())
+    .then(res => setGetArmysFromDataBase(res))    
     handleCancel()
   }
 
@@ -76,7 +81,11 @@ function App() {
         </>
       : <div className="centerThis">
           <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
-          <ArmyList user={user} />
+          <ArmyList 
+          user={user}
+          getArmysFromDataBase={getArmysFromDataBase}
+          setGetArmysFromDataBase={setGetArmysFromDataBase}
+           />
         </div>
       }
       </div>

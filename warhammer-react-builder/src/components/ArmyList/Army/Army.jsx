@@ -3,8 +3,7 @@ import { useEffect, useState } from "react"
 import styles from './Army.module.css'
 import { DeleteArmy } from "../../../utils/user_armies"
 
-export default function Army({user}) {
-    const [getArmysFromDataBase, setGetArmysFromDataBase] = useState()
+export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBase}) {
     const [viewArmy, setViewArmy] = useState(false)
     const [armyUnits, setArmyUnits] = useState()
     const [usersSelecetedArmy, setUsersSelectedArmy] = useState()
