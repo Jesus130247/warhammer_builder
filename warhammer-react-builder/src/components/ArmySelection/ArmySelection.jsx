@@ -8,8 +8,10 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
     handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints}) {
 
     function addUnit(unitId,pts, unitName) {
-        setRemainingPoints(remainingPoints-pts)
-        setUsersArmy([...usersArmy, [unitId, unitName, pts]])
+        if ( remainingPoints-pts>=0 ) {
+            setRemainingPoints(remainingPoints-pts)
+            setUsersArmy([...usersArmy, [unitId, unitName, pts]])
+        }
     }
 
     function removeUnit(e) {

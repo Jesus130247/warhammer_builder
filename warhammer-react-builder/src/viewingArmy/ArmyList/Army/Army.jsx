@@ -8,26 +8,33 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [armyUnits, setArmyUnits] = useState()
     const [usersSelecetedArmy, setUsersSelectedArmy] = useState()
     useEffect(() => {
-        fetch(`/api/getMyArmies/${user.id}`)
-        .then(res=> res.json())
-        .then(res => setGetArmysFromDataBase(res))
+        if (user.id) {
+            fetch(`/api/getMyArmies/${Number(user.id)}`)
+            .then(res=> res.json())
+            .then(res => setGetArmysFromDataBase(res))    
+          }
     },[])
     async function handleViewArmy(army) {
-        await fetch(`/api/faction/units/pqsl/${army.faction_chosen_id}`)
-        .then(res=>res.json())
-        .then(data=> {
-            setArmyUnits(data.filter(unit => army.user_army_array.includes(unit.id)))
-        })
+        if (army) {
+            await fetch(`/api/faction/units/pqsl/${army.faction_chosen_id}`)
+            .then(res=>res.json())
+            .then(data=> {
+                setArmyUnits(data.filter(unit => army.user_army_array.includes(unit.id)))
+            })
+        }
         setUsersSelectedArmy(army.user_army_array)
         setViewArmy(true)
     }
     async function handleDelete(army) {
         await DeleteArmy(army.id)
-        fetch(`/api/getMyArmies/${user.id}`)
-        .then(res=> res.json())
-        .then(res => setGetArmysFromDataBase(res))      
+        if (user.id) {
+            fetch(`/api/getMyArmies/${Number(user.id)}`)
+            .then(res=> res.json())
+            .then(res => setGetArmysFromDataBase(res))    
+          }
     }
-    return ( <>
+    return ( 
+    <>
         {viewArmy ? <>
             {usersSelecetedArmy.map(unitId => {
                 let unitRules = armyUnits.filter(id => id.id === unitId)
@@ -38,7 +45,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             <button onClick={() => setViewArmy(false)}>go back</button>
         </> : <>
 
-        {getArmysFromDataBase 
+        {getArmysFromDataBase.length !== 0 
         ? <div className={styles.showArmies}>
             {getArmysFromDataBase.map((army,idx) => {
                 return (
@@ -56,5 +63,6 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             WOW SUCH EMPTY
             <span>EMPTY?? BETTER CREATE AN ARMY ^^</span>
         </div>} </>}
-    </>)
+    </>
+    )
 }

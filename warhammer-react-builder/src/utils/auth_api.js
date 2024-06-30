@@ -12,6 +12,11 @@ export async function signUp(userInfo) {
     return res.data.token
 }
 
+export async function GetUser(email) {
+    let res = await axios.get(`/api/user/${email}`)
+    console.log(res)
+    return res
+}
 
 // AuthApi.login()
 // use axios library => object with 

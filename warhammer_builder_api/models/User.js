@@ -26,6 +26,7 @@ function findByEmail(email) {
             })
 }
 
+
 function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, points, user_army_array}) {
     user_army_array = user_army_array.split(',')
     let sql = `

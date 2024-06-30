@@ -4,7 +4,7 @@ import ArmySelection from './components/ArmySelection/ArmySelection'
 import Header from './components/Header/Header'
 import PopUp from './components/PopUp/PopUp'
 import Footer from './components/footer/footer'
-import ArmyList from './components/ArmyList/ArmyList'
+import ArmyList from './viewingArmy/ArmyList/ArmyList.jsx'
 import Login from './pages/Login.jsx'
 import { getUserFromLocalStorage } from './utils/auth_service.js'
 import { SaveArmy } from './utils/user_armies.js'
@@ -21,13 +21,15 @@ function App() {
   const [colour, setColour] = useState('#dadada')
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
-  const [getArmysFromDataBase, setGetArmysFromDataBase] = useState()
+  const [getArmysFromDataBase, setGetArmysFromDataBase] = useState([])
 
   function onLogin(userInfo) {
     setUser(userInfo)
   }
+
   function onLogout() {
     setUser(null)
+    setGetArmysFromDataBase([])
     localStorage.removeItem('token')
   }
 
@@ -37,15 +39,20 @@ function App() {
     setSelectedArmy()
     setArmyName('')
     setUsersArmy([])
+    setPointLimit(1000)
+    setRemainingPoints(1000)
   }
   // function saveArmy(user_id, faction_chosen_id, subfaction_chosen, army_name, points, user_army_array) {}
   function handleSave() {
+    setGetArmysFromDataBase([])
     let armyUnitsIdArray = usersArmy.map(unit => unit[0])
     SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
-      Number(pointLimit - remainingPoints), armyUnitsIdArray )
-    fetch(`/api/getMyArmies/${user.id}`)
-    .then(res=> res.json())
-    .then(res => setGetArmysFromDataBase(res))    
+    Number(pointLimit - remainingPoints), armyUnitsIdArray )
+    if (user) {
+      fetch(`/api/getMyArmies/${Number(user.id)}`)
+      .then(res=> res.json())
+      .then(res => setGetArmysFromDataBase(res))    
+    }
     handleCancel()
   }
 
@@ -80,7 +87,7 @@ function App() {
           />
         </>
       : <div className="centerThis">
-          <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button>
+          { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button> : <div>Reached Maximum Army Count of 5</div>}
           <ArmyList 
           user={user}
           getArmysFromDataBase={getArmysFromDataBase}

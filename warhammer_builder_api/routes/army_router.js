@@ -30,5 +30,13 @@ router.delete('/api/delete/army/:armyId', (req,res) => {
     User.deleteArmy(req.params.armyId).then(result=>result.rows).then(faction => res.status(200).json(faction))
 })
 
+router.get('/api/user/:email', (req,res) => {
+    let sql = `
+    SELECT * FROM users
+    WHERE email = $1;
+    `
+    return db.query(sql, [req.params.email]).then(result=>result.rows).then(user => res.status(200).json(user))
+})
+
 
 module.exports = router
