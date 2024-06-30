@@ -10,9 +10,3 @@ export async function DeleteArmy(armyId) {
     let res = await axios.delete(`/api/delete/army/${armyId}`) 
     return res.data
 }
-
-// export async function GetMyArmies(userId) {
-//     let res = await axios.get(`/api/getMyArmies/${userId}`) 
-//     console.log(res)
-//     return res.rows
-// }

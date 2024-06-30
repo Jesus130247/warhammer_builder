@@ -2,8 +2,8 @@ import styles from './UserArmy.module.css'
 
 export default function UserArmy(
     {
-    armyName,selectedSubFaction,usersArmy,
-    pointLimit,remainingPoints, removeUnit, colour, handleSave
+    armyName,selectedSubFaction,usersArmy, handleCancel,
+    pointLimit,remainingPoints,selectedArmy,removeUnit, colour, handleSave
     }) {
     
     return (

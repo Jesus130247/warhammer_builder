@@ -11,14 +11,3 @@ export async function signUp(userInfo) {
     console.log(res)
     return res.data.token
 }
-
-export async function GetUser(email) {
-    let res = await axios.get(`/api/user/${email}`)
-    console.log(res)
-    return res
-}
-
-// AuthApi.login()
-// use axios library => object with 
-//      different functions, use instead of fetching
-// pnpm i axios

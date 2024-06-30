@@ -22,9 +22,9 @@ function App() {
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
   const [getArmysFromDataBase, setGetArmysFromDataBase] = useState([])
-
-  function onLogin(userInfo) {
+  function onLogin(userInfo, signUp) {
     setUser(userInfo)
+    location.reload()
   }
 
   function onLogout() {
@@ -54,6 +54,7 @@ function App() {
       .then(res => setGetArmysFromDataBase(res))    
     }
     handleCancel()
+    location.reload()
   }
 
   return ( <> 

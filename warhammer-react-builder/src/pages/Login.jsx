@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { signUp, login, GetUser } from "../utils/auth_api"
+import { signUp, login } from "../utils/auth_api"
 import styles from './Login.module.css'
 
 export default function Login(props) {
@@ -12,7 +12,7 @@ export default function Login(props) {
         try {
             let token = await login(formData)
             localStorage.setItem('token', token)
-            console.log( await GetUser(formData.email))
+            props.onLogin(formData)
         } catch (err) {
             console.log(err)
             alert('invalid email or password')
