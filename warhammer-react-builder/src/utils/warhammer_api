@@ -1,0 +1,11 @@
+import axios from "axios"
+
+export async function getFactions() {
+    let res = await axios.get('/api/factions/psql')
+    return res.data
+}
+
+export async function getUnits(faction_id) {
+    let res = await axios.get(`/api/faction/units/pqsl/${faction_id}`)
+    return res.data
+}

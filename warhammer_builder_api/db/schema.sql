@@ -2,7 +2,6 @@ CREATE DATABASE warhammer_builder_api;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password_disgest TEXT NOT NULL
 );

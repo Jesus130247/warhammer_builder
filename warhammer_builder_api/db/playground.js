@@ -32,10 +32,7 @@ async function storeUnitData(faction_id) {
 async function addMoreSMData() {
 
 }
-storeUnitData('AC')
-storeUnitData('CSM')
-storeUnitData('TYR')
-storeUnitData('DRU')
+storeUnitData('AS')
 // no unaligned forces data or space marines
  
 // AoI  AM GC TL 
