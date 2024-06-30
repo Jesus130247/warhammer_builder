@@ -24,6 +24,9 @@ export default function Army({user}) {
     }
     async function handleDelete(army) {
         await DeleteArmy(army.id)
+        fetch(`/api/getMyArmies/${user.id}`)
+        .then(res=> res.json())
+        .then(res => setGetArmysFromDataBase(res))      
     }
     return ( <>
         {viewArmy ? <>
