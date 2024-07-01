@@ -1,4 +1,6 @@
 # warhammer_builder
+# credit
+- all datafiles were sourced from wahapedia. however, I created the api from these files myself
 # some planning
 ![armie page](https://github.com/Jesus130247/warhammer_builder/assets/150982381/2f7df270-8a36-4629-aab6-81c508534995)
 ![army creation page](https://github.com/Jesus130247/warhammer_builder/assets/150982381/9db0c963-3ed7-402a-9703-3535d4b433c5)
