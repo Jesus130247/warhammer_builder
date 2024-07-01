@@ -16,7 +16,7 @@ router.get('/api/faction/units/pqsl/:factionId', (req,res) => {
     .then(result=>result.rows).then(faction => res.status(200).json(faction))
 })
 
-router.post('/api/:saveArmy/:user_id/:faction_chosen_id/:subfaction_chosen/:army_name/:points/:user_army_array', (req,res) => {
+router.post('/api/saveArmy/:user_id/:faction_chosen_id/:subfaction_chosen/:army_name/:points/:pointLimit/:user_army_array', (req,res) => {
     return User.saveArmy(req.params)
 })
 

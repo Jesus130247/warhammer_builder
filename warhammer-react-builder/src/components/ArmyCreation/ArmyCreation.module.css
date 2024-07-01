@@ -28,9 +28,17 @@
     margin: 0;
     background-color: #242424;
     padding: 15px;
+    height: 1.5em;
 }
 .UnitSelection>h3 {
     margin: 8px 0 ;
 } 
 
+.waiting {
+    background-color: #242424;
+    height: 2rem;
+    text-align: center;
+    padding:10px 0 ;
+    height: 1.5em;
+}
 

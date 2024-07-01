@@ -47,7 +47,7 @@ function App() {
     setGetArmysFromDataBase([])
     let armyUnitsIdArray = usersArmy.map(unit => unit[0])
     SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
-    Number(pointLimit - remainingPoints), armyUnitsIdArray )
+    Number(pointLimit - remainingPoints), Number(pointLimit), armyUnitsIdArray )
     if (user) {
       fetch(`/api/getMyArmies/${Number(user.id)}`)
       .then(res=> res.json())

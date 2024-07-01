@@ -95,7 +95,7 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
             <>
                 {showUnit 
                 ? <UnitRules colour={colour} addUnit={addUnit} unitInfo={selectedUnit} />
-                : <h3>waiting on unit to be seleceted</h3>
+                : <h2 style={{color: colour}} className={styles.waiting}>waiting on unit to be seleceted</h2>
                 }
             </>
             </>

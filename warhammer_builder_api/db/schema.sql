@@ -26,6 +26,7 @@ CREATE TABLE army (
     subfaction_chosen TEXT NOT NULL,
     army_name TEXT NOT NULL,
     points INT NOT NULL,
+    pointLimit INT NOT NULL,
     user_army_array INT[]
 );
 
