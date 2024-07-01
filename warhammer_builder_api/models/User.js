@@ -27,15 +27,34 @@ function findByEmail(email) {
 }
 
 
-function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, user_army_array}) {
+function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
     user_army_array = user_army_array.split(',')
     let sql = `
     INSERT INTO army
-    (user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, user_army_array)
-    Values ($1, $2, $3, $4, $5, $6, $7) 
+    (user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array)
+    Values ($1, $2, $3, $4, $5, $6, $7, $8) 
     RETURNING *;`
-    return db.query(sql, [user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, user_army_array])
+    return db.query(sql, [user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array])
 }
+
+function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
+    user_army_array = user_army_array.split(',')
+    let sql = `
+    UPDATE army SET 
+    faction_chosen_id = $2, 
+    subfaction_chosen = $3,  
+    army_name = $4, 
+    points = $5, 
+    pointLimit = $6, 
+    colour = $7, 
+    user_army_array = $8
+    WHERE id = $1
+    RETURNING *;
+    `
+    return db.query(sql, [army_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array])
+
+}
+
 
 function getMyArmies(userId) {
     let sql = `
@@ -45,7 +64,6 @@ function getMyArmies(userId) {
 }
 
 function deleteArmy(armyId) {
-    console.log(armyId)
     sql = `
     DELETE FROM army
     WHERE id=$1;
@@ -58,7 +76,8 @@ const User = {
     createUser,
     saveArmy,
     getMyArmies,
-    deleteArmy
+    deleteArmy,
+    updateArmy
 }
 
 module.exports = User

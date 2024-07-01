@@ -12,7 +12,7 @@ export default function Login(props) {
         try {
             let token = await login(formData)
             localStorage.setItem('token', token)
-            props.onLogin(formData)
+            props.onLogin(formData, true)
         } catch (err) {
             console.log(err)
             alert('invalid email or password')
@@ -20,9 +20,11 @@ export default function Login(props) {
     }
     async function trySignUp(e) {
         e.preventDefault()
-        props.onLogin(newUser)
         try {
             await signUp(newUser)
+            let token = await login(newUser)
+            localStorage.setItem('token', token)
+            props.onLogin(newUser, false)
         } catch (err) {
             console.log(err)
             alert('email already exists')
@@ -42,7 +44,7 @@ export default function Login(props) {
                 <input type="text" onChange={handleChangeLogin} name="email"/>
                 <label htmlFor="" >password</label>
                 <input type="password" onChange={handleChangeLogin} name="password"/>
-                <button>login</button>
+                <button className={styles.btn}>login</button>
             </form>
             <h1>Sign Up</h1>
             <form action="" onSubmit={trySignUp}>
@@ -50,7 +52,7 @@ export default function Login(props) {
                 <input type="text" onChange={handleChangeSignUp} name="email"/>
                 <label htmlFor="" >password</label>
                 <input type="password" onChange={handleChangeSignUp} name="password"/>
-                <button>Sign Up</button>
+                <button className={styles.btn}>Sign Up</button>
             </form>
         </section>
     )

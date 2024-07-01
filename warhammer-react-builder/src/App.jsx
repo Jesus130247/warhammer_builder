@@ -7,7 +7,7 @@ import Footer from './components/footer/footer'
 import ArmyList from './viewingArmy/ArmyList/ArmyList.jsx'
 import Login from './pages/Login.jsx'
 import { getUserFromLocalStorage } from './utils/auth_service.js'
-import { SaveArmy } from './utils/user_armies.js'
+import { SaveArmy, updateArmy } from './utils/user_armies.js'
 
 
 function App() {
@@ -22,17 +22,39 @@ function App() {
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
   const [getArmysFromDataBase, setGetArmysFromDataBase] = useState([])
-  function onLogin(userInfo, signUp) {
-    setUser(userInfo)
-    location.reload()
+
+  
+  function addUnit(unitId, pts, unitName) {
+    if (remainingPoints-pts>=0 ) {
+      setRemainingPoints(remainingPoints-pts)
+      setUsersArmy([...usersArmy, [unitId, unitName, pts]])
+    }
+  }
+  
+  function removeUnit(e) {
+    let pts
+    setUsersArmy(usersArmy.filter((unit,idx) => {
+      if (idx === Number(e.target.id)) {
+        pts = Number(unit[2])
+      }
+      return idx !== Number(e.target.id)
+    }))
+    setRemainingPoints(remainingPoints+pts)
   }
 
+  function onLogin(userInfo, signUp) {
+    setUser(userInfo)
+    if (signUp) {
+      location.reload()
+    }
+  }
+  
   function onLogout() {
     setUser(null)
     setGetArmysFromDataBase([])
     localStorage.removeItem('token')
   }
-
+  
   function handleCancel(e) {
     setCreate(false)
     setselectedSubFaction()
@@ -42,12 +64,12 @@ function App() {
     setPointLimit(1000)
     setRemainingPoints(1000)
   }
-  // function saveArmy(user_id, faction_chosen_id, subfaction_chosen, army_name, points, user_army_array) {}
+
   function handleSave() {
     setGetArmysFromDataBase([])
     let armyUnitsIdArray = usersArmy.map(unit => unit[0])
     SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
-    Number(pointLimit - remainingPoints), Number(pointLimit), armyUnitsIdArray )
+    Number(pointLimit - remainingPoints), Number(pointLimit), colour, armyUnitsIdArray )
     if (user) {
       fetch(`/api/getMyArmies/${Number(user.id)}`)
       .then(res=> res.json())
@@ -63,7 +85,7 @@ function App() {
       <div className="centerThis">
       <header>
         <span>logged in as : {user.email} </span>
-        <button onClick={onLogout}>logout</button>
+        <button className='btn' onClick={onLogout}>logout</button>
       </header>
         <Header onLogout={onLogout}/>
       </div>
@@ -85,6 +107,8 @@ function App() {
           handleSave={handleSave}
           remainingPoints={remainingPoints}
           setRemainingPoints={setRemainingPoints}
+          addUnit={addUnit} 
+          removeUnit={removeUnit}
           />
         </>
       : <div className="centerThis">
@@ -93,6 +117,7 @@ function App() {
           user={user}
           getArmysFromDataBase={getArmysFromDataBase}
           setGetArmysFromDataBase={setGetArmysFromDataBase}
+          handleCancel={handleCancel}
            />
         </div>
       }

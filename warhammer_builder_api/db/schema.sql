@@ -27,6 +27,7 @@ CREATE TABLE army (
     army_name TEXT NOT NULL,
     points INT NOT NULL,
     pointLimit INT NOT NULL,
+    colour TEXT,
     user_army_array INT[]
 );
 

@@ -5,25 +5,7 @@ import styles from './ArmySelection.module.css'
 import UserArmy from "./userArmy/UserArmy"
 
 export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, 
-    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints}) {
-
-    function addUnit(unitId,pts, unitName) {
-        if ( remainingPoints-pts>=0 ) {
-            setRemainingPoints(remainingPoints-pts)
-            setUsersArmy([...usersArmy, [unitId, unitName, pts]])
-        }
-    }
-
-    function removeUnit(e) {
-        let pts
-        setUsersArmy(usersArmy.filter((unit,idx) => {
-            if (idx === Number(e.target.id)) {
-                pts = Number(unit[2])
-            }
-            return idx !== Number(e.target.id)
-        }))
-        setRemainingPoints(remainingPoints+pts)
-    }
+    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit}) {
 
     return (
         <div className={styles.ArmySelection}>  

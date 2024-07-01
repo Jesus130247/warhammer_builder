@@ -5,7 +5,6 @@ export default function UserArmy(
     armyName,selectedSubFaction,usersArmy, handleCancel,
     pointLimit,remainingPoints,selectedArmy,removeUnit, colour, handleSave
     }) {
-    
     return (
     <div className={styles.containerForArmySelection}>
         {armyName ? <h2 style={{color: colour}}>{armyName} <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
@@ -17,8 +16,8 @@ export default function UserArmy(
         <ul> 
             {usersArmy.map((unit,idx) => {
                 return (
-                    <div className={styles.unit}>
-                        <li className={styles.list} key={idx}>
+                    <div className={styles.unit} key={idx}>
+                        <li className={styles.list}>
                             <span>{unit[1]}</span><br />
                             <span style={{color: colour}}>{unit[2]} pts</span>
                         </li>

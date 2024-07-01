@@ -7,7 +7,6 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
     const [showUnit, setShowUnit] = useState(false)
     const [isLoading, setisLoading] = useState(true)
     const [selectedUnit, setSelectedUnit] = useState()
-
     function sortThis(object) {
         return Object.entries(object)
         .sort((a, b) => {
