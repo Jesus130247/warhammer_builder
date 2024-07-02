@@ -59,3 +59,9 @@
     background-color: #ffffff;
     color: #000000;
 }
+
+.checkBox {
+    display: flex;
+    gap: 2px;
+    font-size: 0.8rem;
+}
