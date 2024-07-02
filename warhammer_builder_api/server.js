@@ -9,15 +9,14 @@ const errorHandler = require('./middlewares/error_handler')
 const expressListRoutes = require('express-list-routes')
 const newApi = require('./routes/army_router')
 
-app.use(express.static('./public/dist'))
+
+app.use('/', express.static('./public/dist'))
+
 app.use(express.json())
 app.use(authRouter)
 // app.use(armyInfoRouter)
 app.use(newApi)
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(staticPath, 'index.html'));
-  });
 
 app.use(errorHandler)
 

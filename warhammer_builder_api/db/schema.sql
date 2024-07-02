@@ -23,7 +23,7 @@ CREATE TABLE army (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     faction_chosen_id TEXT NOT NULL,
-    subfaction_chosen TEXT NOT NULL,
+    subfaction_chosen JSONB, -- [{subfaction_name:rule}, [{enhancements:rules}]]
     army_name TEXT NOT NULL,
     points INT NOT NULL,
     pointLimit INT NOT NULL,
