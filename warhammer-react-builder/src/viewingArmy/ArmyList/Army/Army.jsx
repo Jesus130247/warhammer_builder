@@ -82,7 +82,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     }
     useEffect(() => {
         if (armyUnits) {
-            let newUnit = armyUnits.map(unit => [unit[0].id, unit[0].unit_data[0], unit[0].unit_data[9][0][1]])
+            let newUnit = armyUnits.map(unit => [unit[0].id, unit[0].unit_data[0], unit[0].unit_data[11][0][1]])
             setUsersArmy(...usersArmy, newUnit)
         }
     },[armyUnits])

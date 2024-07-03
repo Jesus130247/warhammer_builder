@@ -8,10 +8,9 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
         if (selectedArmy && selectedSubFaction) {
         useEffect(() => {
-            setSubFactionDataEnhancements(Object.entries(subFactionInfo)[0][1].slice(1))
+            setSubFactionDataEnhancements(subFactionInfo[selectedSubFaction[0]].slice(1))
         },[])
     }
-
     return (
         <>
         <div className={styles.ArmySelection}>  
