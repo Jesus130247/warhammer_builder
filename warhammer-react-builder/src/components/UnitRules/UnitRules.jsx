@@ -5,6 +5,8 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
     let [unitname, 
         role,
         startingWargear,
+        transportCapcity,
+        damagedData,
         abilityObject,
         armyKeyWordArray,
         statsArray,
@@ -145,10 +147,10 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             <div className="right2">
                 <span>
                     <h4 style={{color: colour}}>Unit Composiiton</h4>
-                    {unitCompArray.map(unitComp => {
-                    <div dangerouslySetInnerHTML={{__html : unitComp}}></div>
-                })}
+                    {unitCompArray.map(unitComp => <div dangerouslySetInnerHTML={{__html : unitComp}}></div>)}
                 </span> 
+                {transportCapcity !== '' ? <div style={{marginTop: '10px'}} dangerouslySetInnerHTML={{__html:transportCapcity}}></div> : <></>}
+                {damagedData !== '' ? <div style={{marginTop: '10px'}} dangerouslySetInnerHTML={{__html:damagedData}}></div> : <></>}
                 <div className={styles.unitRules}> 
                 {ptsCost ? ptsCost.map((option,idx) => {
                     return (

@@ -31,19 +31,21 @@ async function storeUnitData(faction_id) {
     return
 }
 
-storeUnitData('SM')
-// storeUnitData('CD')
-// storeUnitData('DG')
-// storeUnitData('DRU')
 
-// no unaligned forces data or space marines
+
+// storeUnitData('AM')
+// storeUnitData('GC')
+// storeUnitData('TL')
+storeUnitData('SM')
+
+// no unaligned forces data 
  
+
 // AoI  AM GC TL 
 // GK AE AdM UN 
 // NEC TS ORK TAU 
-// LoV QT WE QI 
-
+// LoV QT WE QI
 // AC CSM TYR DRU
-// AS CD DG
+// AS CD DG SM
 
 // data gathered 

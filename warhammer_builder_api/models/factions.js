@@ -45,7 +45,8 @@ const filesArray = [ // for uplaoding to database
     '../dataFiles/Detachment_abilities.csv', //11
     '../dataFiles/Last_update.csv', //12
     '../dataFiles/Datasheets_leader.csv', //13
-    // 'dataFiles/Source.csv', // dont use // 13
+    '../dataFiles/DataSheets2.csv', //14
+    // 'dataFiles/Source.csv', // dont use // 15
 ];
 
 // const filesArray = [ // for testing here
@@ -86,7 +87,8 @@ async function getFactionData() {
 }
 
 async function getThisFactionsUnits(factionId) {
-    let factionUnits = await getFactionUnits(filesArray[1],factionId)
+    let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
+    // let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
     for (let unitId in factionUnits) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitAbilities(filesArray[2], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitKeyWords(filesArray[3], unitId)]
@@ -106,6 +108,7 @@ async function getLeader(file, unitId) {
     let canLead = []
     for (let unitLed of leader) {
         canLead.push( await getUnitName(filesArray[1],unitLed[1]))
+        canLead.push( await getUnitName(filesArray[14],unitLed[1]))
     }
     return canLead
 }
@@ -234,7 +237,7 @@ async function getUnitKeyWords(file, unitId) {
 async function getFactionUnits(file, name) {  // allows me to search by faction initials
     const data = await readFile(file, 'utf-8');
     let unitNames = reformatData(data).filter(data => data[2] === name && data[4] !== '').reduce((accum,unitInfo) =>  {
-        accum[unitInfo[0]] = [unitInfo[1],unitInfo[5],unitInfo[6]] // [name, role, loadout]
+        accum[unitInfo[0]] = [unitInfo[1],unitInfo[5],unitInfo[6],unitInfo[7],unitInfo[12]] // [name, role, loadout, transports?, ]
         return accum
     }, {});
     return unitNames;
