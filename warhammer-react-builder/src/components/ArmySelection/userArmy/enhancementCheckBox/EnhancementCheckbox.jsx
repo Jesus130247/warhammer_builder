@@ -2,6 +2,9 @@ import styles from '../UserArmy.module.css'
 export default function EnhancementCheckbox({subFactionDataEnhancements, handleEnchancement, colour, selectedEnhancement}) {
     return (
         <>
+        <div className={styles.enhanceRules}>- Only an non <span style={{fontWeight:'700'}}>Epic Hero</span> <span style={{fontWeight:'700'}}>Character</span> Model can take an enhancement.</div>
+        <div className={styles.enhanceRules}>- 1 per <span style={{fontWeight:'700'}}>Character</span> Model.</div>
+        <div style={{fontWeight:'700', paddingTop: '10px'}}>Enhancements:</div>
         {subFactionDataEnhancements.map(enhancement => {
             if (selectedEnhancement.length) {
                 let existingEnhancements = Object.entries(selectedEnhancement).map(enhancement => Object.keys(enhancement[1])[0])

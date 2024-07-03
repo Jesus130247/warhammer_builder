@@ -28,7 +28,7 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
             colour={colour} //
             armyName={armyName} // army.army_name
             selectedArmy={selectedArmy} // use state for view army selection
-            selectedSubFaction={{[selectedSubFaction[0]]:selectedSubFaction[1]}} // army.subfaction_chosen
+            selectedSubFaction={subFactionInfo} // army.subfaction_chosen
             pointLimit={pointLimit} //army.pointLimit
             removeUnit={removeUnit} //import from app
             usersArmy={usersArmy}  // need [unitId, unitName, unitPts]

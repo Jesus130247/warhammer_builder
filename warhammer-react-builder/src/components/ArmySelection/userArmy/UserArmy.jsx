@@ -13,7 +13,6 @@ export default function UserArmy(
         subFactionName = Object.keys(selectedSubFaction)[0]
         subFactionRule = Object.entries(selectedSubFaction)[0][1][0]
     }
-    console.log(selectedEnhancement)
     return (
     <div className={styles.containerForArmySelection}>
         {armyName ? <h2 style={{color: colour}}>{armyName} <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
