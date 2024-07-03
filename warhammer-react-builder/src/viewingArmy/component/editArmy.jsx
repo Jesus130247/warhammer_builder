@@ -7,9 +7,12 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
     removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
         if (selectedArmy && selectedSubFaction) {
-        useEffect(() => {
-            setSubFactionDataEnhancements(subFactionInfo[selectedSubFaction[0]].slice(1))
-        },[])
+            if (selectedSubFaction.length) {
+                console.log(subFactionInfo[selectedSubFaction[0]])
+                useEffect(() => {
+                    setSubFactionDataEnhancements(subFactionInfo[selectedSubFaction[0]].slice(1))
+                },[])
+            }
     }
     return (
         <>

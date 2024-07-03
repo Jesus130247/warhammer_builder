@@ -16,7 +16,8 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     function handleUpdate() {
         setGetArmysFromDataBase([])
         let armyUnitsIdArray = usersArmy.map(unit => unit[0])
-        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [Object.keys(viewArmyDetails.subfaction_chosen)[0], selectedEnhancement], viewArmyDetails.army_name,
+        console.log(viewArmyDetails.subfaction_chosen)
+        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement], viewArmyDetails.army_name,
         Number(viewArmyDetails.pointlimit - remainingPoints), Number(viewArmyDetails.pointlimit), viewArmyDetails.colour, armyUnitsIdArray )
         if (user) {
             fetch(`/api/getMyArmies/${Number(user.id)}`)
