@@ -1,10 +1,17 @@
 import styles from './EditArmy.module.css'
 import ArmyCreation from '../../components/ArmyCreation/ArmyCreation'
 import UserArmy from '../../components/ArmySelection/userArmy/UserArmy'
+import { useState, useEffect } from 'react'
 
 export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit,
-    removeUnit,usersArmy,remainingPoints,handleSave}) {
-        
+    removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
+        const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
+        if (selectedArmy && selectedSubFaction) {
+        useEffect(() => {
+            setSubFactionDataEnhancements(Object.entries(subFactionInfo)[0][1].slice(1))
+        },[])
+    }
+
     return (
         <>
         <div className={styles.ArmySelection}>  
@@ -21,12 +28,18 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
             colour={colour} //
             armyName={armyName} // army.army_name
             selectedArmy={selectedArmy} // use state for view army selection
-            selectedSubFaction={selectedSubFaction} // army.subfaction_chosen
+            selectedSubFaction={{[selectedSubFaction[0]]:selectedSubFaction[1]}} // army.subfaction_chosen
             pointLimit={pointLimit} //army.pointLimit
             removeUnit={removeUnit} //import from app
             usersArmy={usersArmy}  // need [unitId, unitName, unitPts]
             remainingPoints={remainingPoints} //army.pointLimit - army.points
             handleSave={handleSave} //import from app
+
+            subFactionDataEnhancements={subFactionDataEnhancements}
+            setRemainingPoints={setRemainingPoints}
+            setSelectedEnhancement={setSelectedEnhancement}
+            selectedEnhancement={selectedEnhancement}
+            handleEnchancement={handleEnchancement}
             />
         </div></>
     )

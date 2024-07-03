@@ -12,10 +12,11 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [viewArmyDetails, setViewArmyDetails] = useState([])
     const [usersArmy, setUsersArmy] = useState([])
     const [remainingPoints, setRemainingPoints] = useState()
+    const [selectedEnhancement, setSelectedEnhancement] = useState([])
     function handleUpdate() {
         setGetArmysFromDataBase([])
         let armyUnitsIdArray = usersArmy.map(unit => unit[0])
-        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, viewArmyDetails.subfaction_chosen, viewArmyDetails.army_name,
+        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [Object.keys(viewArmyDetails.subfaction_chosen)[0], selectedEnhancement], viewArmyDetails.army_name,
         Number(viewArmyDetails.pointlimit - remainingPoints), Number(viewArmyDetails.pointlimit), viewArmyDetails.colour, armyUnitsIdArray )
         if (user) {
             fetch(`/api/getMyArmies/${Number(user.id)}`)
@@ -53,6 +54,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     },[])
     async function handleViewArmy(army) {
         setViewArmyDetails(army)
+        setSelectedEnhancement(army.subfaction_chosen[1])
         if (army) {
             await fetch(`/api/faction/units/pqsl/${army.faction_chosen_id}`)
             .then(res=>res.json())
@@ -87,6 +89,20 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     useEffect(() => {
         setRemainingPoints(viewArmyDetails.pointlimit - viewArmyDetails.points)
     }, [viewArmyDetails])
+
+    function handleEnchancement(e) {
+        let pointsCost = e.target.id
+        let name = e.target.name
+        let alreadySelected = selectedEnhancement.map(enhancement => Object.keys(enhancement)[0])
+        if (alreadySelected.includes(name)) {
+            setSelectedEnhancement(selectedEnhancement.filter(enhancement => Object.keys(enhancement)[0] !== name))
+            setRemainingPoints(remainingPoints + Number(pointsCost))
+        } else {
+            setSelectedEnhancement([...selectedEnhancement, {[name]:pointsCost}])
+            setRemainingPoints(remainingPoints - Number(pointsCost))
+        }
+    }
+
     return ( 
     <>
         {viewArmy ? <>
@@ -103,6 +119,12 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
         addUnit={addUnit}
         removeUnit={removeUnit}
         usersArmy={usersArmy}
+        subFactionInfo={usersSelecetedArmy.faction_info[3]}
+
+        setRemainingPoints={setRemainingPoints}
+        setSelectedEnhancement={setSelectedEnhancement}
+        selectedEnhancement={selectedEnhancement}
+        handleEnchancement={handleEnchancement}
         />
         </> : <>
 

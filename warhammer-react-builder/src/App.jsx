@@ -22,6 +22,7 @@ function App() {
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
   const [getArmysFromDataBase, setGetArmysFromDataBase] = useState([])
+  const [selectedEnhancement, setSelectedEnhancement] = useState([]) 
 
   
   function addUnit(unitId, pts, unitName) {
@@ -63,12 +64,12 @@ function App() {
     setUsersArmy([])
     setPointLimit(1000)
     setRemainingPoints(1000)
+    setSelectedEnhancement()
   }
-
   function handleSave() {
     setGetArmysFromDataBase([])
     let armyUnitsIdArray = usersArmy.map(unit => unit[0])
-    SaveArmy(Number(user.id), selectedArmy.faction_id, selectedSubFaction, armyName,
+    SaveArmy(Number(user.id), selectedArmy.faction_id, [Object.keys(selectedSubFaction)[0], selectedEnhancement], armyName,
     Number(pointLimit - remainingPoints), Number(pointLimit), colour, armyUnitsIdArray )
     if (user) {
       fetch(`/api/getMyArmies/${Number(user.id)}`)
@@ -78,6 +79,20 @@ function App() {
     handleCancel()
     location.reload()
   }
+  
+  function handleEnchancement(e) {
+      let pointsCost = e.target.id
+      let name = e.target.name
+      let alreadySelected = selectedEnhancement.map(enhancement => Object.keys(enhancement)[0])
+      if (alreadySelected.includes(name)) {
+          setSelectedEnhancement(selectedEnhancement.filter(enhancement => Object.keys(enhancement)[0] !== name))
+          setRemainingPoints(remainingPoints + Number(pointsCost))
+      } else {
+          setSelectedEnhancement([...selectedEnhancement, {[name]:pointsCost}])
+          setRemainingPoints(remainingPoints - Number(pointsCost))
+      }
+  }
+  
 
   return ( <> 
     {user ? 
@@ -109,6 +124,9 @@ function App() {
           setRemainingPoints={setRemainingPoints}
           addUnit={addUnit} 
           removeUnit={removeUnit}
+          setSelectedEnhancement={setSelectedEnhancement}
+          selectedEnhancement={selectedEnhancement}
+          handleEnchancement={handleEnchancement}
           />
         </>
       : <div className="centerThis">
@@ -118,6 +136,9 @@ function App() {
           getArmysFromDataBase={getArmysFromDataBase}
           setGetArmysFromDataBase={setGetArmysFromDataBase}
           handleCancel={handleCancel}
+          setSelectedEnhancement={setSelectedEnhancement}
+          selectedEnhancement={selectedEnhancement}
+          handleEnchancement={handleEnchancement}
            />
         </div>
       }

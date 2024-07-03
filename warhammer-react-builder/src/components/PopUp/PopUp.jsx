@@ -47,12 +47,13 @@ export default function PopUp({trigger, setTrigger, setCreate,
         }
     }
     function changeSubFaction(e) {
-        console.log(e.target.value)
         setSubFactionSelectedIndex(e.target)  
-        if (e.target.value !== 'None') {
-            setselectedSubFaction(e.target.value)
-        } else {
-            setselectedSubFaction()  
+        if (selectedArmy) {
+            if (e.target.value !== 'None') {
+                setselectedSubFaction({[e.target.value]:selectedArmy.faction_info[3][e.target.value]})
+            } else {
+                setselectedSubFaction()  
+            }
         }
     }
     

@@ -4,14 +4,14 @@ import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
 import UserArmy from "./userArmy/UserArmy"
 
-export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, 
-    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit}) {
-        const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
-        if (selectedArmy && selectedSubFaction) {
-            useEffect(() => {
-                setSubFactionDataEnhancements(Object.entries(selectedArmy.faction_info[3]).filter(subfactions => subfactions[0] === selectedSubFaction)[0][1].slice(1))
-            },[])
-        }
+export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, setSelectedEnhancement, selectedEnhancement, 
+    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit, handleEnchancement}) {
+    const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
+    if (selectedArmy && selectedSubFaction) {
+        useEffect(() => {
+            setSubFactionDataEnhancements(Object.entries(selectedSubFaction)[0][1].slice(1))
+        },[])
+    }
     return (
         <div className={styles.ArmySelection}>  
             <div className={styles.containerForUnits}>
@@ -35,6 +35,9 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
             
             subFactionDataEnhancements={subFactionDataEnhancements}
             setRemainingPoints={setRemainingPoints}
+            setSelectedEnhancement={setSelectedEnhancement}
+            selectedEnhancement={selectedEnhancement}
+            handleEnchancement={handleEnchancement}
             />
         </div>
     )

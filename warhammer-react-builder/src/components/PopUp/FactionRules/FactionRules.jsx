@@ -1,13 +1,16 @@
 import styles from './factionRules.module.css'
 
 export default function FactionRules({faction, subFaction}) {
+    let subFactionName
+    let subFactionRule
     if (subFaction && faction) {
         let factionData = Object.entries(faction.faction_info[2]).map(data => data)
-        let subFactionData = Object.entries(faction.faction_info[3]).filter(subfactions => subfactions[0] === subFaction)
+        subFactionName = Object.keys(subFaction)[0]
+        subFactionRule = Object.entries(subFaction)[0][1][0]
         return (
             <>
             <div className={styles.factionName}>{factionData[0][0]}: </div><span className={styles.data} dangerouslySetInnerHTML={{__html : factionData[0][1]}}></span>
-            <div className={styles.factionName}>{subFactionData[0][0]}:</div> <span  className={styles.data}dangerouslySetInnerHTML={{__html : subFactionData[0][1][0]}}></span>
+            <div className={styles.factionName}>{subFactionName}:</div> <span  className={styles.data}dangerouslySetInnerHTML={{__html : subFactionRule}}></span>
             </>
         )
     } else if (faction) {

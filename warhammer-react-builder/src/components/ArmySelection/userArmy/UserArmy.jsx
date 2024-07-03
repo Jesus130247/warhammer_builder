@@ -1,40 +1,34 @@
 import styles from './UserArmy.module.css'
 import { useState } from 'react'
+import EnhancementCheckbox from './enhancementCheckBox/EnhancementCheckbox'
 
 export default function UserArmy(
     {
-    armyName,selectedSubFaction,usersArmy, handleCancel, setRemainingPoints,
-    pointLimit,remainingPoints,selectedArmy,removeUnit, colour, handleSave, subFactionDataEnhancements
+    armyName,selectedSubFaction,usersArmy, handleCancel, setRemainingPoints, setSelectedEnhancement, selectedEnhancement,
+    pointLimit,remainingPoints,selectedArmy,removeUnit, colour, handleSave, subFactionDataEnhancements, handleEnchancement
     }) {
-    const [selectedEnhancement, setSelectedEnhancement] = useState([]) 
-    function handleEnchancement(e) {
-        let pointsCost = e.target.id
-        let name = e.target.name
-        let alreadySelected = selectedEnhancement.map(enhancement => Object.keys(enhancement)[0])
-        if (alreadySelected.includes(name)) {
-            setSelectedEnhancement(selectedEnhancement.filter(enhancement => Object.keys(enhancement)[0] !== name))
-            setRemainingPoints(remainingPoints + Number(pointsCost))
-        } else {
-            setSelectedEnhancement([...selectedEnhancement, {[name]:pointsCost}])
-            setRemainingPoints(remainingPoints - Number(pointsCost))
-        }
+    let subFactionName
+    let subFactionRule
+    if (selectedSubFaction) {
+        subFactionName = Object.keys(selectedSubFaction)[0]
+        subFactionRule = Object.entries(selectedSubFaction)[0][1][0]
     }
+    console.log(selectedEnhancement)
     return (
     <div className={styles.containerForArmySelection}>
         {armyName ? <h2 style={{color: colour}}>{armyName} <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
         :<h2 style={{color: colour}}>Your Army: <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
         } 
-        <h3>{selectedSubFaction}</h3>
-        {subFactionDataEnhancements.map(enhancement => {
-            return (
-                <div className={styles.checkBox}>
-                <input type="checkbox" id={enhancement[2]} name={enhancement[0]} pts={enhancement[2]} onChange={handleEnchancement} />
-                <div>{enhancement[0]} - <span style={{color: colour}}>{enhancement[2]}pts</span></div>
-                </div>
-            )
-        })}
+        <h3>{subFactionName}</h3>
         <p>Point Limit: {pointLimit} w/ <span style={{fontWeight: 700}}>{remainingPoints}</span> pts remaining</p>
+        <EnhancementCheckbox 
+        subFactionDataEnhancements={subFactionDataEnhancements} 
+        handleEnchancement={handleEnchancement} 
+        colour={colour}
+        selectedEnhancement={selectedEnhancement}
+        />
         <div style={{fontWeight: 700}}>Your Army So far:</div>
+        
         <ul> 
             {usersArmy.map((unit,idx) => {
                 return (
