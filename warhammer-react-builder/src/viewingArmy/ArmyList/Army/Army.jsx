@@ -15,9 +15,8 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
     function handleUpdate() {
         setGetArmysFromDataBase([])
-        let armyUnitsIdArray = usersArmy.map(unit => unit[0])
         updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement], viewArmyDetails.army_name,
-        Number(viewArmyDetails.pointlimit - remainingPoints), Number(viewArmyDetails.pointlimit), viewArmyDetails.colour, armyUnitsIdArray )
+        Number(viewArmyDetails.pointlimit - remainingPoints), Number(viewArmyDetails.pointlimit), viewArmyDetails.colour, usersArmy )
         if (user) {
             fetch(`/api/getMyArmies/${Number(user.id)}`)
             .then(res=> res.json())
@@ -60,8 +59,9 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             .then(res=>res.json())
             .then(data=> {
                 let units = []
+                setUsersArmy(army.user_army_array)
                 army.user_army_array.forEach(unitId => {
-                    let unit =  data.filter(unit =>  unitId === unit.id)
+                    let unit =  data.filter(unit =>  unitId[0] === unit.id)
                     units.push(unit)
                 })
                 setArmyUnits(units)
@@ -80,12 +80,6 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             .then(res => setGetArmysFromDataBase(res))    
           }
     }
-    useEffect(() => {
-        if (armyUnits) {
-            let newUnit = armyUnits.map(unit => [unit[0].id, unit[0].unit_data[0], unit[0].unit_data[11][0][1]])
-            setUsersArmy(...usersArmy, newUnit)
-        }
-    },[armyUnits])
     useEffect(() => {
         setRemainingPoints(viewArmyDetails.pointlimit - viewArmyDetails.points)
     }, [viewArmyDetails])

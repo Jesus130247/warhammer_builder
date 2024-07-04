@@ -28,7 +28,6 @@ function findByEmail(email) {
 
 
 function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
-    user_army_array = user_army_array.split(',')
     let sql = `
     INSERT INTO army
     (user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array)
@@ -38,7 +37,6 @@ function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, poi
 }
 
 function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
-    user_army_array = user_army_array.split(',')
     let sql = `
     UPDATE army SET 
     faction_chosen_id = $2, 

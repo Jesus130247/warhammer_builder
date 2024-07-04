@@ -28,7 +28,7 @@ CREATE TABLE army (
     points INT NOT NULL,
     pointLimit INT NOT NULL,
     colour TEXT,
-    user_army_array INT[]
+    user_army_array JSONB
 );
 
 

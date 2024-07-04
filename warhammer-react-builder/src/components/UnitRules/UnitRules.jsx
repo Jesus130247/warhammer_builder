@@ -162,13 +162,13 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                     return (
                         <div key={idx} >
                         <h4>{option[0]} for {option[1]} pts</h4>
-                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(unitInfo[1].id, option[1], unitname)}>Add this type to your army</button>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit(unitInfo[1].id, option[1], `${option[0].split(' ')[0]} ${unitname}`)}>Add this type to your army</button>
                     </div>
                     )
                 }) : <>
                     <div >
                         <h4>1 Model for 165 pts</h4>
-                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit('3278', 165, unitname)}>Add this type to your army</button>
+                        <button  style={{color: colour}} className={styles.btn}onClick={() => addUnit('3278', 165, `1 ${unitname}`)}>Add this type to your army</button>
                     </div></>}
                 </div>
                 {role === "Characters" && leader.length > 0 
