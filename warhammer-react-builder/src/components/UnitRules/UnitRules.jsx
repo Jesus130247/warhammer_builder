@@ -49,8 +49,12 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
             oC2
         ] = statsArray[1]
     }
-    let rangedWeapons = weaponRulesArray.filter(weapon => weapon[2] !== 'Melee')
-    let meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
+    let meleeWeapons = []
+    let rangedWeapons = []
+    if (weaponRulesArray) {
+        rangedWeapons = weaponRulesArray.filter(weapon => weapon[2] !== 'Melee')
+        meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
+    }
     return(
     <div className={styles.showUnitRules}>
         <h2 style={{color: colour}}>{unitname}</h2>
@@ -98,7 +102,9 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                             )
                         })}
                     </table> : <></>}
-                    <table className={styles.table}>
+                </div>
+                <div>{meleeWeapons.length 
+                    ? <table className={styles.table}>
                         <tr className={styles.tableTitle}>
                             <td className={styles.weaponTitle} style={{color: colour}}>Melee weapons</td>
                             <td style={{color: colour}}>Range</td>
@@ -113,7 +119,7 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                                 <Weapon weaponStats={weaponStats} idx={idx} colour={colour} />
                             )
                         })}
-                    </table>
+                    </table> : <></>}
                 </div>
             </div>
             <div className="right">
