@@ -7,7 +7,7 @@ export default function EnhancementCheckbox({subFactionDataEnhancements, handleE
         <div style={{fontWeight:'700', paddingTop: '10px'}}>Enhancements:</div>
         {subFactionDataEnhancements.map(enhancement => {
             if (selectedEnhancement !== undefined) {
-                if (selectedEnhancement.length) {
+                if (selectedEnhancement) {
                     let existingEnhancements = Object.entries(selectedEnhancement).map(enhancement => Object.keys(enhancement[1])[0])
                     if (existingEnhancements.includes(enhancement[0])) {
                         return (

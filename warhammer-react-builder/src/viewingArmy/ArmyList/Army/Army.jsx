@@ -13,6 +13,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [usersArmy, setUsersArmy] = useState([])
     const [remainingPoints, setRemainingPoints] = useState()
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
+    console.log(selectedEnhancement)
     function handleUpdate() {
         setGetArmysFromDataBase([])
         updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement], viewArmyDetails.army_name,
@@ -53,7 +54,9 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     },[])
     async function handleViewArmy(army) {
         setViewArmyDetails(army)
-        setSelectedEnhancement(army.subfaction_chosen[1])
+        if (army.subfaction_chosen[1] !== null) {
+            setSelectedEnhancement(army.subfaction_chosen[1])
+        }
         if (army) {
             await fetch(`/api/faction/units/pqsl/${army.faction_chosen_id}`)
             .then(res=>res.json())

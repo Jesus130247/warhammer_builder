@@ -4,8 +4,8 @@ import EnhancementCheckbox from './enhancementCheckBox/EnhancementCheckbox'
 
 export default function UserArmy(
     {
-    armyName,selectedSubFaction,usersArmy, handleCancel, setRemainingPoints, setSelectedEnhancement, selectedEnhancement,
-    pointLimit,remainingPoints,selectedArmy,removeUnit, colour, handleSave, subFactionDataEnhancements, handleEnchancement
+    armyName,selectedSubFaction,usersArmy, selectedEnhancement,
+    pointLimit,remainingPoints,removeUnit, colour, handleSave, subFactionDataEnhancements, handleEnchancement
     }) {
     let subFactionName
     let subFactionRule

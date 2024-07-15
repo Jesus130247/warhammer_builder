@@ -38,7 +38,6 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
 
             subFactionDataEnhancements={subFactionDataEnhancements}
             setRemainingPoints={setRemainingPoints}
-            setSelectedEnhancement={setSelectedEnhancement}
             selectedEnhancement={selectedEnhancement}
             handleEnchancement={handleEnchancement}
             />
