@@ -10,12 +10,13 @@ router.post('/api/signUp', async (req, res, next) => {
     const { email, password } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
-    try {
-        await User.createUser(email, hash)
-    } catch {
-        next()
+    if (email.trim() !== '' || password !== '') {
+        return await User.createUser(email.trim(), hash).catch((err) => {
+            next(err)
+        })
+    } else {
+        throw new Error
     }
-
 })
 
 router.post('/api/login',  async (req, res, next) => {
@@ -28,7 +29,7 @@ router.post('/api/login',  async (req, res, next) => {
         //2. find the existing user from the database using the email
         let user = await User.findByEmail(email)
         if (!user) {
-            let err = new Error('incorrect email or passowrd')
+            let err = new Error('incorrect username or passowrd')
             err.status = 400
             throw err
         }
@@ -36,7 +37,7 @@ router.post('/api/login',  async (req, res, next) => {
         //3.check the password for this user
         let match = await bcrypt.compare(password, user.password_disgest)
         if (!match) {
-            let err = new Error('incorrect email or passowrd')
+            let err = new Error('incorrect username or passowrd')
             err.status = 400
             throw err
         }

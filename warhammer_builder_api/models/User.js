@@ -17,7 +17,7 @@ function findByEmail(email) {
     `
     return db.query(sql, [email])
             .then(result => {
-                if(result.rowCount ===0) {
+                if(result.rowCount === 0) {
                     let err = new Error('resource not found')
                     err.status = 400
                     throw err

@@ -6,6 +6,16 @@
     color: #49d43c;
 }
 
+.login h1 {
+    margin: 10px;
+    font-size: 3rem;
+    color: #49d43c;
+}
+.login h2 {
+    margin: 10px;
+    font-size: 2rem;
+    color: #49d43c;
+}
 .btn {
     border: 1px solid black;
     border-radius: 25px;
