@@ -12,6 +12,7 @@ import { useState } from 'react'
 export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataBase, handleCancel, removeUnit, addUnit, handleUpdate}) {
     const [backgroundImages, setBackgorundImages] = useState([zero, one, two, three, four, five, six])
     const [backgroundImg, setBackgorundImg] = useState(backgroundImages[Math.floor(Math.random() * backgroundImages.length)])
+    console.log(backgroundImages)
     return (
         <section className={styles.armies} style={{backgroundImage: `url('${backgroundImg}')`}}>
             Your created armies:
