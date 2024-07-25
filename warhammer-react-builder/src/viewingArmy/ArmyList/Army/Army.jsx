@@ -4,6 +4,13 @@ import styles from './Army.module.css'
 import { DeleteArmy } from "../../../utils/user_armies"
 import EditArmy from "../../component/editArmy"
 import { updateArmy } from "../../../utils/user_armies"
+import zero from '../../../assets/images/armyBackground.jpg'
+import one from '../../../assets/images/40kbackground1.jpg'
+import two from '../../../assets/images/40kbackground2.jpg'
+// import three from '../../../assets/images/40kbackground3.jpg'
+// import four from '../../../assets/images/40kbackground4.jpg'
+import five from '../../../assets/images/40kbackground5.jpg'
+import six from '../../../assets/images/40kbackground6.jpg'
 
 export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBase, handleCancel}) {
     const [viewArmy, setViewArmy] = useState(false)
@@ -13,7 +20,9 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [usersArmy, setUsersArmy] = useState([])
     const [remainingPoints, setRemainingPoints] = useState()
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
-
+    const [backgroundImages, setBackgorundImages] = useState([zero, one, two, five, six])
+    const [backgroundImg, setBackgorundImg] = useState(backgroundImages[Math.floor(Math.random() * backgroundImages.length)])
+    console.log(backgroundImages)
 
     function handleUpdate() {
         setGetArmysFromDataBase([])
@@ -124,7 +133,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
         selectedEnhancement={selectedEnhancement}
         handleEnchancement={handleEnchancement}
         />
-        </> : <div className={styles.showArmies} >
+        </> : <div className={styles.showArmies} style={{backgroundImage: `url('${backgroundImg}')`}}>
             {getArmysFromDataBase.length !== 0 
             ? 
             <>
@@ -143,7 +152,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             : 
             <div className={styles.singleArmy} style={{borderColor:'white'}}>
                 <div>You have no armies created <br />
-                Click Above to create an army</div>
+                Click 'Create an Army +'</div>
             </div>
             }
         </div>}

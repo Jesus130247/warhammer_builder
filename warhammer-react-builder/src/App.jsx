@@ -129,7 +129,7 @@ function App() {
           />
         </>
       : <div className="centerThis">
-          { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button> : <div>Reached Maximum Army Count of 5</div>}
+          { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button> : <div>Reached Maximum Army Count</div>}
           <ArmyList 
           user={user}
           getArmysFromDataBase={getArmysFromDataBase}
@@ -141,9 +141,6 @@ function App() {
            />
         </div>
       }
-      </div>
-      <div className="centerThis">
-        <Footer />  
       </div>
       <PopUp  
         trigger={buttonTrigger} 
