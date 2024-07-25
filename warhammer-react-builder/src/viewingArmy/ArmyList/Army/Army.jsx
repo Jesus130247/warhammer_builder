@@ -22,7 +22,6 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
     const [backgroundImages, setBackgorundImages] = useState([zero, one, two, five, six])
     const [backgroundImg, setBackgorundImg] = useState(backgroundImages[Math.floor(Math.random() * backgroundImages.length)])
-    console.log(backgroundImages)
 
     function handleUpdate() {
         setGetArmysFromDataBase([])
