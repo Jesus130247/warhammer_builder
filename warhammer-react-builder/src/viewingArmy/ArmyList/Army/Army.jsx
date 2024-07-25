@@ -13,7 +13,8 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [usersArmy, setUsersArmy] = useState([])
     const [remainingPoints, setRemainingPoints] = useState()
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
-    console.log(selectedEnhancement)
+
+
     function handleUpdate() {
         setGetArmysFromDataBase([])
         updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement], viewArmyDetails.army_name,
@@ -123,28 +124,29 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
         selectedEnhancement={selectedEnhancement}
         handleEnchancement={handleEnchancement}
         />
-        </> : <>
-
-        {getArmysFromDataBase.length !== 0 
-        ? 
-        <div className={styles.showArmies}>
+        </> : <div className={styles.showArmies} >
+            {getArmysFromDataBase.length !== 0 
+            ? 
+            <>
             {getArmysFromDataBase.map((army,idx) => {
                 return (
-                <div key={idx} className={styles.singleArmy} style={{borderColor:'#' + army.colour}}>
-                <button onClick={() => handleDelete(army)} className={styles.btn}>DELETE THIS ARMY</button>
-                    <div>{army.army_name}</div>
-                    <div>{army.faction_chosen_id}</div>
-                    <div>{army.points}/{army.pointlimit}</div>
-                    <button onClick={() => handleViewArmy(army)} className={styles.btn}>VIEW ARMY</button>
-                </div>
-                )
-            })}
-        </div> 
-        : <div className="army">
-            WOW SUCH EMPTY
-            <span>EMPTY?? BETTER CREATE AN ARMY ^^</span>
-        </div>} 
-        </>}
+                    <div key={idx} className={styles.singleArmy} style={{borderColor:'#' + army.colour}}>
+                    <button onClick={() => handleDelete(army)} className={styles.btn}>DELETE THIS ARMY</button>
+                        <div>{army.army_name}</div>
+                        <div>{army.faction_chosen_id}</div>
+                        <div>{army.points}/{army.pointlimit}</div>
+                        <button onClick={() => handleViewArmy(army)} className={styles.btn}>VIEW ARMY</button>
+                    </div>
+                    )
+                })}
+            </> 
+            : 
+            <div className={styles.singleArmy} style={{borderColor:'white'}}>
+                <div>You have no armies created <br />
+                Click Above to create an army</div>
+            </div>
+            }
+        </div>}
     </>
     )
 }
