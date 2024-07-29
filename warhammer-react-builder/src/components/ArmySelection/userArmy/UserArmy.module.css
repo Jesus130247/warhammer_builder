@@ -96,24 +96,37 @@
     background-color: #5e5e5e;
 }
 
-.enhanceDes {
+.enhanceDes, .showSubFactionRule {
     display: none;
 }
-.enhanceName {
+.enhanceName, .subFactionName {
     cursor: help;
 }
 .enhanceName:hover + .enhanceDes {
     display: block;
     position: absolute;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     bottom: 1rem;
     background-color: white;
     color: black;
     border-radius: 25px;
     border: 2px solid black ;
-    padding: 3px 5px;
+    padding: 5px 8px;
     text-align: center;
 }
+
+.subFactionName:hover + .showSubFactionRule {
+    display: block;
+    position: absolute;
+    font-size: 0.8rem;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    border: 2px solid black ;
+    padding: 5px 8px;
+    text-align: center;
+}
+
 .enhanceRules {
     font-size: 0.9rem;
     text-align: start;

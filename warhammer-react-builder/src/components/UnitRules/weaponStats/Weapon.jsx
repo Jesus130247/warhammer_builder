@@ -15,7 +15,7 @@ export default function Weapon({weaponStats, idx, colour}) {
                 </td>
                 <td>{weaponStats[2]}</td>
                 <td>{weaponStats[4]}</td>
-                <td>{weaponStats[5]}</td>
+                <td>{weaponStats[5] !== 'N/A' ? <>{weaponStats[5]}+</> : <>{weaponStats[5]}</> }</td>
                 <td>{weaponStats[6]}</td>
                 <td>{weaponStats[7]}</td>
                 <td>{weaponStats[8]}</td>
@@ -33,7 +33,7 @@ export default function Weapon({weaponStats, idx, colour}) {
                 </td>
                 <td>{weaponStats[2]}</td>
                 <td>{weaponStats[4]}</td>
-                <td>{weaponStats[5]}</td>
+                <td>{weaponStats[5] !== 'N/A' ? <>{weaponStats[5]}+</> : <>{weaponStats[5]}</> }</td>
                 <td>{weaponStats[6]}</td>
                 <td>{weaponStats[7]}</td>
                 <td>{weaponStats[8]}</td>
