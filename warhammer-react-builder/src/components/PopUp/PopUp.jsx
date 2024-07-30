@@ -57,11 +57,13 @@ export default function PopUp({trigger, setTrigger, setCreate,
         }
     }
     
-    let barWidth = ((armyName.length)/40) *100
-    if (barWidth > 100) {barWidth = 100}
+    let barWidth = ((armyName.length)/20) *100
+    if (barWidth > 100) {
+        barWidth = 100
+    }
 
     function handlesetArmyName(e) {
-        var maxLength = 40;
+        var maxLength = 21;
         if (e.target.value.length >= maxLength) {
             return false;
         }
@@ -83,9 +85,9 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     <option key="none" value='None'>Select a sub-Faction</option>
                     <SubFactionChoice selectedArmy={selectedArmy}/>
                 </select>
-                <label htmlFor="">Army Name <span className={styles.Span}>- 40 char limit</span></label>
+                <label htmlFor="">Army Name <span className={styles.Span}>- 20 char limit</span></label>
                 <div className={styles.bar} style={{ width: barWidth+"%"}}></div>
-                <textarea onChange={handlesetArmyName} className={styles.Textarea}></textarea>
+                <textarea onChange={handlesetArmyName} className={styles.Textarea} maxLength={20}></textarea>
                 <label htmlFor="">Select points limit</label>
                 <select name="" id="" onChange={(e) => {setPointLimit(e.target.value); setRemainingPoints(e.target.value)}} className={styles.dropdown}>
                     <option value="1000">1000 pts</option>

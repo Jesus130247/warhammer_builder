@@ -33,11 +33,13 @@
     border: 1px solid black;
     margin: 15px 0;
     height: 43rem;
+    text-align: start;
 }
 .containerForArmySelection>h2 {
     margin: 0;
     background-color: #242424;
     padding: 15px;
+    text-align: center;
 }
 .saveBtn {
     border: 1px solid black;
