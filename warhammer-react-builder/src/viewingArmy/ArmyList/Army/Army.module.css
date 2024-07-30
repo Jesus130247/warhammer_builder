@@ -5,8 +5,16 @@
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 1000px;
-    height: 550px;
+    border-radius: 200px;
+    height: 600px;
+    transition: 0.5s;
+}
+
+@media (width < 1100px) {
+    .showArmies {
+        border-radius: 50px;
+        transition: 0.5s;
+    }
 }
 
 .singleArmy {

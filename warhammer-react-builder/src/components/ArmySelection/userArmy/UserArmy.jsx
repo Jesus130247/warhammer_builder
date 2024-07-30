@@ -4,20 +4,30 @@ import EnhancementCheckbox from './enhancementCheckBox/EnhancementCheckbox'
 
 export default function UserArmy(
     {
-    armyName,selectedSubFaction,usersArmy, selectedEnhancement,
+    armyName,selectedSubFaction, usersArmy, selectedEnhancement, selectedArmy,
     pointLimit,remainingPoints,removeUnit, colour, handleSave, subFactionDataEnhancements, handleEnchancement
     }) {
     let subFactionName
     let subFactionRule
+    let factionRule
     if (selectedSubFaction) {
+        factionRule = Object.entries(selectedArmy.faction_info[2])[0][1]
         subFactionName = Object.keys(selectedSubFaction)[0]
         subFactionRule = Object.entries(selectedSubFaction)[0][1][0]
     }
     return (
     <div className={styles.containerForArmySelection}>
-        {armyName ? <h2 style={{color: colour}}>{armyName} <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
-        :<h2 style={{color: colour}}>Your Army: <button className={styles.saveBtn} onClick={handleSave} >Save Army</button></h2>
+        {armyName 
+        ? <h2 style={{color: colour}} className={styles.factionRule}>
+            <span style={{borderBottom: '2px dotted #e2e2e2'}}>{armyName}</span>
+            <button className={styles.saveBtn} onClick={handleSave}>Save Army</button>
+        </h2>
+        : <h2 style={{color: colour}} className={styles.factionRule}>
+            <span style={{borderBottom: '2px dotted #e2e2e2'}}>Your Army:</span> 
+            <button className={styles.saveBtn} onClick={handleSave} >Save Army</button>
+        </h2>
         } 
+        <p className={styles.showFactionRule} dangerouslySetInnerHTML={{__html: factionRule}}></p>
         <h3 className={styles.subFactionName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{subFactionName}</span></h3>
         <p className={styles.showSubFactionRule} dangerouslySetInnerHTML={{__html: subFactionRule}}></p>
         <p>Point Limit: {pointLimit} w/ <span style={{fontWeight: 700}}>{remainingPoints}</span> pts remaining</p>

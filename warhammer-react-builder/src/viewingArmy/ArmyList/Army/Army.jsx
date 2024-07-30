@@ -108,7 +108,6 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             setRemainingPoints(remainingPoints - Number(pointsCost))
         }
     }
-
     return ( 
     <>
         {viewArmy ? <>

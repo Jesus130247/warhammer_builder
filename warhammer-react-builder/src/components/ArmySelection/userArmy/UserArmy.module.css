@@ -96,10 +96,13 @@
     background-color: #5e5e5e;
 }
 
-.enhanceDes, .showSubFactionRule {
+.enhanceDes, .showSubFactionRule, .showFactionRule {
     display: none;
 }
-.enhanceName, .subFactionName {
+.enhanceDes a, .showSubFactionRule a, .showFactionRule a {
+    color: black;
+}
+.enhanceName, .subFactionName, .factionRule {
     cursor: help;
 }
 .enhanceName:hover + .enhanceDes {
@@ -112,7 +115,7 @@
     border-radius: 25px;
     border: 2px solid black ;
     padding: 5px 8px;
-    text-align: center;
+    text-align: start;
 }
 
 .subFactionName:hover + .showSubFactionRule {
@@ -124,8 +127,26 @@
     border-radius: 25px;
     border: 2px solid black ;
     padding: 5px 8px;
-    text-align: center;
+    text-align: start;
+    right: 0;
+    z-index: 1100;
 }
+
+.factionRule:hover + .showFactionRule {
+    display: block;
+    position: absolute;
+    font-size: 0.7rem;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    border: 2px solid black ;
+    padding: 5px 8px;
+    text-align: start;
+    top: 250px;
+    right: 0;
+    z-index: 1100;
+}
+
 
 .enhanceRules {
     font-size: 0.9rem;

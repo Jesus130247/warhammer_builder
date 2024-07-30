@@ -6,10 +6,16 @@ import { useState, useEffect } from 'react'
 export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit,
     removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
+        const [subFactionRule, setSubFactionRule] = useState()
         if (selectedArmy && selectedSubFaction) {
             if (selectedSubFaction.length) {
                 useEffect(() => {
-                    setSubFactionDataEnhancements(subFactionInfo[selectedSubFaction[0]].slice(1))
+                    Object.entries(subFactionInfo).forEach(subFaction => {
+                        if (subFaction[0] === selectedSubFaction[0]) {
+                            setSubFactionRule({[selectedSubFaction[0]]:subFaction[1].slice(0,1)})
+                            setSubFactionDataEnhancements(subFaction[1].slice(1))
+                        }
+                    })
                 },[])
             }
     }
@@ -29,7 +35,7 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
             colour={colour} //
             armyName={armyName} // army.army_name
             selectedArmy={selectedArmy} // use state for view army selection
-            selectedSubFaction={subFactionInfo} // army.subfaction_chosen
+            selectedSubFaction={subFactionRule} // army.subfaction_chosen
             pointLimit={pointLimit} //army.pointLimit
             removeUnit={removeUnit} //import from app
             usersArmy={usersArmy}  // need [unitId, unitName, unitPts]
