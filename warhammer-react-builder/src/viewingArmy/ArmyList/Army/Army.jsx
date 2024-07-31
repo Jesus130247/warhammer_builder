@@ -37,10 +37,8 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
       }
 
     function addUnit(unitId, pts, unitName) {
-        if (remainingPoints-pts>=0 ) {
-            setRemainingPoints(remainingPoints-pts)
-            setUsersArmy([...usersArmy, [unitId, unitName, pts]])
-        }
+        setRemainingPoints(remainingPoints-pts)
+        setUsersArmy([...usersArmy, [unitId, unitName, pts]])
     }
     
     function removeUnit(e) {
