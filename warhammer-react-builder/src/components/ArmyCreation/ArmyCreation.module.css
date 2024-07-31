@@ -42,3 +42,11 @@
     height: 1.5em;
 }
 
+.searchBar {
+    background-color: #242424;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: none;
+    padding: 10px;
+    color: white;
+}

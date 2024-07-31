@@ -7,6 +7,11 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
     const [showUnit, setShowUnit] = useState(false)
     const [isLoading, setisLoading] = useState(true)
     const [selectedUnit, setSelectedUnit] = useState()
+    const [searchTerm, setSearchTerm] = useState('')
+    const handleInputChange = (e) => { 
+        setSearchTerm(e.target.value)
+    }
+
     function sortThis(object) {
         return Object.entries(object)
         .sort((a, b) => {
@@ -52,6 +57,13 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
             <>
             <div className={styles.UnitSelection}>
                 <h2 style={{color: colour}}>{selectedArmy.faction_info[0]}</h2>
+                <input 
+                    className={styles.searchBar}
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                    placeholder='Type to search'
+                />
                 {isLoading 
                 ? <div>loading...</div>
                 : 
@@ -60,9 +72,9 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                 <ul>
                     {characters.map((unitId, idx) => {
                         return( 
-                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
+                            <li key={idx} id={unitId[1].faction_id} onClick={(event) => {handleClick(event, unitId)}}>{unitId[1].unit_data[0]}</li>
                         )
-                    })}
+                    }).filter(name => name.props.children.toLowerCase().includes(searchTerm.toLowerCase()))}
                 </ul>
                 <h3 style={{color: colour}}>Battleline</h3>
                 <ul> 
@@ -70,7 +82,7 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                            return( 
                             <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
-                    })}
+                    }).filter(name => name.props.children.toLowerCase().includes(searchTerm.toLowerCase()))}
                 </ul>
                 <h3 style={{color: colour}}>Dedicated Transports</h3>
                 <ul> 
@@ -78,7 +90,7 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                          return( 
                             <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
-                    })}
+                    }).filter(name => name.props.children.toLowerCase().includes(searchTerm.toLowerCase()))}
                 </ul>
                 <h3 style={{color: colour}}>Other</h3>
                 <ul> 
@@ -86,7 +98,7 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                       return( 
                             <li key={idx} id={unitId[1].faction_id} onClick={(event) => handleClick(event, unitId)}>{unitId[1].unit_data[0]}</li>
                         )
-                    })}
+                    }).filter(name => name.props.children.toLowerCase().includes(searchTerm.toLowerCase()))}
                 </ul>
                 </>
                 }
