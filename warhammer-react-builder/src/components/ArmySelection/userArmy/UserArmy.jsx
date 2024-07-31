@@ -19,11 +19,11 @@ export default function UserArmy(
     <div className={styles.containerForArmySelection}>
         {armyName 
         ? <h2 style={{color: colour}}>
-            <span style={{borderBottom: '2px dotted #e2e2e2'}} className={styles.factionRule}>{armyName}</span>
+            <span className={styles.factionRule}>{armyName}</span>
             <button className={styles.saveBtn} onClick={handleSave}>Save Army</button>
         </h2>
         : <h2 style={{color: colour}}>
-            <span style={{borderBottom: '2px dotted #e2e2e2'}} className={styles.factionRule}>Your Army:</span> 
+            <span className={styles.factionRule}>Your Army:</span> 
             <button className={styles.saveBtn} onClick={handleSave} >Save Army</button>
         </h2>
         } 
@@ -47,7 +47,7 @@ export default function UserArmy(
                             <span>{unit[1]}</span><br />
                             <span style={{color: colour}}>{unit[2]} pts</span>
                         </li>
-                        <div className={styles.deleteBtn} value={unit}  id={idx} onClick={removeUnit} style={{color: colour}}>delete this unit</div>
+                        <div className={styles.deleteBtn} value={unit}  id={idx} onClick={removeUnit} style={{color: colour}}>REMOVE</div>
                     </div>
                 )
             })}

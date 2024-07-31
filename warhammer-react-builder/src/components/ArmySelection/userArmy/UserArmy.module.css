@@ -1,8 +1,11 @@
+.containerForArmySelection>* {
+    margin-left: 5px;
+}
+
 .list {
     text-align: start;
     width: fit-content;
     height: 50px;
-    margin-bottom: 30px;
 }
 
 .deleteBtn {
@@ -13,10 +16,12 @@
     background-color: #3c3c3c;
     color: #dadada;
     padding: 0 0.4rem;
-    font-size: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 5rem;
+    height: 50px;
+    margin: 0.1rem 0.5rem;
 }
 
 .deleteBtn:hover {
@@ -26,6 +31,9 @@
 .unit {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+    
 }
 
 .containerForArmySelection {
@@ -102,7 +110,9 @@
     display: none;
 }
 .enhanceDes a, .showSubFactionRule a, .showFactionRule a {
-    color: black;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: inherit;
 }
 .enhanceName, .subFactionName, .factionRule {
     cursor: help;
@@ -112,10 +122,10 @@
     position: absolute;
     font-size: 0.8rem;
     bottom: 1rem;
-    background-color: white;
-    color: black;
+    background-color: #3c3c3c;
+    color: #dadada;
     border-radius: 25px;
-    border: 2px solid black ;
+    border: 2px solid #49d43c ;
     padding: 5px 8px;
     text-align: start;
 }
@@ -124,30 +134,43 @@
     display: block;
     position: absolute;
     font-size: 0.8rem;
-    background-color: white;
-    color: black;
+    background-color: #3c3c3c;
+    color: #dadada;
     border-radius: 25px;
-    border: 2px solid black ;
+    border: 2px solid #49d43c;
     padding: 5px 8px;
     text-align: start;
     right: 10px;
     z-index: 1100;
     width: 80%;
 }
-h2:has(.factionRule:hover) + .showFactionRule {    
+h2:has(.factionRule:hover) + .showFactionRule, .showFactionRule:hover {    
     display: block;
     position: absolute;
-    font-size: 0.7rem;
-    background-color: white;
-    color: black;
+    font-size: 0.8rem;
     border-radius: 25px;
-    border: 2px solid black ;
     padding: 5px 8px;
     text-align: start;
-    top: 250px;
+    top: 225px;
     margin-left: 30px;
-    right: 30px;
+    right: 100px;
     z-index: 1100;
+    background-color: #3c3c3c;
+    color: #dadada;
+    border: 2px solid #49d43c;
+}
+
+.showFactionRule:active{
+    display: none;
+}
+
+.factionRule{
+    border-bottom: 2px dotted #22dd2a6e;
+    transition: 0.5s;
+}
+.factionRule:hover{
+    border-color: rgb(255, 255, 255);
+    transition: 0.5s;
 }
 
 .enhanceRules {
