@@ -137,7 +137,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             <>
             {getArmysFromDataBase.map((army,idx) => {
                 return (
-                    <div key={idx} className={styles.singleArmy} style={{borderColor:'#' + army.colour}}>
+                    <div key={idx} className={styles.singleArmy} style={{borderColor:'#' + army.colour, backgroundColor: army.points>army.pointlimit ? 'red': '' }}>
                     <button onClick={() => handleDelete(army)} className={styles.btn}>DELETE THIS ARMY</button>
                         <div>{army.army_name}</div>
                         <div>{army.faction_chosen_id}</div>

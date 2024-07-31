@@ -18,12 +18,12 @@ export default function UserArmy(
     return (
     <div className={styles.containerForArmySelection}>
         {armyName 
-        ? <h2 style={{color: colour}} className={styles.factionRule}>
-            <span style={{borderBottom: '2px dotted #e2e2e2'}}>{armyName}</span>
+        ? <h2 style={{color: colour}}>
+            <span style={{borderBottom: '2px dotted #e2e2e2'}} className={styles.factionRule}>{armyName}</span>
             <button className={styles.saveBtn} onClick={handleSave}>Save Army</button>
         </h2>
-        : <h2 style={{color: colour}} className={styles.factionRule}>
-            <span style={{borderBottom: '2px dotted #e2e2e2'}}>Your Army:</span> 
+        : <h2 style={{color: colour}}>
+            <span style={{borderBottom: '2px dotted #e2e2e2'}} className={styles.factionRule}>Your Army:</span> 
             <button className={styles.saveBtn} onClick={handleSave} >Save Army</button>
         </h2>
         } 

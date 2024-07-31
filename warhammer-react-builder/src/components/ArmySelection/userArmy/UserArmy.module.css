@@ -134,8 +134,7 @@
     z-index: 1100;
     width: 80%;
 }
-
-.factionRule:hover + .showFactionRule {
+h2:has(.factionRule:hover) + .showFactionRule {    
     display: block;
     position: absolute;
     font-size: 0.7rem;
