@@ -132,14 +132,14 @@ export default function UnitRules({unitInfo, addUnit, colour}) {
                 </div>
                 <p dangerouslySetInnerHTML={{__html : startingWargear}}></p>
             </div>
-            <div className="left2">
+            <div className={styles.left2}>
                 <h3 style={{color: colour}}>Wargear options:</h3>
                 {wargearOptionsArray ? wargearOptionsArray.map(wargearOptionsHTML => {
                     return (
-                    <div dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></div>
+                    <li style={{fontSize: '0.85rem'}}dangerouslySetInnerHTML={{__html : wargearOptionsHTML}}></li>
                     )
                 }) : <>None</>}
-                <div> <p className={styles.abilityName} style={{color: colour}}>Abilities:</p>
+                <div className={styles.abilities}> <p className={styles.abilityName} style={{color: colour}}>Abilities:</p>
                     {Object.keys(abilityObject).map((ability,idx) => {
                         if (ability !== 'coreAbilities' && ability !== 'factionKeyword') {
                             return (<div key={idx}>

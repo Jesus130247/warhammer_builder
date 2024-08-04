@@ -29,6 +29,7 @@
     background-color: #242424;
     padding: 15px;
     height: 1.5em;
+    text-align: center;
 }
 .UnitSelection>h3 {
     margin: 8px 0 ;
@@ -43,10 +44,15 @@
 }
 
 .searchBar {
+    display: flex;
     background-color: #242424;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
     border: none;
-    padding: 10px;
+    padding: 10px 30px;
     color: white;
+}
+
+.searchBar:focus {
+    outline-width: 0;
 }

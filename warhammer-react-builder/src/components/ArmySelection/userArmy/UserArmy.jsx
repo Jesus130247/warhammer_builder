@@ -1,6 +1,7 @@
 import styles from './UserArmy.module.css'
 import { useState } from 'react'
 import EnhancementCheckbox from './enhancementCheckBox/EnhancementCheckbox'
+import PdfButton from '../../pdf/Pdf'
 
 export default function UserArmy(
     {
@@ -28,6 +29,19 @@ export default function UserArmy(
         </h2>
         } 
         <p className={styles.showFactionRule} dangerouslySetInnerHTML={{__html: factionRule}}></p>
+        
+        {/* <PdfButton 
+            colour={colour} //
+            armyName={armyName} // army.army_name
+            selectedArmy={selectedArmy} // use state for view army selection
+            selectedSubFaction={subFactionRule} // army.subfaction_chosen
+            pointLimit={pointLimit} //army.pointLimit
+            usersArmy={usersArmy}  // need [unitId, unitName, unitPts]
+            remainingPoints={remainingPoints} //army.pointLimit - army.points
+            subFactionDataEnhancements={subFactionDataEnhancements}
+            selectedEnhancement={selectedEnhancement}
+        /> */}
+
         <h3 className={styles.subFactionName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{subFactionName}</span></h3>
         <p className={styles.showSubFactionRule} dangerouslySetInnerHTML={{__html: subFactionRule}}></p>
         <p>Point Limit: {pointLimit} w/ <span style={{fontWeight: 700}}>{remainingPoints}</span> pts remaining</p>

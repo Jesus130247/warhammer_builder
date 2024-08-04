@@ -95,10 +95,10 @@ function App() {
     {user ? 
     <div className='body'>
       <div className="centerThis">
-      <header>
-        <span>logged in as : {user.email} </span>
-        <button className='btn' onClick={onLogout}>logout</button>
-      </header>
+        <header>
+          <span>logged in as : {user.email} </span>
+          <button className='btn' onClick={onLogout}>logout</button>
+        </header>
         <Header onLogout={onLogout}/>
       </div>
       <div className="create_!">
@@ -126,8 +126,10 @@ function App() {
           handleEnchancement={handleEnchancement}
           />
         </>
-      : <div className="centerThis">
+      : <div>
+        <div className="centerThis">
           { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button> : <div>Reached Maximum Army Count</div>}
+        </div>
           <ArmyList 
           user={user}
           getArmysFromDataBase={getArmysFromDataBase}
