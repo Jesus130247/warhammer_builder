@@ -1,3 +1,4 @@
+import Stratagems from "../../stratagems/Stratagems"
 
 export default function SubFactionChoice({selectedArmy}) {
     if (selectedArmy) {

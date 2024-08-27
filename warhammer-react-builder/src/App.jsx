@@ -155,6 +155,7 @@ function App() {
         setPointLimit={setPointLimit}
         setColour={setColour}
         setRemainingPoints={setRemainingPoints}
+        colour={colour}
         />
     </div>
     : <Login onLogin={onLogin} />} 

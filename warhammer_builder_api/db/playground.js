@@ -14,7 +14,7 @@ async function storeFactionData() {
     }
     return
 }
-// storeFactionData()
+storeFactionData()
 async function storeUnitData(faction_id) {
     let res = await FactionInfo.getThisFactionsUnits(faction_id)
     for (let unit_id in res) {

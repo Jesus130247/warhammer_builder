@@ -12,7 +12,7 @@ export default function Stratagems({selectArmyStratagems, colour}) {
     console.log(stratagems)
     return(
         <>
-        <h3 className={styles.StratHov}>Stratagems</h3>
+        <h3 className={styles.StratHov} style={{color: colour}}>View Stratagems!</h3>
         <div className={styles.stratagems}>{stratagems.map(stratagem => {
             return(
                 <div className={styles.stratagem}>

@@ -7,7 +7,7 @@ import { useEffect } from "react"
 
 export default function PopUp({trigger, setTrigger, setCreate, 
     selectedArmy, setSelectedArmy, setselectedSubFaction, setRemainingPoints,
-    setArmyName, setPointLimit, setColour, armyName, selectedSubFaction }) {
+    setArmyName, setPointLimit, setColour, armyName, selectedSubFaction, colour }) {
     const [factions, setFactions] = useState() 
     const [subFactionSelectedIndex, setSubFactionSelectedIndex] = useState('')
 
@@ -83,7 +83,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
                 <label htmlFor="">Select sub-Faction</label>
                 <select name="subFactions" id="" onChange={changeSubFaction} className={styles.dropdown}>
                     <option key="none" value='None'>Select a sub-Faction</option>
-                    <SubFactionChoice selectedArmy={selectedArmy}/>
+                    <SubFactionChoice selectedArmy={selectedArmy} colour={colour}/>
                 </select>
                 <label htmlFor="">Army Name <span className={styles.Span}>- 20 char limit</span></label>
                 <div className={styles.bar} style={{ width: barWidth+"%"}}></div>
@@ -103,7 +103,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
         <button className={styles.closeBtn} onClick={handleClose}>X</button>
         <div className={styles.popupRight}>
             <div className={styles.popupRightInner}>
-                <FactionRules faction={selectedArmy} subFaction={selectedSubFaction}/>
+                <FactionRules selectedArmy={selectedArmy} selectedSubFaction={selectedSubFaction} colour={colour}/>
             </div>
         </div>
     </div>

@@ -103,11 +103,6 @@
     cursor: default;
 }
 
-.popupRightInner * {
-    margin: 0 0;
-    padding: 0;
-    list-style: none;
-}
 .popupRightInner>div {
     margin: 5px 0;
 }
