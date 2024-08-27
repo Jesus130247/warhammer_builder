@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import ArmyCreation from "../ArmyCreation/ArmyCreation"
 import styles from './ArmySelection.module.css'
-import UserArmy from "./userArmy/UserArmy"
+import UserArmy from "../userArmy/UserArmy"
 
 export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, setSelectedEnhancement, selectedEnhancement, 
     handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit, handleEnchancement}) {
@@ -13,7 +13,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
         },[])
     }
     return (
-        <div className={styles.ArmySelection}>  
+        <div className={styles.ArmySelection}>
             <div className={styles.containerForUnits}>
                 <ArmyCreation 
                 addUnit={addUnit} 

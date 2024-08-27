@@ -1,4 +1,5 @@
-import styles from '../UserArmy.module.css'
+import styles from '../userArmy/UserArmy.module.css'
+
 export default function EnhancementCheckbox({subFactionDataEnhancements, handleEnchancement, colour, selectedEnhancement}) {
     return (
         <>

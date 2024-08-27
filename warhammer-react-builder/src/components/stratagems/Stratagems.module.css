@@ -1,0 +1,32 @@
+.StratHov {
+    color: red;
+}
+.stratagems {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    font-size: 0.8rem;
+    background-color: #3c3c3c;
+    color: #dadada;
+    border-radius: 25px;
+    border: 2px solid #49d43c;
+    padding: 5px 8px;
+    text-align: start;
+    z-index: 1100;
+    max-width: 90%;
+}
+.StratHov:hover + .stratagems, .stratagems:hover {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.stratagems:active {
+    display: none;
+}
+.stratagem {
+    border-radius: 25px;
+    padding: 5px 8px;
+    font-size: 0.9rem;
+}

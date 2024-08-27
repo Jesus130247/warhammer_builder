@@ -11,17 +11,12 @@ async function storeFactionData() {
         db.query(sql, [faction_id, JSON.stringify(res[faction_id])], (res, err) => {
             if (err) console.log(err)
         })
-        // if (faction_id === 'SM') {
-        //     storeUnitData(faction_id)
-        // }
-
     }
     return
 }
-storeFactionData()
+// storeFactionData()
 async function storeUnitData(faction_id) {
     let res = await FactionInfo.getThisFactionsUnits(faction_id)
-    console.log(faction_id)
     for (let unit_id in res) {
         sql = `INSERT INTO units 
         (faction_id, unit_id, unit_data) 
@@ -30,22 +25,36 @@ async function storeUnitData(faction_id) {
     }
     return
 }
-
-
-
 // storeUnitData('NEC')
 // storeUnitData('TS')
 // storeUnitData('ORK')
 // storeUnitData('TAU')
 
+// storeUnitData('LoV')
+// storeUnitData('QT')
+// storeUnitData('WE')
+// storeUnitData('QI')
+
+// storeUnitData('UN')
+// storeUnitData('AdM')
+// storeUnitData('GK')
+// storeUnitData('AoI')
+
+// storeUnitData('TL')
+// storeUnitData('GC')
+// storeUnitData('AM')
+// storeUnitData('AE')
+
+// storeUnitData('AC')
+// storeUnitData('CSM')
+// storeUnitData('TYR')
+// storeUnitData('DRU')
+
+// storeUnitData('AS')
+// storeUnitData('CD')
+// storeUnitData('DG')
+// storeUnitData('SM')
+
 // no unaligned forces data 
- 
-// AE AM GC TL 
-// GK AoI AdM UN 
 
-// NEC TS ORK TAU 
-// LoV QT WE QI
-// AC CSM TYR DRU
-// AS CD DG SM
-
-// data gathered 
+// change whether first or second half is being accumulated in faction.js

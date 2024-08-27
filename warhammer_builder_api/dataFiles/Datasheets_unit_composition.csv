@@ -346,7 +346,7 @@
 000000504|1|1 Harridan|
 000000505|1|1 Hierophant|
 000000506|1|1 Scythed Hierodule|
-000000507|1|1 Patriarch – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000000507|1|1 Patriarch|
 000000508|1|1 Magus|
 000000509|1|1 Primus|
 000000510|1|1 Acolyte Iconward|
@@ -1008,8 +1008,8 @@
 000001571|1|1 Nexos|
 000001572|1|1 Biophagus|
 000001573|1|1-2 Achilles Ridgerunners|
-000001574|1|1-2 Atalan Wolfquads*|
-000001574|2|4-8 Atalan Jackals|
+000001574|1|4-8 Atalan Jackals|
+000001574|2|1-2 Atalan Wolfquads*|
 000001576|1|1 Tectonic Fragdrill|
 000001577|1|1 Seraptek Heavy Construct|
 000001579|1|1 Inquisitor Eisenhorn – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
@@ -1540,3 +1540,7 @@
 000003713|1|1 Cultist Champion|
 000003713|2|9-19 Chaos Cultists|
 000003714|1|1 Canoness With Jump Pack|
+000003715|1|1 Benefictus|
+000003716|1|1 Acolyte Leader|
+000003716|2|4-9 Acolyte Hybrids|
+000003811|1|1 Celestian Sacresant Aveline – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|

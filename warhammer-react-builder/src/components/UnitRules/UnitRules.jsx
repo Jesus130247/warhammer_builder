@@ -1,5 +1,5 @@
 import styles from './UnitRules.module.css'
-import Weapon from './weaponStats/Weapon'
+import Weapon from '../weaponStats/Weapon'
 
 export default function UnitRules({unitInfo, addUnit, colour}) {
     let [unitname, 

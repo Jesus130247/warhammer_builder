@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-// import { GetMyArmies } from "../../../utils/user_armies"
+// import { GetMyArmies } from "../utils/user_armies"
 import styles from './Army.module.css'
-import { DeleteArmy } from "../../../utils/user_armies"
-import EditArmy from "../../component/editArmy"
-import { updateArmy } from "../../../utils/user_armies"
-import zero from '../../../assets/images/armyBackground.jpg'
-import one from '../../../assets/images/40kbackground1.jpg'
-import two from '../../../assets/images/40kbackground2.jpg'
-// import three from '../../../assets/images/40kbackground3.jpg'
-// import four from '../../../assets/images/40kbackground4.jpg'
-import five from '../../../assets/images/40kbackground5.jpg'
-import six from '../../../assets/images/40kbackground6.jpg'
+import { DeleteArmy } from "../../utils/user_armies"
+import EditArmy from "../editArmy/editArmy"
+import { updateArmy } from "../../utils/user_armies"
+import zero from '../../assets/images/armyBackground.jpg'
+import one from '../../assets/images/40kbackground1.jpg'
+import two from '../../assets/images/40kbackground2.jpg'
+// import three from '../../assets/images/40kbackground3.jpg'
+// import four from '../../assets/images/40kbackground4.jpg'
+import five from '../../assets/images/40kbackground5.jpg'
+import six from '../../assets/images/40kbackground6.jpg'
 
 export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBase, handleCancel}) {
     const [viewArmy, setViewArmy] = useState(false)

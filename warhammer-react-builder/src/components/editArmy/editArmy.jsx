@@ -1,6 +1,6 @@
 import styles from './EditArmy.module.css'
-import ArmyCreation from '../../components/ArmyCreation/ArmyCreation'
-import UserArmy from '../../components/ArmySelection/userArmy/UserArmy'
+import ArmyCreation from '../ArmyCreation/ArmyCreation'
+import UserArmy from '../userArmy/UserArmy'
 import { useState, useEffect } from 'react'
 
 export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit,

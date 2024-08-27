@@ -1,21 +1,28 @@
 import styles from './UserArmy.module.css'
-import { useState } from 'react'
-import EnhancementCheckbox from './enhancementCheckBox/EnhancementCheckbox'
-import PdfButton from '../../pdf/Pdf'
+import { useEffect, useState } from 'react'
+import EnhancementCheckbox from '../enhancementCheckBox/EnhancementCheckbox'
+// import PdfButton from '../../pdf/Pdf'
+
+import Stratagems from "../stratagems/Stratagems"
 
 export default function UserArmy(
     {
     armyName,selectedSubFaction, usersArmy, selectedEnhancement, selectedArmy,
     pointLimit,remainingPoints,removeUnit, colour, handleSave, subFactionDataEnhancements, handleEnchancement
     }) {
-    let subFactionName
-    let subFactionRule
-    let factionRule
-    if (selectedSubFaction) {
-        factionRule = Object.entries(selectedArmy.faction_info[2])[0][1]
-        subFactionName = Object.keys(selectedSubFaction)[0]
-        subFactionRule = Object.entries(selectedSubFaction)[0][1][0]
-    }
+    const [subFactionName, setSubFactionName] = useState('')
+    const [selectArmyStratagems, setSelectArmyStratagems] = useState([])
+    const [subFactionRule, setSubFactionRule] = useState([])
+    const [factionRule, setFactionRule] = useState([])
+
+    useEffect(() => {
+        if (selectedSubFaction) {  
+            setFactionRule(Object.entries(selectedArmy.faction_info[2])[0][1])
+            setSubFactionName(Object.keys(selectedSubFaction)[0])
+            setSubFactionRule(Object.entries(selectedSubFaction)[0][1][0])
+            setSelectArmyStratagems(selectedArmy.faction_info[4].filter(rules => rules[8] === Object.keys(selectedSubFaction)[0]))
+        }
+    },[selectedSubFaction])
     return (
     <div className={styles.containerForArmySelection}>
         {armyName 
@@ -27,7 +34,8 @@ export default function UserArmy(
             <span className={styles.factionRule}>Your Army:</span> 
             <button className={styles.saveBtn} onClick={handleSave} >Save Army</button>
         </h2>
-        } 
+        }
+    
         <p className={styles.showFactionRule} dangerouslySetInnerHTML={{__html: factionRule}}></p>
         
         {/* <PdfButton 
@@ -43,7 +51,9 @@ export default function UserArmy(
         /> */}
 
         <h3 className={styles.subFactionName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{subFactionName}</span></h3>
+
         <p className={styles.showSubFactionRule} dangerouslySetInnerHTML={{__html: subFactionRule}}></p>
+        <Stratagems selectArmyStratagems={selectArmyStratagems} colour={colour} />
         <p>Point Limit: {pointLimit} w/ <span style={{fontWeight: 700}}>{remainingPoints}</span> pts remaining</p>
         <EnhancementCheckbox 
         subFactionDataEnhancements={subFactionDataEnhancements} 
@@ -51,6 +61,7 @@ export default function UserArmy(
         colour={colour}
         selectedEnhancement={selectedEnhancement}
         />
+
         <div style={{fontWeight: 700}}>Your Army So far:</div>
         
         <ul> 
