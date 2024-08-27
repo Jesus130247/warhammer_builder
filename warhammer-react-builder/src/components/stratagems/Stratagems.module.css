@@ -1,5 +1,5 @@
 .StratHov {
-    border-bottom: 1px dotted #dadada;
+    border: 1px solid #dadada;
     cursor: help;
     background-color: #3c3c3c;
     padding: 5px 8px;
@@ -29,7 +29,7 @@
     max-width: 90%;
 }
 
-.StratHov:hover + .stratagems, .stratagems:hover {
+.StratHov:active + .stratagems, .stratagems:hover {
     display: grid;
     gap: 25px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
