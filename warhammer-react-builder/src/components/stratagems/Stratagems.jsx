@@ -3,13 +3,11 @@ import styles from './Stratagems.module.css'
 
 export default function Stratagems({selectArmyStratagems, colour}) {
     const [stratagems, setStratagems] = useState([])
-    console.log(selectArmyStratagems)
     useEffect(() => {
         if (selectArmyStratagems) {
             setStratagems(selectArmyStratagems)
         }   
     }, [selectArmyStratagems])
-    console.log(stratagems)
     return(
         <>
         <h3 className={styles.StratHov} style={{color: colour}}>View Stratagems!</h3>

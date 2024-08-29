@@ -1,7 +1,7 @@
 import styles from './UserArmy.module.css'
 import { useEffect, useState } from 'react'
 import EnhancementCheckbox from '../enhancementCheckBox/EnhancementCheckbox'
-// import PdfButton from '../../pdf/Pdf'
+import PdfButton from '../pdf/Pdf'
 
 import Stratagems from "../stratagems/Stratagems"
 
@@ -38,18 +38,6 @@ export default function UserArmy(
     
         <p className={styles.showFactionRule} dangerouslySetInnerHTML={{__html: factionRule}}></p>
         
-        {/* <PdfButton 
-            colour={colour} //
-            armyName={armyName} // army.army_name
-            selectedArmy={selectedArmy} // use state for view army selection
-            selectedSubFaction={subFactionRule} // army.subfaction_chosen
-            pointLimit={pointLimit} //army.pointLimit
-            usersArmy={usersArmy}  // need [unitId, unitName, unitPts]
-            remainingPoints={remainingPoints} //army.pointLimit - army.points
-            subFactionDataEnhancements={subFactionDataEnhancements}
-            selectedEnhancement={selectedEnhancement}
-        /> */}
-
         <h3 className={styles.subFactionName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{subFactionName}</span></h3>
 
         <p className={styles.showSubFactionRule} dangerouslySetInnerHTML={{__html: subFactionRule}}></p>
@@ -63,6 +51,19 @@ export default function UserArmy(
         />
 
         <div style={{fontWeight: 700}}>Your Army So far:</div>
+
+        <PdfButton 
+            colour={colour} //
+            armyName={armyName} // army.army_name
+            selectedArmy={selectedArmy} // use state for view army selection
+            selectedSubFaction={subFactionRule} // army.subfaction_chosen
+            pointLimit={pointLimit} //army.pointLimit
+            usersArmy={usersArmy}  // need [unitId, unitName, unitPts]
+            remainingPoints={remainingPoints} //army.pointLimit - army.points
+            subFactionDataEnhancements={subFactionDataEnhancements}
+            selectedEnhancement={selectedEnhancement}
+            subFactionName={subFactionName}
+        />
         
         <ul> 
             {usersArmy.map((unit,idx) => {

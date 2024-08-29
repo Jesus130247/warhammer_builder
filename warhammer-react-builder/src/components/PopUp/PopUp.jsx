@@ -90,13 +90,14 @@ export default function PopUp({trigger, setTrigger, setCreate,
                 <textarea onChange={handlesetArmyName} className={styles.Textarea} maxLength={20}></textarea>
                 <label htmlFor="">Select points limit</label>
                 <select name="" id="" onChange={(e) => {setPointLimit(e.target.value); setRemainingPoints(e.target.value)}} className={styles.dropdown}>
+                    <option value="500">500 pts</option>
                     <option value="1000">1000 pts</option>
                     <option value="1500">1500 pts</option>
                     <option value="2000">2000 pts</option>
                     <option value="2500">2500 pts</option>
                     <option value="3000">3000 pts</option>
                 </select>
-                {selectedArmy && selectedSubFaction ? <button className={styles.createBtn}>Create Army +</button>
+                {selectedArmy ? <button className={styles.createBtn}>Create Army +</button>
                  : <div>Must select an Faction</div>}
             </form>
         </div>
