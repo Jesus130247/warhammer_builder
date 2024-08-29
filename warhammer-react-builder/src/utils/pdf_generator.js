@@ -1,6 +1,6 @@
 import { PDFDocument, rgb } from 'pdf-lib';
-const pdfDoc = PDFDocument.create();
-const page = pdfDoc.addPage([2480, 3508]);
+const pdfDoc = await PDFDocument.create();
+let page = pdfDoc.addPage([2480, 3508]);
 const { width, height } = page.getSize();
 let newLine = height - 50
 // import fs from 'fs'
