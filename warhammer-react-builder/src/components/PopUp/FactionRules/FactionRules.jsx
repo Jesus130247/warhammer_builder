@@ -18,7 +18,6 @@ export default function FactionRules({selectedArmy, selectedSubFaction, colour})
             setSubFactionName(Object.keys(selectedSubFaction)[0])
             setSubFactionRule(Object.entries(selectedSubFaction)[0][1][0])
             setSelectArmyStratagems(selectedArmy.faction_info[4].filter(rules => rules[8] === Object.keys(selectedSubFaction)[0]))
-            console.log(selectedArmy.faction_info[4].filter(rules => rules[8] === Object.keys(selectedSubFaction)[0]))
             setShowRules([false, true])
         } 
     }, [selectedArmy,selectedSubFaction])

@@ -133,6 +133,13 @@ export async function generatePDF(props) {
     newLine -= 50
     handleSubFactionRule(props.selectedSubFaction, props.subFactionName)
     newLine -= 50
+    page.drawText(`Enhancements Selected:`, {
+        x: 50,
+        y: newLine,
+        size: 30,
+        color: rgb(1,0,0),
+        // font
+    });
     props.subFactionDataEnhancements.forEach(enhancement => {
         handleEnhancement(enhancement, usersEnhancements)
 
