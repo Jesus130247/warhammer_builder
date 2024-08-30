@@ -14,6 +14,15 @@ export default function UserArmy(
     const [selectArmyStratagems, setSelectArmyStratagems] = useState([])
     const [subFactionRule, setSubFactionRule] = useState([])
     const [factionRule, setFactionRule] = useState([])
+    const [unitsInfo, setUnitsInfo] = useState([])
+
+    useEffect(() => {
+        fetch(`/api/faction/units/pqsl/${selectedArmy.faction_id}`)
+        .then(res=>res.json())
+        .then(data=> {
+            setUnitsInfo(data)
+        })
+    },[])
 
     useEffect(() => {
         if (selectedSubFaction) {  
@@ -50,8 +59,6 @@ export default function UserArmy(
         selectedEnhancement={selectedEnhancement}
         />
 
-        <div style={{fontWeight: 700}}>Your Army So far:</div>
-
         <PdfButton 
             colour={colour} //
             armyName={armyName} // army.army_name
@@ -63,8 +70,12 @@ export default function UserArmy(
             subFactionDataEnhancements={subFactionDataEnhancements}
             selectedEnhancement={selectedEnhancement}
             subFactionName={subFactionName}
+            selectArmyStratagems={selectArmyStratagems}
+            unitsInfo={unitsInfo}
         />
         
+        <div style={{fontWeight: 700}}>Your Army So far:</div>
+
         <ul> 
             {usersArmy.map((unit,idx) => {
                 return (

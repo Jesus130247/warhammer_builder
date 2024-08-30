@@ -7,6 +7,16 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
     removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
         const [subFactionRule, setSubFactionRule] = useState()
+
+        const [unitsInfo, setUnitsInfo] = useState({})
+        useEffect(() => {
+            fetch(`/api/faction/units/pqsl/${selectedArmy.faction_id}`)
+            .then(res=>res.json())
+            .then(data=> {
+                setUnitsInfo(data)
+            })
+        },[])
+
         if (selectedArmy && selectedSubFaction) {
             if (selectedSubFaction.length) {
                 useEffect(() => {
@@ -28,7 +38,9 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
                 armyId={armyId} // use state for view army selection
                 colour={colour} // use state for view army selection
                 // wants the fetch for the army (below)
-                selectedArmy={selectedArmy}/>
+                selectedArmy={selectedArmy}
+                unitsInfo={unitsInfo}
+                />
             </div>
             <UserArmy 
             handleCancel={handleCancel} // import

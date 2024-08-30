@@ -30,14 +30,14 @@ export async function generatePDF(props) {
 
     newLine -= 20
     checkCurrentPage()
-    page.drawText(`Enhancements Selected:`, {
-        x: 30,
+    page.drawText('Enhancements Selected', {
+        x:30,
         y: newLine,
-        size: 10,
-        color: rgb(1,0,0),
+        size: 15,
+        color: rgb(1, 0, 0),
         // font
-    });
-    newLine -= 20
+        });
+    newLine -= 25
     checkCurrentPage()
     props.subFactionDataEnhancements.forEach(enhancement => {
         handleEnhancement(enhancement, usersEnhancements)
@@ -45,16 +45,37 @@ export async function generatePDF(props) {
     })
     newLine -= 20
     checkCurrentPage()
-    page.drawText(`Units Selected`, {
-        x: 30,
+    page.drawText('Unit Selected', {
+        x:30,
         y: newLine,
-        size: 10,
-        color: rgb(1,0,0),
+        size: 15,
+        color: rgb(1, 0, 0),
         // font
-    });
+        });
+    newLine -= 25
+    checkCurrentPage()
     props.usersArmy.forEach(unit => {
     handleUnitDisplay(unit)
+    })
+    newLine -= 20
+    newLine -= 20
+    checkCurrentPage()
 
+    handleUnitRules(props)
+    newLine -= 20
+    checkCurrentPage()
+    page.drawText(`${props.subFactionName} Stratagems`, {
+        x:30,
+        y: newLine,
+        size: 15,
+        color: rgb(1, 0, 0),
+        // font
+        });
+    newLine -= 25
+    checkCurrentPage()
+
+    props.selectArmyStratagems.forEach(strat => {
+        handleStratagems(strat)
     })
 
   // Serialize the PDFDocument to bytes
@@ -237,4 +258,116 @@ function handleUnitDisplay(unit) {
         color: rgb(0,0,0),
         // font
     });
+}
+function handleStratagems(strat) {
+    page.drawText(strat[2], {
+        x: 30,
+        y: newLine,
+        size: 10,
+        color: rgb(1,0,0),
+        // font
+    });
+    newLine -= 20
+    checkCurrentPage()
+    let rule = strat[9]
+    .replace(/<br>/g, '\n')
+    .replace(/<p/g, '\n\n<p')
+    .replace(/<[^>]+>/g, '')
+    .split('\n')
+    for (let line of rule) {
+        let newLines = wrapText(line,110)
+        for (let line of newLines) {
+            page.drawText(line, {
+                x:30,
+                y: newLine,
+                size: 10,
+                color: rgb(0, 0, 0),
+                // font
+                });
+            newLine -= 20
+            checkCurrentPage()
+        }
+    }
+}
+
+function handleUnitRules(props) {
+    page.drawText('Unit Rules', {
+        x:30,
+        y: newLine,
+        size: 15,
+        color: rgb(1, 0, 0),
+        // font
+        });
+    newLine -= 25
+    checkCurrentPage()
+    let allUnits = props.unitsInfo
+    let usersArmy = props.usersArmy.map(unit => unit[1].slice(2))
+    for (let unitInfo of allUnits) {
+        if (usersArmy.includes(unitInfo.unit_data[0])) {
+            console.log(unitInfo.unit_data)
+            let [unitname, 
+                role,
+                startingWargear,
+                transportCapcity,
+                damagedData,
+                abilityObject,
+                armyKeyWordArray,
+                statsArray,
+                wargearOptionsArray,
+                weaponRulesArray,
+                unitCompArray,
+                ptsCost,
+                leader
+            ] = unitInfo.unit_data
+            let [
+                unitname2,
+                movement,
+                toughess,
+                armourSave,
+                invulSave,
+                invulSaveConditions,
+                wounds,
+                leaderShip,
+                ...OC
+            ] = statsArray[0]
+            let leaderName
+            let movementExarch
+            let toughess2
+            let armourSave2
+            let invulSave2
+            let invulSaveConditions2
+            let wounds2
+            let leaderShip2
+            let  oC2
+            if (statsArray[1]) {
+                [
+                    leaderName,
+                    movementExarch,
+                    toughess2,
+                    armourSave2,
+                    invulSave2,
+                    invulSaveConditions2,
+                    wounds2,
+                    leaderShip2,
+                    oC2
+                ] = statsArray[1]
+            }
+            let meleeWeapons = []
+            let rangedWeapons = []
+            if (weaponRulesArray) {
+                rangedWeapons = weaponRulesArray.filter(weapon => weapon[2] !== 'Melee')
+                meleeWeapons = weaponRulesArray.filter(weapon => weapon[2] === 'Melee')
+            }
+            page.drawText(unitname, {
+                x:30,
+                y: newLine,
+                size: 10,
+                color: rgb(0, 0, 0),
+                // font
+                });
+            newLine -= 20
+            checkCurrentPage()
+        }
+    }
+
 }

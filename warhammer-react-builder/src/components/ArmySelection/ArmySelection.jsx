@@ -7,11 +7,19 @@ import UserArmy from "../userArmy/UserArmy"
 export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, setSelectedEnhancement, selectedEnhancement, 
     handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit, handleEnchancement}) {
     const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
+    const [unitsInfo, setUnitsInfo] = useState({})
     if (selectedArmy && selectedSubFaction) {
         useEffect(() => {
             setSubFactionDataEnhancements(Object.entries(selectedSubFaction)[0][1].slice(1))
         },[])
     }
+    useEffect(() => {
+        fetch(`/api/faction/units/pqsl/${selectedArmy.faction_id}`)
+        .then(res=>res.json())
+        .then(data=> {
+            setUnitsInfo(data)
+        })
+    },[])
     return (
         <div className={styles.ArmySelection}>
             <div className={styles.containerForUnits}>
@@ -19,7 +27,9 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
                 addUnit={addUnit} 
                 armyId={selectedArmy.faction_id}
                 colour={colour}
-                selectedArmy={selectedArmy}/>    
+                selectedArmy={selectedArmy}
+                unitsInfo={unitsInfo}
+                />    
             </div>
             <UserArmy 
             handleCancel={handleCancel}
@@ -38,6 +48,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
             setSelectedEnhancement={setSelectedEnhancement}
             selectedEnhancement={selectedEnhancement}
             handleEnchancement={handleEnchancement}
+            unitsInfo={unitsInfo}
             />
         </div>
     )

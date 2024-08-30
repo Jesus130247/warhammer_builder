@@ -2,10 +2,8 @@ import { useEffect, useState } from "react"
 import UnitRules from "../UnitRules/UnitRules"
 import styles from './ArmyCreation.module.css'
 
-export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
-    const [unitsInfo, setUnitsInfo] = useState({})
+export default function ArmyCreation({unitsInfo, addUnit, colour, selectedArmy}) {
     const [showUnit, setShowUnit] = useState(false)
-    const [isLoading, setisLoading] = useState(true)
     const [selectedUnit, setSelectedUnit] = useState()
     const [searchTerm, setSearchTerm] = useState('')
     const handleInputChange = (e) => { 
@@ -27,23 +25,14 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
             return 0;
         })
     }
-    useEffect(() => {
-        fetch(`/api/faction/units/pqsl/${armyId}`)
-        .then(res=>res.json())
-        .then(data=> {
-            setisLoading(false)
-            setUnitsInfo(data)
-        })
-        setisLoading(true)
-    },[])
-    
+
+   
     function handleClick(e, unitData) {
         showUnit ? showUnit.style.color = '#dadada' : <></>
         e.target.style.color = colour
         setSelectedUnit(unitData)
         setShowUnit(e.target)
     }
-    
     if (unitsInfo.length) {
         let characters = unitsInfo.filter(unit => unit.unit_data[1] === 'Characters')
         characters= sortThis(characters)
@@ -64,9 +53,6 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                     onChange={handleInputChange}
                     placeholder='Type to search'
                 />
-                {isLoading 
-                ? <div>loading...</div>
-                : 
                 <>
                 <h3 style={{color: colour}}>Characters</h3>
                 <ul>
@@ -101,7 +87,6 @@ export default function ArmyCreation({armyId, addUnit, colour, selectedArmy}) {
                     }).filter(name => name.props.children.toLowerCase().includes(searchTerm.toLowerCase()))}
                 </ul>
                 </>
-                }
             </div>
             <>
                 {showUnit 
