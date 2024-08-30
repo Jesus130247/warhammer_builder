@@ -304,7 +304,6 @@ function handleUnitRules(props) {
     let usersArmy = props.usersArmy.map(unit => unit[1].slice(2))
     for (let unitInfo of allUnits) {
         if (usersArmy.includes(unitInfo.unit_data[0])) {
-            console.log(unitInfo.unit_data)
             let [unitname, 
                 role,
                 startingWargear,
