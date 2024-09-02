@@ -296,15 +296,6 @@ function handleStratagems(strat) {
 
 async function handleUnitRules(props) {
     const HelveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
-    createNewPage()
-    page.drawText('Unit Rules', {
-        x:30,
-        y: newLine,
-        size: 15,
-        color: rgb(1, 0, 0),
-        // font
-        });
-    newLine -= 25
     let allUnits = props.unitsInfo
     let usersArmy = props.usersArmy.map(unit => {
         let name = unit[1].split(' ')
@@ -313,6 +304,7 @@ async function handleUnitRules(props) {
     })
     for (let unitInfo of allUnits) {
         if (usersArmy.includes(unitInfo.unit_data[0])) {
+            createNewPage()
             let [unitname, 
                 role,
                 startingWargear,
@@ -399,6 +391,23 @@ async function handleUnitRules(props) {
                 });
                 newLine -= 20
             }
+//          starting unit comp
+            newLine -= 20
+            let unitComp = unitCompArray.join(' ')
+            .replace(/<br>/g, '\n')
+            .replace(/<p/g, '\n<p')
+            .replace(/<[^>]+>/g, '')
+            let unitCompLines = wrapText(unitComp, 110)
+            for (let line of unitCompLines) {
+                page.drawText(line, {
+                    x:30,
+                    y: newLine,
+                    size: 10,
+                    color: rgb(0, 0, 0),
+                    // font
+                });
+                newLine -= 20
+            }   
             // wargear options below
             if (wargearOptionsArray) {
                 for (let option of wargearOptionsArray) {
@@ -508,28 +517,50 @@ async function handleUnitRules(props) {
                 }
                 checkCurrentPage()
             }
-            console.log(abilityObject)
-            console.log(Object.entries(abilityObject))
             if (abilityObject) {
+                page.drawText('Abilties: ', {x: 30, y: newLine, size: 11, color: rgb(1,0,0)})
+                newLine -= 20
                 Object.keys(abilityObject).map((ability,idx) => {
                     if (ability === 'coreAbilities' || ability === 'factionKeyword') {
-                        page.drawText(abilityObject[ability].join(' ') , {
+                        let rule2 = abilityObject[ability].join(' ')
+                    .replace(/<br>/g, '\n')
+                    .replace(/<p/g, '\n<p')
+                    .replace(/<[^>]+>/g, '')
+                    let lines2 = wrapText(rule2, 120)
+                    for (let line of lines2) {
+                        page.drawText(line, {
+                            x:30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(1, 0, 0),
+                            font: HelveticaBold,
+                        });
+                        newLine -= 20
+                    }
+                    } else {
+                        page.drawText(ability + ' :', {
                             x: 30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(1, 0, 0),
+                            font: HelveticaBold,
+                        })
+                        newLine -= 20
+                        let rule2 = abilityObject[ability]
+                    .replace(/<br>/g, '\n')
+                    .replace(/<p/g, '\n<p')
+                    .replace(/<[^>]+>/g, '')
+                    let lines2 = wrapText(rule2, 120)
+                    for (let line of lines2) {
+                        page.drawText(line, {
+                            x:30,
                             y: newLine,
                             size: 10,
                             color: rgb(0, 0, 0),
                             // font
                         });
                         newLine -= 20
-                    } else {
-                        page.drawText(abilityObject[ability], {
-                            x: 30,
-                            y: newLine,
-                            size: 10,
-                            color: rgb(0, 0, 0),
-                            // font
-                        })
-                        newLine -= 20
+                    }
                     }
                     checkCurrentPage()
                 })
@@ -556,10 +587,9 @@ async function handleUnitRules(props) {
                     position += word.length * 5 + 10
                     }
             }
-            checkCurrentPage()
             newLine -= 20
-            checkCurrentPage()
             if (leader.length) {
+                checkCurrentPage()
                 page.drawText('This unit can lead the following; ', {
                     x:30,
                     y: newLine,
@@ -584,10 +614,9 @@ async function handleUnitRules(props) {
                         });
                         newLine -= 20
                     }
+                    checkCurrentPage()
                 }
-                checkCurrentPage()
             }
-            createNewPage()
         }
     }
 }
