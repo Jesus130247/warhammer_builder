@@ -1,4 +1,4 @@
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 const pdfDoc = await PDFDocument.create();
 let page = pdfDoc.addPage([595.28, 841.89]);
 let { width, height } = page.getSize();
@@ -132,6 +132,10 @@ function checkCurrentPage() {
         page = pdfDoc.addPage([595.28, 841.89]);
         newLine = 841.89 - 50
     }
+}
+function createNewPage() {
+    page = pdfDoc.addPage([595.28, 841.89]);
+    newLine = 841.89 - 50
 }
 function handleEnhancement(enhancement, usersEnhancements) {
     if (usersEnhancements.includes(enhancement[0])) {
@@ -290,7 +294,9 @@ function handleStratagems(strat) {
     }
 }
 
-function handleUnitRules(props) {
+async function handleUnitRules(props) {
+    const HelveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
+    createNewPage()
     page.drawText('Unit Rules', {
         x:30,
         y: newLine,
@@ -299,9 +305,12 @@ function handleUnitRules(props) {
         // font
         });
     newLine -= 25
-    checkCurrentPage()
     let allUnits = props.unitsInfo
-    let usersArmy = props.usersArmy.map(unit => unit[1].slice(2))
+    let usersArmy = props.usersArmy.map(unit => {
+        let name = unit[1].split(' ')
+        name.shift()
+        return name.join(' ')
+    })
     for (let unitInfo of allUnits) {
         if (usersArmy.includes(unitInfo.unit_data[0])) {
             let [unitname, 
@@ -360,13 +369,225 @@ function handleUnitRules(props) {
             page.drawText(unitname, {
                 x:30,
                 y: newLine,
-                size: 10,
+                size: 12,
+                font: HelveticaBold,
                 color: rgb(0, 0, 0),
                 // font
+            });
+            newLine -= 20
+            page.drawText(`M: ${movement}`, { x: 50, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`T: ${toughess}`, { x: 100, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`Sv: ${armourSave}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`W: ${wounds}`, { x: 200, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`Ld: ${leaderShip}`, { x: 250, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`OC: ${OC.join(', ')}`, { x: 300, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            page.drawText(`Invul: ${invulSave}`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            // unit wargear
+            newLine -= 20
+            let rule = startingWargear
+            .replace(/<br>/g, '\n')
+            .replace(/<p/g, '\n<p')
+            .replace(/<[^>]+>/g, '')
+            let lines = wrapText(rule, 110)
+            for (let line of lines) {
+                page.drawText(line, {
+                    x:30,
+                    y: newLine,
+                    size: 10,
+                    color: rgb(0, 0, 0),
+                    // font
                 });
+                newLine -= 20
+            }
+            // wargear options below
+            if (wargearOptionsArray) {
+                for (let option of wargearOptionsArray) {
+                    let rule2 = option
+                    .replace(/<br>/g, '\n')
+                    .replace(/<p/g, '\n<p')
+                    .replace(/<[^>]+>/g, '')
+                    let lines2 = wrapText(rule2, 110)
+                    for (let line of lines2) {
+                        page.drawText(line, {
+                            x:30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(0, 0, 0),
+                            // font
+                        });
+                        newLine -= 20
+                    }
+                }
+            }
+            if (invulSaveConditions) {
+                newLine -= 20
+                page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            }
+            if (statsArray[1]) {
+                newLine -= 20
+                page.drawText(`${leaderName}`, { x: 30, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+                newLine -= 20
+                page.drawText(`M: ${movementExarch}`, { x: 50, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`T: ${toughess2}`, { x: 100, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Sv: ${armourSave2}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`W: ${wounds2}`, { x: 200, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Ld: ${leaderShip2}`, { x: 250, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`OC: ${oC2}`, { x: 300, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Invul: ${invulSave2}`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                if (invulSaveConditions2) {
+                    newLine -= 20
+                    page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                }
+            }
+            // weapon rules below
+            newLine -= 20
+            const tableMargin = 30;
+            const columnSpacing = 225;
+            if (rangedWeapons.length > 0) {
+              page.drawText('Ranged Weapons:', { x: tableMargin, y: newLine, size: 10, color: rgb(1, 0, 0) });
+              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`BS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              newLine -= 20
+              rangedWeapons.forEach((weapon, index) => {
+                page.drawText(`${weapon[0]}`, { x: tableMargin, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[1].replace(/<[^>]+>/g, '')}`, { x: tableMargin, y: newLine-20, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[2]}"`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[4]}`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[5]}${weapon[5] !== 'N/A' ? '+' : ''}`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[6]}`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[7]}`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[8]}`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                newLine -= 40;
+                });
+            }
+            checkCurrentPage()
+            if (meleeWeapons.length > 0) {
+              page.drawText('Melee Weapons:', { x: tableMargin, y: newLine, size: 10, color: rgb(1, 0, 0) });
+              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`WS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              newLine -= 20
+              meleeWeapons.forEach((weapon, index) => {
+                page.drawText(`${weapon[0]}`, { x: tableMargin, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[1].replace(/<[^>]+>/g, '')}`, { x: tableMargin, y: newLine-20, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[2]}"`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[4]}`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[5]}${weapon[5] !== 'N/A' ? '+' : ''}`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[6]}`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[7]}`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[8]}`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                newLine -= 40;
+                });
+            }
+            checkCurrentPage()
+            let list = [transportCapcity, damagedData]
+            for (let item of list) {
+                if (item) {
+                    let rule2 = item
+                    .replace(/<br>/g, '\n')
+                    .replace(/<p/g, '\n<p')
+                    .replace(/<[^>]+>/g, '')
+                    let lines2 = wrapText(rule2, 90)
+                    for (let line of lines2) {
+                        page.drawText(line, {
+                            x:30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(0, 0, 0),
+                            // font
+                        });
+                        newLine -= 20
+                    }
+                }
+                checkCurrentPage()
+            }
+            console.log(abilityObject)
+            console.log(Object.entries(abilityObject))
+            if (abilityObject) {
+                Object.keys(abilityObject).map((ability,idx) => {
+                    if (ability === 'coreAbilities' || ability === 'factionKeyword') {
+                        page.drawText(abilityObject[ability].join(' ') , {
+                            x: 30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(0, 0, 0),
+                            // font
+                        });
+                        newLine -= 20
+                    } else {
+                        page.drawText(abilityObject[ability], {
+                            x: 30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(0, 0, 0),
+                            // font
+                        })
+                        newLine -= 20
+                    }
+                    checkCurrentPage()
+                })
+            }
+            if (armyKeyWordArray) {
+                page.drawText('Keywords', {
+                    x: 30,
+                    y: newLine,
+                    size: 10,
+                    color: rgb(1, 0, 0),
+                });
+
+                newLine -= 20
+                let position = 30
+                for (let keyword of armyKeyWordArray) {
+                    let word = keyword.replace(/<[^>]+>/g, '')
+                    page.drawText(word, {
+                        x: position,
+                        y: newLine,
+                        size: 10,
+                        color: rgb(0, 0, 0),
+                        // font
+                    });
+                    position += word.length * 5 + 10
+                    }
+            }
+            checkCurrentPage()
             newLine -= 20
             checkCurrentPage()
+            if (leader.length) {
+                page.drawText('This unit can lead the following; ', {
+                    x:30,
+                    y: newLine,
+                    size: 10,
+                    color: rgb(1, 0, 0),
+                    // font
+                });
+                newLine -= 20
+                for (let i = 1; i<leader.length; i += 2) {
+                    let rule2 = leader[i]
+                    .replace(/<br>/g, '\n')
+                    .replace(/<p/g, '\n<p')
+                    .replace(/<[^>]+>/g, '')
+                    let lines2 = wrapText(rule2, 90)
+                    for (let line of lines2) {
+                        page.drawText(line, {
+                            x:30,
+                            y: newLine,
+                            size: 10,
+                            color: rgb(0, 0, 0),
+                            // font
+                        });
+                        newLine -= 20
+                    }
+                }
+                checkCurrentPage()
+            }
+            createNewPage()
         }
     }
-
 }
