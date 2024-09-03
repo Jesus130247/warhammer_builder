@@ -3,16 +3,21 @@ const pdfDoc = await PDFDocument.create();
 let page = pdfDoc.addPage([595.28, 841.89]);
 let { width, height } = page.getSize();
 let newLine = height - 30
+let numPage = 1
+page.drawText(`${numPage}`, {
+    x: width-50,
+    y: height-50,
+    size: 11,
+    color: rgb(0,0,0)
+})
 // import fs from 'fs'
 // const timesNewRomanBytes = fs.readFileSync('./TimesNewRoman.ttf'); // Provide the path to Times New Roman font file
 // const timesNewRomanFont = await pdfDoc.embedFont(timesNewRomanBytes);
 
 export async function generatePDF(props) {
+    const HelveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
     let usersEnhancements = Object.entries(props.selectedEnhancement).map(unit => Object.entries(unit[1])[0][0])
     armyName(props.armyName.trim())
-    newLine -= 20
-    checkCurrentPage()
-
     newLine -= 20
     checkCurrentPage()
     points(`Points: ${props.pointLimit-props.remainingPoints}/${props.pointLimit}`)
@@ -20,27 +25,27 @@ export async function generatePDF(props) {
 
     newLine -= 20
     checkCurrentPage()
-    handleFactionRule(Object.entries(props.selectedArmy.faction_info[2])[0].join('; '))
+    handleFactionRule(Object.entries(props.selectedArmy.faction_info[2])[0].join('; '), HelveticaBold)
     checkCurrentPage()
 
     newLine -= 20
     checkCurrentPage()
-    handleSubFactionRule(props.selectedSubFaction, props.subFactionName)
+    handleSubFactionRule(props.selectedSubFaction, props.subFactionName, HelveticaBold)
     checkCurrentPage()
 
     newLine -= 20
-    checkCurrentPage()
+    checkCurrentPage(100)
     page.drawText('Enhancements Selected', {
         x:30,
         y: newLine,
         size: 15,
         color: rgb(1, 0, 0),
-        // font
+        font: HelveticaBold,
         });
     newLine -= 25
     checkCurrentPage()
     props.subFactionDataEnhancements.forEach(enhancement => {
-        handleEnhancement(enhancement, usersEnhancements)
+        handleEnhancement(enhancement, usersEnhancements, HelveticaBold)
 
     })
     newLine -= 20
@@ -50,7 +55,7 @@ export async function generatePDF(props) {
         y: newLine,
         size: 15,
         color: rgb(1, 0, 0),
-        // font
+        font:HelveticaBold,
         });
     newLine -= 25
     checkCurrentPage()
@@ -69,13 +74,12 @@ export async function generatePDF(props) {
         y: newLine,
         size: 15,
         color: rgb(1, 0, 0),
-        // font
+        font:HelveticaBold,
         });
     newLine -= 25
     checkCurrentPage()
-
     props.selectArmyStratagems.forEach(strat => {
-        handleStratagems(strat)
+        handleStratagems(strat, HelveticaBold)
     })
 
   // Serialize the PDFDocument to bytes
@@ -127,17 +131,31 @@ function wrapText(text, maxLineLength) {
     return processedSegments
 }
 
-function checkCurrentPage() {
-    if (newLine < 50) {
+function checkCurrentPage(range = 50) {
+    if (newLine < range) {
         page = pdfDoc.addPage([595.28, 841.89]);
         newLine = 841.89 - 50
+        numPage++
+        page.drawText(`${numPage}`, {
+            x: width-50,
+            y: height-50,
+            size: 11,
+            color: rgb(0,0,0)
+        })
     }
 }
 function createNewPage() {
     page = pdfDoc.addPage([595.28, 841.89]);
     newLine = 841.89 - 50
+    numPage++
+    page.drawText(`${numPage}`, {
+        x: width-50,
+        y: height-50,
+        size: 11,
+        color: rgb(0,0,0)
+    })
 }
-function handleEnhancement(enhancement, usersEnhancements) {
+async function handleEnhancement(enhancement, usersEnhancements, HelveticaBold) {
     if (usersEnhancements.includes(enhancement[0])) {
         let enhanced = enhancement[1].replace(/<[^>]+>/g, '');
     page.drawText(`${enhancement[0]}: `, {
@@ -145,7 +163,7 @@ function handleEnhancement(enhancement, usersEnhancements) {
         y: newLine,
         size: 10,
         color: rgb(1, 0, 0),
-        // font
+        font:HelveticaBold,
     })
     newLine -= 20
     checkCurrentPage()
@@ -167,14 +185,14 @@ function handleEnhancement(enhancement, usersEnhancements) {
     }
     }
 }
-function handleFactionRule(factionRule) {
+async function handleFactionRule(factionRule, HelveticaBold) {
     let ruleName = factionRule.split(' ')[0]
     page.drawText(ruleName, {
         x:30,
         y: newLine,
         size: 10,
         color: rgb(1, 0, 0),
-        // font
+        font:HelveticaBold,
     });
     newLine -= 20
     checkCurrentPage()
@@ -198,13 +216,13 @@ function handleFactionRule(factionRule) {
         }
     }
 }
-function handleSubFactionRule(subFactionRule, subRuleName) {
+async function handleSubFactionRule(subFactionRule, subRuleName, HelveticaBold) {
     page.drawText(subRuleName, {
         x:30,
         y: newLine,
         size: 10,
         color: rgb(1, 0, 0),
-        // font
+        font:HelveticaBold,
     });
     newLine -= 20
     checkCurrentPage()
@@ -263,13 +281,14 @@ function handleUnitDisplay(unit) {
         // font
     });
 }
-function handleStratagems(strat) {
+function handleStratagems(strat, HelveticaBold) {
+    checkCurrentPage(100)
     page.drawText(strat[2], {
         x: 30,
         y: newLine,
         size: 10,
         color: rgb(1,0,0),
-        // font
+        font: HelveticaBold,
     });
     newLine -= 20
     checkCurrentPage()
@@ -373,13 +392,42 @@ async function handleUnitRules(props) {
             page.drawText(`W: ${wounds}`, { x: 200, y: newLine, size: 10, color: rgb(0, 0, 0) });
             page.drawText(`Ld: ${leaderShip}`, { x: 250, y: newLine, size: 10, color: rgb(0, 0, 0) });
             page.drawText(`OC: ${OC.join(', ')}`, { x: 300, y: newLine, size: 10, color: rgb(0, 0, 0) });
-            page.drawText(`Invul: ${invulSave}`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
-            // unit wargear
+            page.drawText(`Invul: ${invulSave}+`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            if (invulSaveConditions) {
+                newLine -= 20
+                page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+            }
+            if (statsArray[1]) {
+                newLine -= 20
+                page.drawText(`${leaderName}`, { x: 30, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+                newLine -= 20
+                page.drawText(`M: ${movementExarch}`, { x: 50, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`T: ${toughess2}`, { x: 100, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Sv: ${armourSave2}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`W: ${wounds2}`, { x: 200, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Ld: ${leaderShip2}`, { x: 250, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`OC: ${oC2}`, { x: 300, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`Invul: ${invulSave2}+`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                if (invulSaveConditions2) {
+                    newLine -= 20
+                    page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                }
+            }
             newLine -= 20
+            //          starting unit comp
+            page.drawText('Unit Composition', {
+                x:30,
+                y: newLine,
+                size: 10,
+                color: rgb(1, 0, 0),
+                font: HelveticaBold,
+            });
+            newLine -= 20
+            // unit wargear
             let rule = startingWargear
-            .replace(/<br>/g, '\n')
+            .replace(/<br>/g, '\n ')
             .replace(/<p/g, '\n<p')
-            .replace(/<[^>]+>/g, '')
+            .replace(/<[^>]+>/g, ' ')
             let lines = wrapText(rule, 110)
             for (let line of lines) {
                 page.drawText(line, {
@@ -391,12 +439,10 @@ async function handleUnitRules(props) {
                 });
                 newLine -= 20
             }
-//          starting unit comp
-            newLine -= 20
             let unitComp = unitCompArray.join(' ')
             .replace(/<br>/g, '\n')
             .replace(/<p/g, '\n<p')
-            .replace(/<[^>]+>/g, '')
+            .replace(/<[^>]+>/g, ' ')
             let unitCompLines = wrapText(unitComp, 110)
             for (let line of unitCompLines) {
                 page.drawText(line, {
@@ -414,7 +460,7 @@ async function handleUnitRules(props) {
                     let rule2 = option
                     .replace(/<br>/g, '\n')
                     .replace(/<p/g, '\n<p')
-                    .replace(/<[^>]+>/g, '')
+                    .replace(/<[^>]+>/g, ' ')
                     let lines2 = wrapText(rule2, 110)
                     for (let line of lines2) {
                         page.drawText(line, {
@@ -428,38 +474,18 @@ async function handleUnitRules(props) {
                     }
                 }
             }
-            if (invulSaveConditions) {
-                newLine -= 20
-                page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
-            }
-            if (statsArray[1]) {
-                newLine -= 20
-                page.drawText(`${leaderName}`, { x: 30, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
-                newLine -= 20
-                page.drawText(`M: ${movementExarch}`, { x: 50, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`T: ${toughess2}`, { x: 100, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`Sv: ${armourSave2}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`W: ${wounds2}`, { x: 200, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`Ld: ${leaderShip2}`, { x: 250, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`OC: ${oC2}`, { x: 300, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`Invul: ${invulSave2}`, { x: 350, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                if (invulSaveConditions2) {
-                    newLine -= 20
-                    page.drawText(`Invul Condition: ${invulSaveConditions}`, { x: 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
-                }
-            }
             // weapon rules below
             newLine -= 20
             const tableMargin = 30;
             const columnSpacing = 225;
             if (rangedWeapons.length > 0) {
-              page.drawText('Ranged Weapons:', { x: tableMargin, y: newLine, size: 10, color: rgb(1, 0, 0) });
-              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`BS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText('Ranged Weapons:', { x: tableMargin, y: newLine, size: 10, font:HelveticaBold, color: rgb(1, 0, 0) });
+              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`BS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
               newLine -= 20
               rangedWeapons.forEach((weapon, index) => {
                 page.drawText(`${weapon[0]}`, { x: tableMargin, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
@@ -475,18 +501,18 @@ async function handleUnitRules(props) {
             }
             checkCurrentPage()
             if (meleeWeapons.length > 0) {
-              page.drawText('Melee Weapons:', { x: tableMargin, y: newLine, size: 10, color: rgb(1, 0, 0) });
-              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`WS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
-              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
+              page.drawText('Melee Weapons:', { x: tableMargin, y: newLine, size: 10, font:HelveticaBold, color: rgb(1, 0, 0) });
+              page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`A`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`WS`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`S`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`AP`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
+              page.drawText(`D`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
               newLine -= 20
               meleeWeapons.forEach((weapon, index) => {
                 page.drawText(`${weapon[0]}`, { x: tableMargin, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[1].replace(/<[^>]+>/g, '')}`, { x: tableMargin, y: newLine-20, size: 10, color: rgb(0, 0, 0) });
-                page.drawText(`${weapon[2]}"`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
+                page.drawText(`${weapon[2]}`, { x: tableMargin + columnSpacing, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[4]}`, { x: tableMargin + columnSpacing + 65, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[5]}${weapon[5] !== 'N/A' ? '+' : ''}`, { x: tableMargin + columnSpacing + 90, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[6]}`, { x: tableMargin + columnSpacing + 110, y: newLine, size: 10, color: rgb(0, 0, 0) });
@@ -518,11 +544,11 @@ async function handleUnitRules(props) {
                 checkCurrentPage()
             }
             if (abilityObject) {
-                page.drawText('Abilties: ', {x: 30, y: newLine, size: 11, color: rgb(1,0,0)})
+                page.drawText('Abilties: ', {x: 30, y: newLine, size: 11, color: rgb(1,0,0), font: HelveticaBold,})
                 newLine -= 20
                 Object.keys(abilityObject).map((ability,idx) => {
                     if (ability === 'coreAbilities' || ability === 'factionKeyword') {
-                        let rule2 = abilityObject[ability].join(' ')
+                    let rule2 = abilityObject[ability].join(' ')
                     .replace(/<br>/g, '\n')
                     .replace(/<p/g, '\n<p')
                     .replace(/<[^>]+>/g, '')
@@ -571,6 +597,7 @@ async function handleUnitRules(props) {
                     y: newLine,
                     size: 10,
                     color: rgb(1, 0, 0),
+                    font:HelveticaBold,
                 });
 
                 newLine -= 20
@@ -595,7 +622,7 @@ async function handleUnitRules(props) {
                     y: newLine,
                     size: 10,
                     color: rgb(1, 0, 0),
-                    // font
+                    font:HelveticaBold,
                 });
                 newLine -= 20
                 for (let i = 1; i<leader.length; i += 2) {
