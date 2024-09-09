@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { signUp, login } from "../utils/auth_api"
 import styles from './Login.module.css'
+import DemoBtn from "../DemoBtn/DemoBtn"
 
 export default function Login(props) {
     const [formData, setFormData] = useState({ email:'', password:''})
@@ -45,6 +46,7 @@ export default function Login(props) {
         setMessage(null)
     }
     return (
+        <>
         <section className={styles.login}>
             <h1>Prepare for Battle</h1>
             {logging ? <>
@@ -52,10 +54,9 @@ export default function Login(props) {
             <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}}>{message}</div>
             <form action="" onSubmit={tryLogin}>
                 <label htmlFor="" >Username: </label>
-                <input type="text" onChange={handleChangeLogin} name="email"/>
+                <input className={styles.inputs} type="text" onChange={handleChangeLogin} name="email"/>
                 <label htmlFor="" > Password: </label>
-                <input type="password" onChange={handleChangeLogin} name="password"/>
-                <button className={styles.btn}>login</button>
+                <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> <button className={styles.btn}>login</button>
             </form>
             <p>Don't have an account? <button className={styles.btn} onClick={handleSwitch}>Sign Up</button></p>
             </>
@@ -64,13 +65,14 @@ export default function Login(props) {
             <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}} >{message}</div>
             <form action="" onSubmit={trySignUp}>
                 <label htmlFor="" >Username: </label>
-                <input type="text" onChange={handleChangeSignUp} name="email"/>
+                <input className={styles.inputs} type="text" onChange={handleChangeSignUp} name="email"/>
                 <label htmlFor="" > Password: </label>
-                <input type="password" onChange={handleChangeSignUp} name="password"/>
-                <button className={styles.btn}>Sign Up</button>
+                <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/> <button className={styles.btn}>Sign Up</button>
             </form> 
-            <p>Have an account? <button className={styles.btn} onClick={handleSwitch}>Go back</button></p>
+            <p>Have an account? <button className={styles.btn} onClick={handleSwitch}>Login</button></p>
             </> }
+        <p>Want to just try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p>
         </section>
+    </>
     )
 } 

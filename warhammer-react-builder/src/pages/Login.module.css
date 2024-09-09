@@ -37,3 +37,8 @@
     background-color: #ffffff;
     color: #000000;
 }
+
+.inputs {
+    padding: 5px 10px;
+    border-radius: 15px;
+}

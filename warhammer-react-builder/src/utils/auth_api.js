@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export async function login(userInfo) {
+    console.log(userInfo)
     let res = await axios.post(`/api/login`, userInfo) 
     console.log(res)
     return res.data.token
