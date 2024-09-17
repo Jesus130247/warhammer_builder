@@ -39,8 +39,8 @@
 .containerForArmySelection {
     overflow-y: scroll;
     border: 1px solid black;
-    margin: 15px 0;
-    height: 43rem;
+    margin: 0;
+    height: 45rem;
     text-align: start;
 }
 .containerForArmySelection>h2 {
@@ -124,11 +124,11 @@
     position: absolute;
     font-size: 0.8rem;
     bottom: 1rem;
-    background-color: #3c3c3c;
+    background-color: #1d1d1d;
     color: #dadada;
     border-radius: 25px;
     border: 2px solid #49d43c ;
-    padding: 5px 8px;
+    padding: 6px 9px;
     text-align: start;
 }
 
@@ -136,7 +136,7 @@
     display: block;
     position: absolute;
     font-size: 0.8rem;
-    background-color: #3c3c3c;
+    background-color: #1d1d1d;
     color: #dadada;
     border-radius: 25px;
     border: 2px solid #49d43c;
@@ -157,7 +157,7 @@ h2:has(.factionRule:hover) + .showFactionRule, .showFactionRule:hover {
     margin-left: 30px;
     right: 200px;
     z-index: 1100;
-    background-color: #3c3c3c;
+    background-color: #1d1d1d;
     color: #dadada;
     border: 2px solid #49d43c;
 }

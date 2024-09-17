@@ -1,13 +1,24 @@
+.loginContainer {
+    display: flex;
+    background-color: #18221a;
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-
-    margin: 50px auto;
+    padding: 20px 40px;
+    margin: 0 auto;
     color: #49d43c;
-    width: 70%;
+    width: fit-content;
     background-color: #333333;
+    border-radius: 5px;
+    box-shadow: 5px 5px #49d43c7e;
 }
 
 .login h1 {

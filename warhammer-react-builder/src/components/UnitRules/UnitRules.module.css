@@ -2,7 +2,7 @@
 .showUnitRules {
     overflow-y: scroll;
     border: 1px solid black;
-    margin: 15px 0;
+    margin: 0;
 }
 .showUnitRules h2 {
     background-color: #242424;

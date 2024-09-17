@@ -22,7 +22,7 @@
 .UnitSelection  {
     overflow-y: scroll;
     border: 1px solid black;
-    margin: 15px 0;
+    margin: 0;
 }
 .UnitSelection>h2 {
     margin: 0;

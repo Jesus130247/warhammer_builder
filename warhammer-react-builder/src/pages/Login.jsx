@@ -2,6 +2,7 @@ import { useState } from "react"
 import { signUp, login } from "../utils/auth_api"
 import styles from './Login.module.css'
 import DemoBtn from "../DemoBtn/DemoBtn"
+import Footer from "../components/footer/footer"
 
 export default function Login(props) {
     const [formData, setFormData] = useState({ email:'', password:''})
@@ -46,7 +47,9 @@ export default function Login(props) {
         setMessage(null)
     }
     return (
-        <>
+    <>
+    <div className={styles.loginContainer}>
+
         <section className={styles.login}>
             <h1>Prepare for Battle</h1>
             {logging ? <>
@@ -77,6 +80,9 @@ export default function Login(props) {
             </> }
         <p>Just want to try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p>
         </section>
+        <br />
+        <Footer />
+    </div>
     </>
     )
 } 

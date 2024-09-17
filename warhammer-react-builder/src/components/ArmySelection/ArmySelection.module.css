@@ -1,6 +1,8 @@
 .ArmySelection {
     display: grid;
     grid-template-columns: 3fr 1.1fr;
+    background-color: #3c3c3c;
+    border: 1px solid white;
 }
 
 .containerForUnits {

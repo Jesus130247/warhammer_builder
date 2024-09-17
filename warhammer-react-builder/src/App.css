@@ -1,6 +1,14 @@
 * {
     font-family:'Courier New', Courier, monospace;
 }
+
+#root, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 .centerThis {
     text-align: center;
 }
@@ -53,6 +61,8 @@ html {
 
 .footer {
     font-weight: 700;
+    text-align: center;
+    color: #dadada;
 }
 footer>a {
     color: #3adb2b;
