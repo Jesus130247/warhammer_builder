@@ -1,18 +1,21 @@
 .login {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+    margin: 50px auto;
     color: #49d43c;
+    width: 70%;
+    background-color: #333333;
 }
 
 .login h1 {
-    margin: 10px;
+    margin: 0;
     font-size: 3rem;
     color: #49d43c;
 }
 .login h2 {
-    margin: 10px;
     font-size: 2rem;
     color: #49d43c;
 }
@@ -23,8 +26,19 @@
     color: #dadada;
     padding: 0.5rem 1rem;
     font-size: medium;
+    margin: 5px 0 15px 0;
+    float: right;
+}
+
+.btnCreate {
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: #49d43c71;
+    color: #dadada;
+    padding: 0.5rem 1rem;
+    font-size: medium;
     margin-bottom: 15px;
-    text-align: center;
+
 }
 
 .btn:hover {

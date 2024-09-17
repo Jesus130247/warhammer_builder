@@ -497,9 +497,9 @@ async function handleUnitRules(props) {
                 page.drawText(`${weapon[7]}`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[8]}`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 newLine -= 40;
+                checkCurrentPage()
                 });
             }
-            checkCurrentPage()
             if (meleeWeapons.length > 0) {
               page.drawText('Melee Weapons:', { x: tableMargin, y: newLine, size: 10, font:HelveticaBold, color: rgb(1, 0, 0) });
               page.drawText(`Range`, { x: tableMargin + columnSpacing, y: newLine, size: 10, font: HelveticaBold, color: rgb(0, 0, 0) });
@@ -519,9 +519,9 @@ async function handleUnitRules(props) {
                 page.drawText(`${weapon[7]}`, { x: tableMargin + columnSpacing + 130, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 page.drawText(`${weapon[8]}`, { x: tableMargin + columnSpacing + 150, y: newLine, size: 10, color: rgb(0, 0, 0) });
                 newLine -= 40;
+                checkCurrentPage()
                 });
             }
-            checkCurrentPage()
             let list = [transportCapcity, damagedData]
             for (let item of list) {
                 if (item) {
@@ -586,6 +586,7 @@ async function handleUnitRules(props) {
                             // font
                         });
                         newLine -= 20
+                        checkCurrentPage()
                     }
                     }
                     checkCurrentPage()
@@ -625,23 +626,25 @@ async function handleUnitRules(props) {
                     font:HelveticaBold,
                 });
                 newLine -= 20
-                for (let i = 1; i<leader.length; i += 2) {
-                    let rule2 = leader[i]
-                    .replace(/<br>/g, '\n')
-                    .replace(/<p/g, '\n<p')
-                    .replace(/<[^>]+>/g, '')
-                    let lines2 = wrapText(rule2, 90)
-                    for (let line of lines2) {
-                        page.drawText(line, {
-                            x:30,
-                            y: newLine,
-                            size: 10,
-                            color: rgb(0, 0, 0),
-                            // font
-                        });
-                        newLine -= 20
+                for (let leads of leader) {
+                    if (leads !== null) {
+                        let rule2 = leads
+                        .replace(/<br>/g, '\n')
+                        .replace(/<p/g, '\n<p')
+                        .replace(/<[^>]+>/g, '')
+                        let lines2 = wrapText(rule2, 90)
+                        for (let line of lines2) {
+                            page.drawText(line, {
+                                x:30,
+                                y: newLine,
+                                size: 10,
+                                color: rgb(0, 0, 0),
+                                // font
+                            });
+                            newLine -= 20
+                        }
+                        checkCurrentPage()
                     }
-                    checkCurrentPage()
                 }
             }
         }

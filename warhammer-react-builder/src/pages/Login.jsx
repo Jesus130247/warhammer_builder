@@ -55,10 +55,12 @@ export default function Login(props) {
             <form action="" onSubmit={tryLogin}>
                 <label htmlFor="" >Username: </label>
                 <input className={styles.inputs} type="text" onChange={handleChangeLogin} name="email"/>
+                <br />
                 <label htmlFor="" > Password: </label>
-                <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> <button className={styles.btn}>login</button>
+                <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> 
+                <br /><button className={styles.btn}>login</button>
             </form>
-            <p>Don't have an account? <button className={styles.btn} onClick={handleSwitch}>Sign Up</button></p>
+            <p>Don't have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Sign Up</button></p>
             </>
             : <>
             <h2>Sign Up</h2>
@@ -66,12 +68,14 @@ export default function Login(props) {
             <form action="" onSubmit={trySignUp}>
                 <label htmlFor="" >Username: </label>
                 <input className={styles.inputs} type="text" onChange={handleChangeSignUp} name="email"/>
+                <br />
                 <label htmlFor="" > Password: </label>
-                <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/> <button className={styles.btn}>Sign Up</button>
+                <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/>
+                <br /> <button className={styles.btn}>Sign Up</button>
             </form> 
-            <p>Have an account? <button className={styles.btn} onClick={handleSwitch}>Login</button></p>
+            <p>Have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Login</button></p>
             </> }
-        <p>Want to just try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p>
+        <p>Just want to try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p>
         </section>
     </>
     )
