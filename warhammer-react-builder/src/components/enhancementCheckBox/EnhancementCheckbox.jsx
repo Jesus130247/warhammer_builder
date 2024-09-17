@@ -21,7 +21,7 @@ export default function EnhancementCheckbox({subFactionDataEnhancements, handleE
                                     checked
                                     style={{backgroundColor : colour}}
                                 />
-                            <div className={styles.enhanceName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{enhancement[0]}</span> - <span style={{color: colour}}>{enhancement[2]}pts</span></div>
+                            <div className={styles.enhanceName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{enhancement[0]}</span> - <span className={styles.pts} style={{color: colour}}>{enhancement[2]}pts</span></div>
                             <p dangerouslySetInnerHTML={{__html:enhancement[1]}} className={styles.enhanceDes}></p>
                             </div>
                         )
@@ -31,7 +31,7 @@ export default function EnhancementCheckbox({subFactionDataEnhancements, handleE
             return (
                 <div className={styles.checkBox}>
                 <input type="checkbox" id={enhancement[2]} name={enhancement[0]} pts={enhancement[2]} onChange={handleEnchancement} />
-                <div className={styles.enhanceName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{enhancement[0]}</span> - <span style={{color: colour}}>{enhancement[2]}pts</span></div>
+                <div className={styles.enhanceName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{enhancement[0]}</span> - <span className={styles.pts}style={{color: colour}}>{enhancement[2]}pts</span></div>
                 <p dangerouslySetInnerHTML={{__html:enhancement[1]}} className={styles.enhanceDes}></p>
                 </div>
             )

@@ -82,7 +82,7 @@ export default function UserArmy(
                     <div className={styles.unit} key={idx}>
                         <li className={styles.list}>
                             <span>{unit[1]}</span><br />
-                            <span style={{color: colour}}>{unit[2]} pts</span>
+                            <span className={styles.pts} style={{color: colour}}>{unit[2]} pts</span>
                         </li>
                         <div className={styles.deleteBtn} value={unit}  id={idx} onClick={removeUnit} style={{color: colour}}>REMOVE</div>
                     </div>
