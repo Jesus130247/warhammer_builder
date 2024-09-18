@@ -14,10 +14,10 @@ export default function Stratagems({selectArmyStratagems, colour}) {
         <div className={styles.stratagems}>{stratagems.map(stratagem => {
             return(
                 <div className={styles.stratagem}>
-                    <h3 style={{color: colour}}>{stratagem[2]}<span> - {stratagem[4]}CP</span></h3>
+                    <h3 style={{color: colour}}>{stratagem[2]} <br /> <span style={{color: 'white'}}>{stratagem[4]} CP</span></h3>
                     <p>{stratagem[3]}</p>
                     {/* <p>{stratagem[5]}</p> */}
-                    <div dangerouslySetInnerHTML={{__html: stratagem[9]}}></div>
+                    <div style={{color: 'white'}}dangerouslySetInnerHTML={{__html: stratagem[9]}}></div>
                 </div>
             )
         })}</div>

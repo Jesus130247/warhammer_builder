@@ -95,7 +95,7 @@ function App() {
     {user ? 
     <div className='body'>
       <div className="centerThis">
-        <header>
+        <header style={{paddingTop: '5px'}}>
           <span>logged in as : {user.email} </span>
           <button className='btn' onClick={onLogout}>logout</button>
         </header>

@@ -1,6 +1,13 @@
 import axios from 'axios'
 
 export async function SaveArmy(user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array) {
+
+    //handling demo mode
+    console.log(user_id)
+    if (user_id === 'Demo') {
+        return 'Cannot save in demo mode'
+    }
+
     army_name = army_name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'');
     if (!army_name || army_name === '') {
         army_name = faction_chosen_id

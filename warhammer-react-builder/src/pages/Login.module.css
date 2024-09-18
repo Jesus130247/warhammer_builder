@@ -31,25 +31,18 @@
     color: #49d43c;
 }
 .btn {
-    border: 1px solid black;
-    border-radius: 25px;
-    background-color: #49d43c71;
-    color: #dadada;
-    padding: 0.5rem 1rem;
-    font-size: medium;
-    margin: 5px 0 15px 0;
+    margin-top: 5px;
     float: right;
 }
 
-.btnCreate {
-    border: 1px solid black;
+.btnCreate, .btn {
+    border: 1px solid rgb(201, 201, 201);
     border-radius: 25px;
     background-color: #49d43c71;
     color: #dadada;
     padding: 0.5rem 1rem;
     font-size: medium;
     margin-bottom: 15px;
-
 }
 
 .btn:hover, .btnCreate:hover {
