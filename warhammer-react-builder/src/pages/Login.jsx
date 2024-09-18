@@ -53,7 +53,7 @@ export default function Login(props) {
         <section className={styles.login}>
             <h1>Prepare for Battle</h1>
             {logging ? <>
-            <h2>Login</h2>
+            <h2>- Login -</h2>
             <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}}>{message}</div>
             <form action="" onSubmit={tryLogin}>
                 <label htmlFor="" >Username: </label>
@@ -61,12 +61,12 @@ export default function Login(props) {
                 <br />
                 <label htmlFor="" > Password: </label>
                 <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> 
-                <br /><button className={styles.btn}>login</button>
+                <br /><button className={styles.btn}>Login</button>
             </form>
             <p>Don't have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Sign Up</button></p>
             </>
             : <>
-            <h2>Sign Up</h2>
+            <h2>- Sign Up -</h2>
             <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}} >{message}</div>
             <form action="" onSubmit={trySignUp}>
                 <label htmlFor="" >Username: </label>

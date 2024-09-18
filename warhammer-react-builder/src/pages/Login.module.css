@@ -52,13 +52,13 @@
 
 }
 
-.btn:hover {
+.btn:hover, .btnCreate:hover {
     background-color: #5e5e5e;
     color: #e2e2e2;
     transition: 0.1s;
 }
 
-.btn:active {
+.btn:active, .btnCreate:active {
     background-color: #ffffff;
     color: #000000;
 }
