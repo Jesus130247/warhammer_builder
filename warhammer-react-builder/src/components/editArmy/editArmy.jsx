@@ -2,6 +2,7 @@ import styles from './EditArmy.module.css'
 import ArmyCreation from '../ArmyCreation/ArmyCreation'
 import UserArmy from '../userArmy/UserArmy'
 import { useState, useEffect } from 'react'
+import Footer from '../footer/footer'
 
 export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit,
     removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
@@ -59,6 +60,8 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
             selectedEnhancement={selectedEnhancement}
             handleEnchancement={handleEnchancement}
             />
-        </div></>
+        </div>
+        <Footer />
+        </>
     )
 }

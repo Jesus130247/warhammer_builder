@@ -12,8 +12,7 @@ import two from '../../assets/images/40kbackground2.jpg'
 import five from '../../assets/images/40kbackground5.jpg'
 import six from '../../assets/images/40kbackground6.jpg'
 
-export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBase, handleCancel}) {
-    const [viewArmy, setViewArmy] = useState(false)
+export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBase, handleCancel, setViewArmy, viewArmy}) {
     const [armyUnits, setArmyUnits] = useState()
     const [usersSelecetedArmy, setUsersSelectedArmy] = useState()
     const [viewArmyDetails, setViewArmyDetails] = useState([])

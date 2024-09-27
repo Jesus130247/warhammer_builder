@@ -8,6 +8,7 @@ import ArmyList from './components/ArmyList/ArmyList.jsx'
 import Login from './pages/Login.jsx'
 import { getUserFromLocalStorage } from './utils/auth_service.js'
 import { SaveArmy, updateArmy } from './utils/user_armies.js'
+import DemoErrorPopUp from './components/DemoErrorPopUp/DemoErrorPopUp.jsx'
 
 
 function App() {
@@ -17,12 +18,14 @@ function App() {
   const [selectedArmy, setSelectedArmy] = useState()
   const [selectedSubFaction, setselectedSubFaction] = useState()
   const [armyName, setArmyName] = useState('')
-  const [pointLimit, setPointLimit] = useState(1000)
+  const [pointLimit, setPointLimit] = useState(500)
   const [colour, setColour] = useState('#dadada')
   const [usersArmy, setUsersArmy] = useState([])
   const [remainingPoints ,setRemainingPoints] = useState(pointLimit)
   const [getArmysFromDataBase, setGetArmysFromDataBase] = useState([])
   const [selectedEnhancement, setSelectedEnhancement] = useState([]) 
+  const [demoError, setDemoError] = useState(false)
+  const [viewArmy, setViewArmy] = useState(false)
 
   
   function addUnit(unitId, pts, unitName) {
@@ -65,16 +68,20 @@ function App() {
     setSelectedEnhancement()
   }
   function handleSave() {
-    setGetArmysFromDataBase([])
-    SaveArmy(Number(user.id), selectedArmy.faction_id, [Object.keys(selectedSubFaction)[0], selectedEnhancement], armyName,
-    Number(pointLimit - remainingPoints), Number(pointLimit), colour, usersArmy )
-    if (user) {
+    if (user && user.email !== 'Demo') {
+      setGetArmysFromDataBase([])
+      SaveArmy(Number(user.id), selectedArmy.faction_id, [Object.keys(selectedSubFaction)[0], selectedEnhancement], armyName,
+      Number(pointLimit - remainingPoints), Number(pointLimit), colour, usersArmy )
       fetch(`/api/getMyArmies/${Number(user.id)}`)
       .then(res=> res.json())
-      .then(res => setGetArmysFromDataBase(res))    
+      .then(res => setGetArmysFromDataBase(res))  
+      handleCancel()
+    } else if (user.email === 'Demo') {
+      handleCancel()
+      setDemoError(true)
+    } else {
+      handleCancel()
     }
-    handleCancel()
-    location.reload()
   }
   
   function handleEnchancement(e) {
@@ -138,6 +145,8 @@ function App() {
           setSelectedEnhancement={setSelectedEnhancement}
           selectedEnhancement={selectedEnhancement}
           handleEnchancement={handleEnchancement}
+          viewArmy={viewArmy}
+          setViewArmy={setViewArmy}
            />
         </div>
       }
@@ -157,9 +166,12 @@ function App() {
         setRemainingPoints={setRemainingPoints}
         colour={colour}
         />
+        {demoError ? <DemoErrorPopUp setUser={setUser} setDemoError={setDemoError}/> : null}
+    {viewArmy ? null : <div className="centerThis"><Footer /></div>}
     </div>
     : <Login onLogin={onLogin} />} 
-  </> )
+  </> 
+  )
 }
 
 export default App

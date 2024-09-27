@@ -1,8 +1,7 @@
-import Footer from '../../components/footer/footer'
 import Army from '../Army/Army'
 import styles from './ArmyList.module.css'
 
-export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataBase, handleCancel, removeUnit, addUnit, handleUpdate}) {
+export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataBase, handleCancel, removeUnit, addUnit, handleUpdate, setViewArmy, viewArmy}) {
     return (
         <section className={styles.armies}>
             <Army 
@@ -13,10 +12,9 @@ export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataB
             removeUnit={removeUnit}
             addUnit={addUnit} 
             handleUpdate={handleUpdate}
+            viewArmy={viewArmy}
+            setViewArmy={setViewArmy}
             />
-            <div className="centerThis">
-                <Footer />
-            </div>
         </section>
     )
 }
