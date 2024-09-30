@@ -282,9 +282,17 @@ function handleUnitDisplay(unit) {
     });
 }
 function handleStratagems(strat, HelveticaBold) {
+    console.log(strat)
     checkCurrentPage(100)
     page.drawText(strat[2], {
         x: 30,
+        y: newLine,
+        size: 10,
+        color: rgb(1,0,0),
+        font: HelveticaBold,
+    });
+    page.drawText(`${strat[4]} CP`, {
+        x: width - 100,
         y: newLine,
         size: 10,
         color: rgb(1,0,0),
