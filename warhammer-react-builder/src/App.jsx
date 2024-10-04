@@ -63,8 +63,8 @@ function App() {
     setSelectedArmy()
     setArmyName('')
     setUsersArmy([])
-    setPointLimit(1000)
-    setRemainingPoints(1000)
+    setPointLimit(500)
+    setRemainingPoints(500)
     setSelectedEnhancement()
   }
   function handleSave() {
