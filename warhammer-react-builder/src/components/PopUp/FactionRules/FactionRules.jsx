@@ -13,6 +13,8 @@ export default function FactionRules({selectedArmy, selectedSubFaction, colour})
         if (selectedArmy) {
             setFactionData(Object.entries(selectedArmy.faction_info[2]).map(data => data))
             setShowRules([true, false])
+        } else {
+            setShowRules([false, false])
         }
         if (selectedSubFaction) {
             setSubFactionName(Object.keys(selectedSubFaction)[0])
