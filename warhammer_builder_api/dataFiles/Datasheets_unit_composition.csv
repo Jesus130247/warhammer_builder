@@ -16,8 +16,9 @@
 000000015|1|1 Mad Dok Grotsnik – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000016|1|1 Boss Nob|
 000000016|2|9-19 Boyz|
-000000017|1|1-2 Runtherds|
-000000017|2|10-20 Gretchin|
+000000017|1|1 Runtherd and 10 Gretchin|
+000000017|2|OR|
+000000017|3|2 Runtherds and 20 Gretchin|
 000000019|1|1-2 Spanners|
 000000019|2|4-8 Burna Boyz|
 000000020|1|1 Boss Nob|
@@ -156,7 +157,7 @@
 000000159|1|1 Sanguinary Priest on Bike|
 000000160|1|1 Brother Corbulo – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000164|1|1 Lemartes – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000000165|1|5-10 Sanguinary Guard|
+000000165|1|3-6 Sanguinary Guard|
 000000166|1|1 Death Company Dreadnought|
 000000167|1|1 Furioso Dreadnought|
 000000168|1|1 Baal Predator|
@@ -214,9 +215,6 @@
 000000325|1|1 Stormfang Gunship|
 000000326|1|1 Long Fang Pack Leader|
 000000326|2|4-5 Long Fangs|
-000000352|1|1 Watch Master|
-000000353|1|1 Watch Captain Artemis|
-000000358|1|1 Corvus Blackstar|
 000000373|1|1 Kaldor Draigo – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000374|1|1 Grand Master Voldus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000375|1|1 Grand Master|
@@ -278,7 +276,7 @@
 000000425|1|1 Razorshark Strike Fighter|
 000000426|1|1 Sun Shark Bomber|
 000000427|1|1 Vespid Strain Leader|
-000000427|2|4 Vespid Stingwings|
+000000427|2|4-9 Vespid Stingwings|
 000000428|1|1 Firesight Marksman|
 000000430|1|1 Sky Ray Gunship|
 000000431|1|1 Longstrike – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
@@ -1059,7 +1057,7 @@
 000001991|1|1 Terrax-pattern Termite|
 000001993|1|1 Da Red Gobbo – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000001994|1|1 Carnodon|
-000001997|1|5-10 Death Company Intercessors|
+000001997|1|5-10 Death Company Marines|
 000002063|1|1 Triumph of Saint Katherine – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002064|1|1 Junith Eruita – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002066|1|1 Zephyrim Superior|
@@ -1081,7 +1079,7 @@
 000002086|1|1 Archaeopter Stratoraptor|
 000002087|1|1 Archaeopter Fusilave|
 000002088|1|1 Aleya – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000002090|1|1 Lord Inquisitor Kyria Draxus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000002090|1|1 Inquisitor Draxus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002092|1|1 Illuminor Szeras – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002093|1|1 Archivist – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002098|1|1 Hellblaster Sergeant|
@@ -1119,7 +1117,7 @@
 000002269|1|1 Deredeo Dreadnought|
 000002270|1|1 Desolation Sergeant|
 000002270|2|4 Desolation Marines|
-000002285|1|5-10 Death Company Marines|
+000002285|1|5-10 Death Company Marines with Bolt Rifles|
 000002291|1|1 Sammael – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002296|1|1 Lazarus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002302|1|1 Deathwing Ancient|
@@ -1194,9 +1192,9 @@
 000002501|1|1 Thousand Sons Predator Annihilator|
 000002507|1|1 Novitiate Superior|
 000002507|2|9 Sisters Novitiate|
-000002509|1|0-1 Canid|
-000002509|2|1 Voidmaster|
-000002509|3|4-8 Voidsmen|
+000002509|1|1 Voidmaster|
+000002509|2|4 Voidsmen|
+000002509|3|1 Canid|
 000002518|1|1 Blade Champion|
 000002519|1|1 Valerian – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002520|1|1 Knight-Centura|
@@ -1338,15 +1336,15 @@
 000002678|1|1 Chaplain Cassius – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002679|1|1 Vashtorr the Arkifane – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002682|1|1 Lion El’Jonson – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000002683|1|0-1 Cyber-mastiff|
-000002683|2|1 Proctor-Vigilant|
-000002683|3|9 Vigilants|
-000002684|1|0-1 Cyber-mastiff|
-000002684|2|1 Proctor-Subductor|
-000002684|3|9 Subductors|
+000002683|1|1 Proctor-Vigilant|
+000002683|2|9 Vigilants|
+000002683|3|1 Cyber-mastiff|
+000002684|1|1 Proctor-Subductor|
+000002684|2|9 Subductors|
+000002684|3|1 Cyber-mastiff|
 000002685|1|1 Proctor-Exactant|
 000002685|2|9 Exaction Vigilants|
-000002685|3|0-1 Cyber-mastiff|
+000002685|3|1 Cyber-mastiff|
 000002686|1|5-10 Barbgaunts|
 000002687|1|1-2 Neurogaunt Nodebeasts*|
 000002687|2|10-20 Neurogaunts|
@@ -1431,16 +1429,15 @@
 000002761|1|1 Legionnaire Sergeant|
 000002761|2|4-9 Legionnaires|
 000002762|1|1 Rogue Trader|
-000002762|2|3 Rogue Trader Specialists|
+000002762|2|1 Death Cult Assassin|
+000002762|3|1 Lectro-Maester|
+000002762|4|1 Rejuvenat Adept|
 000002763|1|1 Janus Draik – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000002764|1|1 Neyam Shai Murad – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000002765|1|1 Espern Locarno – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000002765|1|1 Navigator|
 000002766|1|1 UR-025 – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000002767|1|0-1 Daemonhost|
-000002767|2|0-1 Jokaero Weaponsmith|
-000002767|3|0-2 Gun Servitors|
-000002767|4|0-2 Mystics|
-000002767|5|4-10 Inquisitorial Acolytes|
+000002767|1|5-10 Inquisitorial Agents|
+000002767|2|1-2 Gun Servitors*|
 000002768|1|1 Grey Knights Relic Razorback|
 000002769|1|1 Armiger Moirax|
 000002770|1|1 Sir Hekhtur – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
@@ -1453,33 +1450,6 @@
 000002775|1|1 Ancient|
 000002776|1|1 Assault Intercessor Sergeant with Jump Pack|
 000002776|2|4-9 Assault Intercessors with Jump Packs|
-000002777|1|1 Chaplain Cassius – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
-000002777|2|8 Kill Team Veterans:<br><ul style="list-style-type:circle;"><li>Vael Donatus</li><li>Zameon Gydrael</li><li>Rodricus Grytt</li><li>Antor Delassio</li><li>Edryc Setorax</li><li>Jensus Natorian</li><li>Drenn Redblade</li><li>Ennox Sorrlock</li></ul>|
-000002777|3|1 Kill Team Terminator (Garran Branatar)|
-000002777|4|1 Kill Team Biker (Jetek Suberei)|
-000002778|1|1 Deathwatch Terminator Sergeant|
-000002778|2|4-9 Deathwatch Terminators|
-000002779|1|5-10 Kill Team Infiltrators|
-000002779|2|0-2 Kill Team Infiltrators with bolt sniper rifles|
-000002779|3|0-2 Kill Team Infiltrators with jump packs|
-000002779|4|0-4 Kill Team Infiltrators with occulus bolt carbines|
-000002779|5|0-4 Kill Team Infiltrators with combat knives|
-000002780|1|5-10 Kill Team Intercessors|
-000002780|2|0-4 Kill Team Intercessors with plasma incinerators|
-000002780|3|0-4 Kill Team Intercessors with heavy bolt pistols|
-000002780|4|0-2 Kill Team Outriders|
-000002781|1|0-2 Kill Team Heavy Intercessors with jump packs|
-000002781|2|0-2 Kill Team Heavy Intercessors with melta rifles|
-000002781|3|0-2 Kill Team Heavy Intercessors with power fists|
-000002781|4|5-10 Kill Team Heavy Intercessors|
-000002782|1|5-10 Kill Team Veterans|
-000002782|2|0-4 Kill Team Veterans with Jump Packs|
-000002782|3|0-2 Kill Team Bikers|
-000002782|4|0-4 Kill Team Terminators|
-000002783|1|1 Watch Sergeant|
-000002783|2|4-9 Deathwatch Veterans|
-000002784|1|1 Veteran Biker Sergeant|
-000002784|2|2-5 Veteran Bikers|
 000002786|1|1 Impulsor|
 000002787|1|1 Gladiator Lancer|
 000002788|1|1 Gladiator Valiant|
@@ -1544,3 +1514,55 @@
 000003716|1|1 Acolyte Leader|
 000003716|2|4-9 Acolyte Hybrids|
 000003811|1|1 Celestian Sacresant Aveline – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003812|1|1 Ministorum Priest|
+000003813|1|1 Terminator Justicar|
+000003813|2|4 Grey Knights Terminators|
+000003814|1|1 Watch Captain Artemis|
+000003815|1|1 Watch Master|
+000003816|1|1 Watch Sergeant|
+000003816|2|4-9 Deathwatch Veterans|
+000003817|1|1 Corvus Blackstar|
+000003818|1|1 Sister Superior|
+000003818|2|9 Battle Sisters|
+000003819|1|1 Immolator|
+000003820|1|1 Inquisitorial Chimera|
+000003821|1|1 Chaplain Cassius – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003821|2|8 Kill Team Veterans:<br><ul style="list-style-type:circle;"><li>Vael Donatus</li><li>Zameon Gydrael</li><li>Rodricus Grytt</li><li>Antor Delassio</li><li>Edryc Setorax</li><li>Jensus Natorian</li><li>Drenn Redblade</li><li>Ennox Sorrlock</li></ul>|
+000003821|3|1 Kill Team Terminator (Garran Branatar)|
+000003821|4|1 Kill Team Biker (Jetek Suberei)|
+000003822|1|1 Deathwatch Terminator Sergeant|
+000003822|2|4-9 Deathwatch Terminators|
+000003823|1|1 Veteran Biker Sergeant|
+000003823|2|2-5 Veteran Bikers|
+000003824|1|10 MODELS MAXIMUM|
+000003824|2|5-10 Kill Team Veterans|
+000003824|3|0-4 Kill Team Veterans with Jump Packs|
+000003824|4|0-2 Kill Team Bikers|
+000003824|5|0-4 Kill Team Terminators|
+000003825|1|10 MODELS MAXIMUM|
+000003825|2|5-10 Kill Team Intercessors|
+000003825|3|0-4 Kill Team Intercessors with plasma incinerators|
+000003825|4|0-4 Kill Team Intercessors with heavy bolt pistols|
+000003825|5|0-2 Kill Team Outriders|
+000003826|1|10 MODELS MAXIMUM|
+000003826|2|5-10 Kill Team Heavy Intercessors|
+000003826|3|0-2 Kill Team Heavy Intercessors with power fists|
+000003826|4|0-2 Kill Team Heavy Intercessors with melta rifles|
+000003826|5|0-2 Kill Team Heavy Intercessors with jump packs|
+000003827|1|10 MODELS MAXIMUM|
+000003827|2|5-10 Kill Team Infiltrators|
+000003827|3|0-2 Kill Team Infiltrators with bolt sniper rifles|
+000003827|4|0-2 Kill Team Infiltrators with jump packs|
+000003827|5|0-4 Kill Team Infiltrators with occulus bolt carbines|
+000003827|6|0-4 Kill Team Infiltrators with combat knives|
+000003828|1|1-2 Daemonhosts|
+000003829|1|1 Jokaero Weaponsmith|
+000003830|1|1 Imperial Rhino|
+000003831|1|1 Blood Angels Captain|
+000003832|1|1 Death Company Captain|
+000003833|1|1 Death Company Captain with Jump Pack|
+000003834|1|1 Tempestor Aquilon|
+000003834|2|9 Tempestus Aquilons|
+000003835|1|1 Death Company Dreadnought|
+000003836|1|5-10 Death Company Marines|
+000003837|1|5-10  Death Company Marines with Jump Packs|

@@ -25,8 +25,9 @@ export default function UserArmy(
     },[])
 
     useEffect(() => {
-        if (selectedSubFaction) {  
-            setFactionRule(Object.entries(selectedArmy.faction_info[2])[0][1])
+        if (selectedSubFaction) { 
+            console.log(Object.entries(selectedArmy.faction_info[2]))
+            setFactionRule(Object.entries(selectedArmy.faction_info[2]))
             setSubFactionName(Object.keys(selectedSubFaction)[0])
             setSubFactionRule(Object.entries(selectedSubFaction)[0][1][0])
             setSelectArmyStratagems(selectedArmy.faction_info[4].filter(rules => rules[8] === Object.keys(selectedSubFaction)[0]))
@@ -44,8 +45,19 @@ export default function UserArmy(
             <button className={styles.saveBtn} onClick={handleSave} >Save Army</button>
         </h2>
         }
-    
-        <p className={styles.showFactionRule} dangerouslySetInnerHTML={{__html: factionRule}}></p>
+
+
+        <p className={styles.showFactionRule}>
+        {factionRule.map((rule,id) => {
+            return (
+                <>
+                <div style={{fontWeight: '700', fontSize: '1rem'}}>{rule[0]}</div>
+                <br />
+                <div dangerouslySetInnerHTML={{__html: rule[1]}} />
+                </>
+            )
+        })}
+        </p>
         
         <h3 className={styles.subFactionName}><span style={{borderBottom: '2px dotted #e2e2e2'}}>{subFactionName}</span></h3>
 

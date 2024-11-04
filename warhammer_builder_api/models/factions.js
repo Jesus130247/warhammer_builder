@@ -57,8 +57,8 @@ async function getFactionData() {
 }
 
 async function getThisFactionsUnits(factionId) {
-    // let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
-    let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
+    let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
+    // let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
     for (let unitId in factionUnits) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitAbilities(filesArray[2], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitKeyWords(filesArray[3], unitId)]
@@ -120,7 +120,10 @@ async function getDetachmentAbilties(file, factionId, detachment) {
 async function getFactionAbilities(file, factionId) {
     const data = await readFile(file, 'utf-8');
     let factionAbility = reformatData(data).filter((data) => data[3] === factionId)
-    let factionAbilityReturn = {[factionAbility[0][1]] : factionAbility[0][4]}
+    let factionAbilityReturn = {}
+    for (let ability of factionAbility) {
+        factionAbilityReturn[ability[1]] = ability[4]
+    }
     return factionAbilityReturn
 }
 
