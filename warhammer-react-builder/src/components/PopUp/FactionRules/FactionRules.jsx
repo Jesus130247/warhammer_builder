@@ -27,7 +27,6 @@ export default function FactionRules({selectedArmy, selectedSubFaction, colour})
         return (
             <>
             {factionData.map(rule => {
-            console.log(rule)
                 return (
                     <>
                     <div className={styles.factionName}> {rule[0]}: </div>

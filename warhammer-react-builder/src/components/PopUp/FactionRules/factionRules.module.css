@@ -8,3 +8,8 @@
     padding: 0;
     list-style: none;
 }
+
+.data a {
+    font-size: bolder;
+    color: black;
+}
