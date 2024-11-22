@@ -7,7 +7,7 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
     const [selectedUnit, setSelectedUnit] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [allUnitInfo, setAllUnitInfo] = useState([]);
-
+    const [displayLegends, setDisplayLegends] = useState(false)
     const chapters = [
         "Ultramarines",
         "Blood Angels",
@@ -20,7 +20,61 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
         "Black Templars",
         "Salamanders"
     ];
-    console.log(selectedChapter)
+
+    const spaceMarineLegends = [
+        'Captain On Bike',
+        'Deathwing Strikemaster',
+        'Librarian With Jump Pack',
+        'Primaris Company Champion',
+        'Ravenwing Talonmaster',
+        'Terrax-pattern Termite',
+        'Land Speeder Storm',
+        'Assault Squad',
+        'Assault Squad With Jump Packs',
+        'Astartes Servitors',
+        'Attack Bike Squad',
+        'Bike Squad',
+        'Cerberus',
+        'Command Squad',
+        'Deathstorm Drop Pod',
+        'Deathwing Command Squad',
+        'Deredeo Dreadnought',
+        'Dreadnought Drop Pod',
+        'Falchion',
+        'Fellblade',
+        'Fire Raptor Gunship',
+        'Hunter',
+        'Ironclad Dreadnought',
+        'Javelin Attack Speeder',
+        'Kratos',
+        'Land Raider Proteus',
+        'Land Speeder',
+        'Land Speeder Tornado',
+        'Land Speeder Typhoon',
+        'Land Speeder Vengeance',
+        'Leviathan Dreadnought',
+        'Mastodon',
+        'Rapier Carrier',
+        'Relic Contemptor Dreadnought',
+        'Relic Terminator Squad',
+        'Scout Sniper Squad',
+        'Sicaran Arcus',
+        'Sicaran Battle Tank',
+        'Sicaran Omega',
+        'Sicaran Punisher',
+        'Sicaran Venator',
+        'Sokar-pattern Stormbird',
+        'Spartan',
+        'Stalker',
+        'Storm Eagle Gunship',
+        'Tarantula Sentry Battery',
+        'Thunderfire Cannon',
+        'Typhon',
+        'Vindicator Laser Destroyer',
+        'Whirlwind Scorpius',
+        'Xiphon Interceptor'
+    ]
+
     // Initialize or update `allUnitInfo` whenever `unitsInfo` changes
     useEffect(() => {
         setAllUnitInfo(unitsInfo);
@@ -29,14 +83,24 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
     // Filter `allUnitInfo` based on `selectedChapter`
     useEffect(() => {
         if (selectedChapter !== "None" && Object.keys(unitsInfo).length) {
-            const filteredUnits = unitsInfo.filter(
-                (unit) =>
-                    unit.unit_data[6].includes(selectedChapter) ||
-                    !chapters.some((chapter) => unit.unit_data[6].includes(chapter))
-            );
+            const filteredUnits = unitsInfo.filter((unit) => {
+                const unitChapters = unit.unit_data[6];
+            
+                // Check if the unit matches the selected chapter or doesn't match any chapter in the chapters array
+                const matchesChapters = unitChapters.includes(selectedChapter) || 
+                                        !chapters.some((chapter) => unitChapters.includes(chapter));
+            
+                // Apply additional filtering if legends are not displayed
+                if (!displayLegends) {
+                    return matchesChapters && 
+                           !spaceMarineLegends.some((chapter) => unitChapters.includes(chapter));
+                }
+            
+                return matchesChapters;
+            });
             setAllUnitInfo(filteredUnits);
         }
-    }, [unitsInfo, selectedChapter]);
+    }, [unitsInfo, selectedChapter, displayLegends]);
 
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value);
@@ -77,14 +141,19 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
         return (
             <>
                 <div className={styles.UnitSelection}>
-                    <h2 style={{ color: colour }}>{selectedArmy.faction_info[0]}</h2>
+                    <h2 style={{ color: colour }}>{selectedArmy.faction_info[0]}
+                    {selectedArmy.faction_info[0] === 'Space Marines' ? !displayLegends 
+                        ? <> - <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Display Legends</button> </>
+                        : <> - <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Hide Legends</button> </>
+                    : null}
+                    </h2>
                     <input
                         className={styles.searchBar}
                         type="text"
                         value={searchTerm}
                         onChange={handleInputChange}
                         placeholder="Type to search"
-                    />
+                        />
                     <>
                         <h3 style={{ color: colour }}>Characters</h3>
                         <ul>
