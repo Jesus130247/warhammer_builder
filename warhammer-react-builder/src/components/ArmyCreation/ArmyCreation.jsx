@@ -20,7 +20,7 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
         "Black Templars",
         "Salamanders"
     ];
-
+    console.log(selectedChapter)
     // Initialize or update `allUnitInfo` whenever `unitsInfo` changes
     useEffect(() => {
         setAllUnitInfo(unitsInfo);

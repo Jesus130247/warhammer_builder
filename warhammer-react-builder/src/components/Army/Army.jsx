@@ -21,10 +21,11 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     const [selectedEnhancement, setSelectedEnhancement] = useState([])
     const [backgroundImages, setBackgorundImages] = useState([zero, one, two, five, six])
     const [backgroundImg, setBackgorundImg] = useState(backgroundImages[Math.floor(Math.random() * backgroundImages.length)])
-
+    const [selectedChapter, setSelectedChapter] = useState('')
+    
     function handleUpdate() {
         setGetArmysFromDataBase([])
-        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement], viewArmyDetails.army_name,
+        updateArmy(Number(viewArmyDetails.id), viewArmyDetails.faction_chosen_id, [viewArmyDetails.subfaction_chosen[0], selectedEnhancement, selectedChapter], viewArmyDetails.army_name,
         Number(viewArmyDetails.pointlimit - remainingPoints), Number(viewArmyDetails.pointlimit), viewArmyDetails.colour, usersArmy )
         if (user) {
             fetch(`/api/getMyArmies/${Number(user.id)}`)
@@ -91,6 +92,9 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     }
     useEffect(() => {
         setRemainingPoints(viewArmyDetails.pointlimit - viewArmyDetails.points)
+        if (viewArmyDetails.subfaction_chosen) {
+            setSelectedChapter(viewArmyDetails.subfaction_chosen[2])
+        }
     }, [viewArmyDetails])
 
     function handleEnchancement(e) {
@@ -122,7 +126,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
         removeUnit={removeUnit}
         usersArmy={usersArmy}
         subFactionInfo={usersSelecetedArmy.faction_info[3]}
-
+        selectedChapter={selectedChapter}
         setRemainingPoints={setRemainingPoints}
         setSelectedEnhancement={setSelectedEnhancement}
         selectedEnhancement={selectedEnhancement}

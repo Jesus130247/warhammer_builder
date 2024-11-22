@@ -4,7 +4,7 @@ import UserArmy from '../userArmy/UserArmy'
 import { useState, useEffect } from 'react'
 import Footer from '../footer/footer'
 
-export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit,
+export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit, selectedChapter,
     removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
         const [subFactionRule, setSubFactionRule] = useState()
@@ -41,6 +41,7 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
                 // wants the fetch for the army (below)
                 selectedArmy={selectedArmy}
                 unitsInfo={unitsInfo}
+                selectedChapter={selectedChapter}
                 />
             </div>
             <UserArmy 

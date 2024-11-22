@@ -71,7 +71,7 @@ function App() {
   function handleSave() {
     if (user && user.email !== 'Demo') {
       setGetArmysFromDataBase([])
-      SaveArmy(Number(user.id), selectedArmy.faction_id, [Object.keys(selectedSubFaction)[0], selectedEnhancement], armyName,
+      SaveArmy(Number(user.id), selectedArmy.faction_id, [Object.keys(selectedSubFaction)[0], selectedEnhancement, selectedChapter], armyName,
       Number(pointLimit - remainingPoints), Number(pointLimit), colour, usersArmy )
       fetch(`/api/getMyArmies/${Number(user.id)}`)
       .then(res=> res.json())

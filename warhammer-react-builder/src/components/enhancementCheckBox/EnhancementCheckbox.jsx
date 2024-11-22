@@ -6,7 +6,7 @@ export default function EnhancementCheckbox({subFactionDataEnhancements, handleE
         <div className={styles.enhanceRules}>- Only an non <span style={{fontWeight:'700'}}>Epic Hero</span> <span style={{fontWeight:'700'}}>Character</span> Model can take an enhancement.</div>
         <div className={styles.enhanceRules}>- 1 per <span style={{fontWeight:'700'}}>Character</span> Model.</div>
         <div style={{fontWeight:'700', paddingTop: '10px'}}>Enhancements:</div>
-        {subFactionDataEnhancements.map(enhancement => {
+        {subFactionDataEnhancements.filter(item => Array.isArray(item)).map(enhancement => {
             if (selectedEnhancement !== undefined) {
                 if (selectedEnhancement) {
                     let existingEnhancements = Object.entries(selectedEnhancement).map(enhancement => Object.keys(enhancement[1])[0])
