@@ -5,7 +5,7 @@ import styles from './ArmySelection.module.css'
 import UserArmy from "../userArmy/UserArmy"
 
 export default function ArmySelection({selectedArmy, selectedSubFaction, pointLimit, colour, armyName, setSelectedEnhancement, selectedEnhancement, 
-    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit, handleEnchancement}) {
+    handleCancel, setUsersArmy, usersArmy, handleSave, remainingPoints, setRemainingPoints, addUnit, removeUnit, handleEnchancement, selectedChapter}) {
     const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
     const [unitsInfo, setUnitsInfo] = useState({})
     if (selectedArmy && selectedSubFaction) {
@@ -29,6 +29,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
                 colour={colour}
                 selectedArmy={selectedArmy}
                 unitsInfo={unitsInfo}
+                selectedChapter={selectedChapter}
                 />    
             </div>
             <UserArmy 

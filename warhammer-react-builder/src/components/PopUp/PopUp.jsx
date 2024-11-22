@@ -1,4 +1,5 @@
 import ArmyChoices from './ArmyChoices/ArmyChoices'
+import ChapterChoice from './ChapterChoice/ChapterChoice'
 import FactionRules from './FactionRules/FactionRules'
 import styles from './PopUp.module.css'
 import SubFactionChoice from './SubFactionChoices/SubFactionChoices'
@@ -7,7 +8,7 @@ import { useEffect } from "react"
 
 export default function PopUp({trigger, setTrigger, setCreate, 
     selectedArmy, setSelectedArmy, setselectedSubFaction, setRemainingPoints,
-    setArmyName, setPointLimit, setColour, armyName, selectedSubFaction, colour }) {
+    setArmyName, setPointLimit, setColour, armyName, selectedSubFaction, colour, setSelectedChapter, selectedChapter }) {
     const [factions, setFactions] = useState() 
     const [subFactionSelectedIndex, setSubFactionSelectedIndex] = useState('')
 
@@ -16,7 +17,6 @@ export default function PopUp({trigger, setTrigger, setCreate,
             .then(res=> res.json())
             .then(res => setFactions(res))
     },[])
-
     function handleClose () {
         setTrigger(false)
         setSelectedArmy()
@@ -70,7 +70,10 @@ export default function PopUp({trigger, setTrigger, setCreate,
         setArmyName(e.target.value)
         return true;
     }
-
+    
+    function handleChapter(e) {
+        setSelectedChapter(e.target.value)
+    }
     return (trigger ? ( <>
     <div className={styles.popupLeft}>
         <div className={styles.popupLeftInner}>
@@ -80,10 +83,20 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     <option value='dontSelectThis'>All Factions</option>
                     <ArmyChoices factions={factions} />
                 </select>
+                {selectedArmy?.faction_id === 'SM' ? 
+                <>
+                <label htmlFor="">Select Chapter</label>
+                <select name="subFactions" id="" onChange={handleChapter} className={styles.dropdown}>
+                    <option key="none" value='None'>Select a Chapter</option>
+                    <ChapterChoice selectedArmy={selectedArmy} />
+                </select>
+                </>
+                : null}
+                
                 <label htmlFor="">Select sub-Faction</label>
                 <select name="subFactions" id="" onChange={changeSubFaction} className={styles.dropdown}>
                     <option key="none" value='None'>Select a sub-Faction</option>
-                    <SubFactionChoice selectedArmy={selectedArmy} colour={colour}/>
+                    <SubFactionChoice selectedArmy={selectedArmy} colour={colour} selectedChapter={selectedChapter}/>
                 </select>
                 <label htmlFor="">Army Name <span className={styles.Span}>- 20 char limit</span></label>
                 <div className={styles.bar} style={{ width: barWidth+"%"}}></div>
@@ -96,6 +109,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     <option value="2000">2000 pts</option>
                     <option value="2500">2500 pts</option>
                     <option value="3000">3000 pts</option>
+                    <option value="10000">10000 pts</option>
                 </select>
                 {selectedArmy ? <button className={styles.createBtn}>Create Army +</button>
                  : <div>Must select an Faction</div>}

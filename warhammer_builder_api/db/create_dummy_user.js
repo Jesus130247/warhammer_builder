@@ -6,7 +6,7 @@ const email = 'dt@ga.co'
 const plainTextPassword = 'pudding'
 const saltRounds = 10;
 
-const sql = `INSERT INTO users
+const sql = `INSERT INTO warhammer_users
 (email, password_disgest)
 VALUES ( $1, $2) RETURNING *`
 

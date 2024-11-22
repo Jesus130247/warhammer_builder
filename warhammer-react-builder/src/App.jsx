@@ -26,6 +26,7 @@ function App() {
   const [selectedEnhancement, setSelectedEnhancement] = useState([]) 
   const [demoError, setDemoError] = useState(false)
   const [viewArmy, setViewArmy] = useState(false)
+  const [selectedChapter, setSelectedChapter] = useState('None')
 
   
   function addUnit(unitId, pts, unitName) {
@@ -131,6 +132,7 @@ function App() {
           setSelectedEnhancement={setSelectedEnhancement}
           selectedEnhancement={selectedEnhancement}
           handleEnchancement={handleEnchancement}
+          selectedChapter={selectedChapter}
           />
         </>
       : <div>
@@ -165,6 +167,8 @@ function App() {
         setColour={setColour}
         setRemainingPoints={setRemainingPoints}
         colour={colour}
+        setSelectedChapter={setSelectedChapter}
+        selectedChapter={selectedChapter}
         />
         {demoError ? <DemoErrorPopUp setUser={setUser} setDemoError={setDemoError}/> : null}
     {viewArmy ? null : <div className="centerThis"><Footer /></div>}

@@ -2,7 +2,7 @@ const db = require('../db')
 
 function createUser(email, hash) {
         let sql = `
-        INSERT INTO users
+        INSERT INTO warhammer_users
         (email, password_disgest) 
         VALUES ($1, $2)
         RETURNING *;
@@ -13,7 +13,7 @@ function createUser(email, hash) {
 
 function findByEmail(email) {
     let sql = `
-    SELECT * FROM users WHERE email = $1;
+    SELECT * FROM warhammer_users WHERE email = $1;
     `
     return db.query(sql, [email])
             .then(result => {
@@ -29,7 +29,7 @@ function findByEmail(email) {
 
 function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
     let sql = `
-    INSERT INTO army
+    INSERT INTO warhammer_army
     (user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array)
     Values ($1, $2, $3, $4, $5, $6, $7, $8) 
     RETURNING *;`
@@ -38,7 +38,7 @@ function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, poi
 
 function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
     let sql = `
-    UPDATE army SET 
+    UPDATE warhammer_army SET 
     faction_chosen_id = $2, 
     subfaction_chosen = $3,  
     army_name = $4, 
@@ -56,14 +56,14 @@ function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, p
 
 function getMyArmies(userId) {
     let sql = `
-    SELECT * FROM army
+    SELECT * FROM warhammer_army
     where user_id = $1;`
     return db.query(sql, [userId])
 }
 
 function deleteArmy(armyId) {
     sql = `
-    DELETE FROM army
+    DELETE FROM warhammer_army
     WHERE id=$1;
     `
     return db.query(sql, [armyId])

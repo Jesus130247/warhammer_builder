@@ -21,6 +21,7 @@ const filesArray = [ // use for current api
     'dataFiles/Stratagems.csv', //15
 ];
 
+
 // const filesArray = [ // for uplaoding to database
 //     // was ../../, but when run through the server.js, it takes that as initial spot
 //     '../dataFiles/Factions.csv', //0
@@ -57,8 +58,8 @@ async function getFactionData() {
 }
 
 async function getThisFactionsUnits(factionId) {
-    let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
-    // let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
+    // let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
+    let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
     for (let unitId in factionUnits) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitAbilities(filesArray[2], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitKeyWords(filesArray[3], unitId)]
@@ -71,7 +72,7 @@ async function getThisFactionsUnits(factionId) {
     }
     return factionUnits
 }
-
+// getThisFactionsUnits('AoI')
 async function getLeader(file, unitId) {
     const data = await readFile(file,'utf-8');
     const leader = reformatData(data).filter(data => data[0] === unitId)
@@ -99,20 +100,31 @@ async function getDetachmentEnhancements(file, factionId) {
         if(enhancementChoices[detachment]) {
             enhancementChoices[detachment].push([enhancement[2],enhancement[4], enhancement[5]]) // name of enhancment, rule, points cost
         } else {
-            let deatchmentRule = await getDetachmentAbilties(filesArray[11], factionId, detachment)
-            enhancementChoices[detachment] = [deatchmentRule, [enhancement[2], enhancement[4], enhancement[5]]]
+            let detachmentRule = await getDetachmentAbilties(filesArray[11], factionId, detachment)
+            if (detachmentRule) {
+                enhancementChoices[detachment] = [
+                    detachmentRule[0],
+                    detachmentRule[1] !== null ? detachmentRule[1] : undefined,
+                [enhancement[2], enhancement[4], enhancement[5]]
+            ].filter(item => item !== undefined);
+        } else {
+            console.log('error: not saved:', detachmentRule, factionId, detachment)
         }
+    }
     }
     return enhancementChoices
 }
+getDetachmentEnhancements(filesArray[10], "SM")
 
 async function getDetachmentAbilties(file, factionId, detachment) {
     const data = await readFile(file, 'utf-8');
     let detachmentRules = reformatData(data).filter((data) => data[1] === factionId)
-    let detachmentRulesReturn = {}
     for (let detachmentRule of detachmentRules) {
-        if (detachment === detachmentRule[5]) {
-            return detachmentRule[4]
+        if (detachment.replace('\u2011', '-') === detachmentRule[5].replace('\u2011', '-') && detachmentRule[6] !== '\r') {
+            return [detachmentRule[4], detachmentRule[6]]
+        }
+        if (detachment.replace('\u2011', '-') === detachmentRule[5].replace('\u2011', '-')) {
+            return [detachmentRule[4], null]
         }
     }
 }
@@ -126,7 +138,7 @@ async function getFactionAbilities(file, factionId) {
     }
     return factionAbilityReturn
 }
-
+// getFactionAbilities(filesArray[9],'SM')
 async function getUnitCost(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitCost = reformatData(data).filter((data) => data[0] === unitId)
@@ -186,7 +198,9 @@ async function getUnitAbilities(file, unitId) {
     for (let singleUnitAbilites of abilties) {
         if (singleUnitAbilites[2] !== '') {
             let coreAbility = coreAbilities.filter(ruleId => ruleId[0] === singleUnitAbilites[2])
-            specialAbilities.push(coreAbility[0][1] + ' ' + singleUnitAbilites[7])
+            if (coreAbility[0]) {
+                specialAbilities.push(coreAbility[0][1] + ' ' + singleUnitAbilites[7])
+            }
         }
         if (singleUnitAbilites[4] !== '') {
             allAbilties[singleUnitAbilites[4]] = singleUnitAbilites[5] // ability = ability description 

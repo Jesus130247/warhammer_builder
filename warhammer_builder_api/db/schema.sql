@@ -1,25 +1,25 @@
 CREATE DATABASE warhammer_builder_api;
 
-CREATE TABLE users (
+CREATE TABLE warhammer_users (
     id SERIAL PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
     password_disgest TEXT NOT NULL
 );
 
-CREATE TABLE factions (
+CREATE TABLE warhammer_factions (
     id SERIAL PRIMARY KEY, 
     faction_id TEXT NOT NULL,
     faction_info JSONB
 );
 
-CREATE TABLE units (
+CREATE TABLE warhammer_units (
     id SERIAL PRIMARY KEY,
     faction_id TEXT NOT NULL,
     unit_id TEXT NOT NULL,
     unit_data JSONB
 );
 
-CREATE TABLE army (
+CREATE TABLE warhammer_army (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     faction_chosen_id TEXT NOT NULL,
