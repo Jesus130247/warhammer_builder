@@ -15,7 +15,6 @@ async function createDummyUser() {
         let salt = await bcrypt.genSalt(saltRounds)
         let hash = await bcrypt.hash(plainTextPassword, salt)
         let result = await db.query(sql, [email, hash])
-        console.log(result.rows);
     } catch(err) {
         console.log(err)
     }

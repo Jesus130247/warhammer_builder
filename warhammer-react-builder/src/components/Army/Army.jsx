@@ -125,7 +125,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
         addUnit={addUnit}
         removeUnit={removeUnit}
         usersArmy={usersArmy}
-        subFactionInfo={usersSelecetedArmy.faction_info[3]}
+        subFactionInfo={usersSelecetedArmy?.faction_info[3]}
         selectedChapter={selectedChapter}
         setRemainingPoints={setRemainingPoints}
         setSelectedEnhancement={setSelectedEnhancement}

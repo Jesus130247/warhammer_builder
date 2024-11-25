@@ -47,6 +47,7 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
         'Ironclad Dreadnought',
         'Javelin Attack Speeder',
         'Kratos',
+        'Land Raider Achilles',
         'Land Raider Proteus',
         'Land Speeder',
         'Land Speeder Tornado',
@@ -143,8 +144,8 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
                 <div className={styles.UnitSelection}>
                     <h2 style={{ color: colour }}>{selectedArmy.faction_info[0]}
                     {selectedArmy.faction_info[0] === 'Space Marines' ? !displayLegends 
-                        ? <> - <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Display Legends</button> </>
-                        : <> - <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Hide Legends</button> </>
+                        ? <> <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Show Legends</button> </>
+                        : <> <button className='btn' onClick={() => setDisplayLegends(!displayLegends)}>Hide Legends</button> </>
                     : null}
                     </h2>
                     <input

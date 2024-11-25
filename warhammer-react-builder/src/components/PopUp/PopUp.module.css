@@ -36,7 +36,20 @@
     background-color: #41c535e3;
 }
 
-.closeBtn:hover, .createBtn:hover {
+.createBtn {
+    border: 1px solid black;
+    border-radius: 25px;
+    color: black;
+    padding: 0.5rem;
+    font-size: medium;
+}
+
+.createBtn:hover {
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    cursor: pointer;
     background-color: #5e5e5e;
     color: #e2e2e2;
     transition: 0.1s;
@@ -76,14 +89,6 @@
     background-color: #17b408
 }
 
-.createBtn {
-    border: 1px solid black;
-    border-radius: 25px;
-    background-color: #49d43c71;
-    color: black;
-    padding: 0.5rem;
-    font-size: medium;
-}
 
 .popupRightInner {
     width: fit-content;

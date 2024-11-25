@@ -11,7 +11,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
     setArmyName, setPointLimit, setColour, armyName, selectedSubFaction, colour, setSelectedChapter, selectedChapter }) {
     const [factions, setFactions] = useState() 
     const [subFactionSelectedIndex, setSubFactionSelectedIndex] = useState('')
-
+        console.log(selectedArmy?.faction_id)
     useEffect(() => {
         fetch('/api/factions/psql')
             .then(res=> res.json())
@@ -31,6 +31,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
         setCreate(true)
     }
     function changeArmy(e) {
+        console.log(selectedArmy)
         if (subFactionSelectedIndex) {
             subFactionSelectedIndex.selectedIndex=0 // resets the form-> subfaction select
         }
@@ -111,8 +112,9 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     <option value="3000">3000 pts</option>
                     <option value="10000">10000 pts</option>
                 </select>
-                {selectedArmy ? <button className={styles.createBtn}>Create Army +</button>
-                 : <div>Must select an Faction</div>}
+                {(selectedArmy && selectedArmy?.faction_id !=='SM' && selectedSubFaction) || (selectedArmy?.faction_id === 'SM' && selectedChapter !== 'None' && selectedSubFaction) 
+                ? <button className={styles.createBtn} style={{backgroundColor: colour}}>Create Army +</button>
+                : <div>Missing Selection</div>}
             </form>
         </div>
         <button className={styles.closeBtn} onClick={handleClose}>X</button>

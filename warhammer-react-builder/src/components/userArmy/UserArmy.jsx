@@ -26,7 +26,6 @@ export default function UserArmy(
 
     useEffect(() => {
         if (selectedSubFaction) { 
-            console.log(Object.entries(selectedArmy.faction_info[2]))
             setFactionRule(Object.entries(selectedArmy.faction_info[2]))
             setSubFactionName(Object.keys(selectedSubFaction)[0])
             setSubFactionRule(Object.entries(selectedSubFaction)[0][1][0])
