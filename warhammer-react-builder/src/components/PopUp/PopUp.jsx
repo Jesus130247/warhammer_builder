@@ -11,7 +11,6 @@ export default function PopUp({trigger, setTrigger, setCreate,
     setArmyName, setPointLimit, setColour, armyName, selectedSubFaction, colour, setSelectedChapter, selectedChapter }) {
     const [factions, setFactions] = useState() 
     const [subFactionSelectedIndex, setSubFactionSelectedIndex] = useState('')
-        console.log(selectedArmy?.faction_id)
     useEffect(() => {
         fetch('/api/factions/psql')
             .then(res=> res.json())
@@ -31,7 +30,6 @@ export default function PopUp({trigger, setTrigger, setCreate,
         setCreate(true)
     }
     function changeArmy(e) {
-        console.log(selectedArmy)
         if (subFactionSelectedIndex) {
             subFactionSelectedIndex.selectedIndex=0 // resets the form-> subfaction select
         }
