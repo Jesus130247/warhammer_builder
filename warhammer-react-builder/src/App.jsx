@@ -137,7 +137,7 @@ function App() {
         </>
       : <div>
         <div className="centerThis">
-          { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Create an Army +</button> : <div>Reached Maximum Army Count</div>}
+          { getArmysFromDataBase.length < 6 ? <button className='btn' onClick={()=>setButtonTrigger(true)}>Muster Army</button> : <div>Reached Maximum Army Count</div>}
         </div>
           <ArmyList 
           user={user}
@@ -149,6 +149,7 @@ function App() {
           handleEnchancement={handleEnchancement}
           viewArmy={viewArmy}
           setViewArmy={setViewArmy}
+          setUsersArmy={setUsersArmy}
            />
         </div>
       }

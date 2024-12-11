@@ -1,7 +1,7 @@
 import Army from '../Army/Army'
 import styles from './ArmyList.module.css'
 
-export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataBase, handleCancel, removeUnit, addUnit, handleUpdate, setViewArmy, viewArmy}) {
+export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataBase, handleCancel, removeUnit, addUnit, handleUpdate, setViewArmy, viewArmy, setUsersArmy}) {
     return (
         <section className={styles.armies}>
             <Army 
@@ -14,6 +14,7 @@ export default function ArmyList({user,getArmysFromDataBase,setGetArmysFromDataB
             handleUpdate={handleUpdate}
             viewArmy={viewArmy}
             setViewArmy={setViewArmy}
+            setUsersArmy={setUsersArmy}
             />
         </section>
     )

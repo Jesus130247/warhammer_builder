@@ -26,10 +26,10 @@ export default function FactionRules({selectedArmy, selectedSubFaction, colour})
     if (showRules[0]) {
         return (
             <>
-            {factionData.map(rule => {
+            {factionData.map((rule,id) => {
                 return (
                     <>
-                    <div className={styles.factionName}> {rule[0]}: </div>
+                    <div className={styles.factionName} key={id}> {rule[0]}: </div>
                     <span className={styles.data} dangerouslySetInnerHTML={{__html : rule[1]}} />
                     </>
                 )    
@@ -43,7 +43,7 @@ export default function FactionRules({selectedArmy, selectedSubFaction, colour})
                 return (
                     <>
                     <div className={styles.factionName} key={id}> {rule[0]}: </div>
-                    <span className={styles.data} dangerouslySetInnerHTML={{__html : rule[1]}} />
+                    <span className={styles.data} dangerouslySetInnerHTML={{__html : rule[1]}}  />
                     </>
                 )    
             })}<div className={styles.factionName}>{subFactionName}:</div> <span  className={styles.data}dangerouslySetInnerHTML={{__html : subFactionRule}}></span>

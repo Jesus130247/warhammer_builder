@@ -113,6 +113,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
     <>
         {viewArmy ? <>
         <EditArmy 
+        setUsersArmy={setUsersArmy}
         colour={'#' + viewArmyDetails.colour}
         selectedArmy={usersSelecetedArmy}
         armyName={viewArmyDetails.army_name}
@@ -151,7 +152,7 @@ export default function Army({user, getArmysFromDataBase, setGetArmysFromDataBas
             : 
             <div className={styles.singleArmy} style={{borderColor:'white'}}>
                 <div>You have no armies created <br />
-                Click 'Create an Army +'</div>
+                'Muster Army'</div>
             </div>
             }
         </div>}

@@ -33,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 25px 0;
-    
+    cursor: pointer;
 }
 
 .containerForArmySelection {
@@ -184,4 +184,8 @@ h2:has(.factionRule:hover) + .showFactionRule, .showFactionRule:hover {
 .pts {
     font-weight: 700;
     font-size: 1.05rem;
+}
+
+ul {
+    padding-left: 25px;
 }

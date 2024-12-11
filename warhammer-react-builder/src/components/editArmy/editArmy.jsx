@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import Footer from '../footer/footer'
 
 export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCancel,armyName,selectedSubFaction,pointLimit, selectedChapter,
-    removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement}) {
+    removeUnit,usersArmy,remainingPoints,handleSave, subFactionInfo, setRemainingPoints, setSelectedEnhancement, selectedEnhancement, handleEnchancement, setUsersArmy}) {
         const [subFactionDataEnhancements, setSubFactionDataEnhancements] = useState([])
         const [subFactionRule, setSubFactionRule] = useState()
 
@@ -45,6 +45,7 @@ export default function EditArmy({addUnit,armyId,colour,selectedArmy,handleCance
                 />
             </div>
             <UserArmy 
+            setUsersArmy={setUsersArmy}
             handleCancel={handleCancel} // import
             colour={colour} //
             armyName={armyName} // army.army_name

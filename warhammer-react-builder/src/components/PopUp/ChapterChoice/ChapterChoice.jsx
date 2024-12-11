@@ -9,7 +9,9 @@ export default function ChapterChoice() {
         "White Scars",
         "Raven Guard",
         "Black Templars",
-        "Salamanders"
+        "Salamanders",
+        "No Chapter",
+        "All Chapters"
     ];
     
     

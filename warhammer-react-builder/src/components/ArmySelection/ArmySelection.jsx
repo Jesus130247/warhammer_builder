@@ -33,6 +33,7 @@ export default function ArmySelection({selectedArmy, selectedSubFaction, pointLi
                 />    
             </div>
             <UserArmy 
+            setUsersArmy={setUsersArmy}
             handleCancel={handleCancel}
             colour={colour}
             armyName={armyName} 

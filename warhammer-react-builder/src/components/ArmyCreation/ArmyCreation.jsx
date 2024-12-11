@@ -83,7 +83,8 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
 
     // Filter `allUnitInfo` based on `selectedChapter`
     useEffect(() => {
-        if (selectedChapter !== "None" && Object.keys(unitsInfo).length) {
+        if (selectedChapter !== "None" && Object.keys(unitsInfo).length && selectedChapter !== "All Chapters") {
+            console.log(selectedChapter)
             const filteredUnits = unitsInfo.filter((unit) => {
                 const unitChapters = unit.unit_data[6];
             
