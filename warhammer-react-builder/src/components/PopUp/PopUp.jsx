@@ -111,7 +111,7 @@ export default function PopUp({trigger, setTrigger, setCreate,
                     <option value="10000">10000 pts</option>
                 </select>
                 {(selectedArmy && selectedArmy?.faction_id !=='SM' && selectedSubFaction) || (selectedArmy?.faction_id === 'SM' && selectedChapter !== 'None' && selectedSubFaction) 
-                ? <button className={styles.createBtn} style={{backgroundColor: colour}}>Create Army +</button>
+                ? <button className={styles.createBtn} style={{backgroundColor: colour, fontWeight: '700'}}>Muster Army</button>
                 : <div>Missing Selection</div>}
             </form>
         </div>

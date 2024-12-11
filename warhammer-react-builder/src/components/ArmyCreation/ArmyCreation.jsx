@@ -84,7 +84,6 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
     // Filter `allUnitInfo` based on `selectedChapter`
     useEffect(() => {
         if (selectedChapter !== "None" && Object.keys(unitsInfo).length && selectedChapter !== "All Chapters") {
-            console.log(selectedChapter)
             const filteredUnits = unitsInfo.filter((unit) => {
                 const unitChapters = unit.unit_data[6];
             
@@ -96,6 +95,18 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
                 if (!displayLegends) {
                     return matchesChapters && 
                            !spaceMarineLegends.some((chapter) => unitChapters.includes(chapter));
+                }
+            
+                return matchesChapters;
+            });
+            setAllUnitInfo(filteredUnits);
+        } else if (Object.keys(unitsInfo).length && selectedChapter === "All Chapters") {
+            const filteredUnits = unitsInfo.filter((unit) => {
+                const unitChapters = unit.unit_data[6];
+
+                // Apply additional filtering if legends are not displayed
+                if (!displayLegends) {
+                    return !spaceMarineLegends.some((chapter) => unitChapters);
                 }
             
                 return matchesChapters;
