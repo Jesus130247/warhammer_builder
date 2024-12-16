@@ -10,6 +10,7 @@ export default function ChapterChoice() {
         "Raven Guard",
         "Black Templars",
         "Salamanders",
+        "Deathwatch",
         "No Chapter",
         "All Chapters"
     ];

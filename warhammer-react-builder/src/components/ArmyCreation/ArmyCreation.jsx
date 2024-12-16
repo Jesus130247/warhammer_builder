@@ -18,6 +18,7 @@ export default function ArmyCreation({ unitsInfo, addUnit, colour, selectedArmy,
         "White Scars",
         "Raven Guard",
         "Black Templars",
+        "Deathwatch",
         "Salamanders"
     ];
 

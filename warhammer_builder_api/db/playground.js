@@ -17,6 +17,7 @@ async function storeFactionData() {
 
 async function storeUnitData(faction_id) {
     let res = await FactionInfo.getThisFactionsUnits(faction_id)
+    console.log(faction_id)
     for (let unit_id in res) {
         sql = `INSERT INTO warhammer_units 
         (faction_id, unit_id, unit_data) 

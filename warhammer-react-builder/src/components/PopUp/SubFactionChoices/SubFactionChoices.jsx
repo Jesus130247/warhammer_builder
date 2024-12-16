@@ -17,7 +17,6 @@ export default function SubFactionChoice({ selectedArmy, selectedChapter }) {
             const noChapterRestrictions = Array.isArray(subFactionData) && !subFactionData.some((item) =>
                 typeof item === "string" && item.includes("Chapter")
             );
-
             return includesSelectedChapter || noChapterRestrictions || !hasOtherChapters;
         });
     } else {

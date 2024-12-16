@@ -18,7 +18,7 @@ const filesArray = [ // use for current api
     'dataFiles/Last_update.csv', //12
     'dataFiles/Datasheets_leader.csv', //13
     'dataFiles/DataSheets2.csv', //14
-    'dataFiles/Stratagems.csv', //15
+    'dataFiles/Stratagems.csv' //15
 ];
 
 
@@ -114,7 +114,7 @@ async function getDetachmentEnhancements(file, factionId) {
     }
     return enhancementChoices
 }
-getDetachmentEnhancements(filesArray[10], "SM")
+// getDetachmentEnhancements(filesArray[10], "SM")
 
 async function getDetachmentAbilties(file, factionId, detachment) {
     const data = await readFile(file, 'utf-8');
