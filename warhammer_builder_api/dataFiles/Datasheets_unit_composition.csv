@@ -22,7 +22,7 @@
 000000019|1|1-2 Spanners|
 000000019|2|4-8 Burna Boyz|
 000000020|1|1 Boss Nob|
-000000020|2|4 Tankbustas|
+000000020|2|5 Tankbustas|
 000000021|1|1 Boss Nob|
 000000021|2|4-9 Nobz|
 000000022|1|1 Nob with Waaagh! Banner|
@@ -215,6 +215,7 @@
 000000325|1|1 Stormfang Gunship|
 000000326|1|1 Long Fang Pack Leader|
 000000326|2|4-5 Long Fangs|
+000000358|1|1 Corvus Blackstar|
 000000373|1|1 Kaldor Draigo – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000374|1|1 Grand Master Voldus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000375|1|1 Grand Master|
@@ -547,7 +548,7 @@
 000000722|2|2-5 Ogryns|
 000000723|1|1 Bullgryn Bone ‘ead|
 000000723|2|2-5 Bullgryns|
-000000724|1|5 Ratling Snipers|
+000000724|1|5-10 Ratlings|
 000000725|1|1 Nork Deddog – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000000727|1|1 Valkyrie|
 000000728|1|1 Atlas Recovery Vehicle|
@@ -1450,6 +1451,24 @@
 000002775|1|1 Ancient|
 000002776|1|1 Assault Intercessor Sergeant with Jump Pack|
 000002776|2|4-9 Assault Intercessors with Jump Packs|
+000002779|1|10 MODELS MAXIMUM|
+000002779|2|3‑10 Kill Team Infiltrators|
+000002779|3|0‑3 Kill Team Infiltrators with bolt sniper rifles|
+000002779|4|0‑4 Kill Team Infiltrators with Deathwatch occulus bolt carbines|
+000002779|5|0‑4 Kill Team Infiltrators with combat knives|
+000002780|1|10 MODELS MAXIMUM|
+000002780|2|1 Kill Team Sergeant|
+000002780|3|2-9 Kill Team Intercessors|
+000002780|4|0-4 Kill Team Intercessors with plasma incinerators|
+000002780|5|0-4 Kill Team Intercessors with heavy bolt pistols|
+000002780|6|0‑4 Kill Team Intercessors with pyreblasters|
+000002780|7|0‑2 Kill Team Intercessors with superfrag rocket launchers|
+000002781|1|10 MODELS MAXIMUM|
+000002781|2|3‑10 Kill Team Heavy Intercessors|
+000002781|3|0‑3 Kill Team Heavy Intercessors with power fists|
+000002781|4|0‑3 Kill Team Heavy Intercessors with melta rifles|
+000002783|1|1 Watch Sergeant|
+000002783|2|4-9 Deathwatch Veterans|
 000002786|1|1 Impulsor|
 000002787|1|1 Gladiator Lancer|
 000002788|1|1 Gladiator Valiant|
@@ -1482,6 +1501,119 @@
 000002809|1|1-2 Wall of Martyrs Defence Lines|
 000002810|1|1 Wall of Martyrs Defence Emplacement|
 000002811|1|1 Aegis Defence Line with Weapon Emplacement (4 large shield sections, 4 small shield sections and 1 gun emplacement)|
+000003582|1|1 Khorne Berzerker Champion|
+000003582|2|4-9 Khorne Berzerkers|
+000003583|1|1 Aspiring Sorcerer|
+000003583|2|4-9 Rubric Marines|
+000003584|1|1 Plague Champion|
+000003584|2|4-9 Plague Marines|
+000003585|1|1 Chaos Thunderhawk|
+000003586|1|1 Greater Blight Drone|
+000003587|1|1 Blood Slaughterer|
+000003588|1|1 Chaos Thunderhawk|
+000003589|1|1 Greater Brass Scorpion|
+000003590|1|1 Kytan Ravager|
+000003591|1|1 Chaos Thunderhawk|
+000003592|1|1 Chaos Lord on Palanquin of Nurgle|
+000003593|1|4 Nightmare Hulks|
+000003593|2|3 Gellerpox Mutants|
+000003594|1|1 Hell Blade|
+000003595|1|1 Hell Talon|
+000003596|1|16 Mutoid Vermin|
+000003597|1|1 Chaos Lord on Disc of Tzeentch|
+000003598|1|1 Hell Blade|
+000003599|1|1 Hell Talon|
+000003600|1|1 Sorcerer on Palanquin of Nurgle|
+000003601|1|1 Hell Blade|
+000003602|1|1 Hell Talon|
+000003603|1|1 Terrax-pattern Termite|
+000003604|1|1 Terrax-pattern Termite|
+000003605|1|1 Terrax-pattern Termite|
+000003606|1|1 Terrax-pattern Termite|
+000003607|1|1 Land Raider Achilles|
+000003608|1|1 Land Raider Achilles|
+000003609|1|1 Land Raider Achilles|
+000003610|1|1 Land Raider Achilles|
+000003611|1|1 Land Raider Proteus|
+000003612|1|1 Land Raider Proteus|
+000003613|1|1 Land Raider Proteus|
+000003614|1|1 Land Raider Proteus|
+000003615|1|1 Fire Raptor Gunship|
+000003616|1|1 Fire Raptor Gunship|
+000003617|1|1 Fire Raptor Gunship|
+000003618|1|1 Fire Raptor Gunship|
+000003619|1|1 Spartan|
+000003620|1|1 Spartan|
+000003621|1|1 Spartan|
+000003622|1|1 Spartan|
+000003623|1|1 Deredeo Dreadnought|
+000003624|1|1 Deredeo Dreadnought|
+000003625|1|1 Deredeo Dreadnought|
+000003626|1|1 Deredeo Dreadnought|
+000003627|1|1 Cerberus|
+000003628|1|1 Cerberus|
+000003629|1|1 Cerberus|
+000003630|1|1 Cerberus|
+000003631|1|1 Kratos|
+000003632|1|1 Kratos|
+000003633|1|1 Kratos|
+000003634|1|1 Kratos|
+000003635|1|1 Sokar-pattern Stormbird|
+000003636|1|1 Sokar-pattern Stormbird|
+000003637|1|1 Sokar-pattern Stormbird|
+000003638|1|1 Sokar-pattern Stormbird|
+000003639|1|1 Sicaran Battle Tank|
+000003640|1|1 Sicaran Battle Tank|
+000003641|1|1 Sicaran Battle Tank|
+000003642|1|1 Sicaran Battle Tank|
+000003643|1|1 Mastodon|
+000003644|1|1 Mastodon|
+000003645|1|1 Mastodon|
+000003646|1|1 Mastodon|
+000003647|1|1 Leviathan Dreadnought|
+000003648|1|1 Leviathan Dreadnought|
+000003649|1|1 Leviathan Dreadnought|
+000003650|1|1 Leviathan Dreadnought|
+000003651|1|1 Fellblade|
+000003652|1|1 Fellblade|
+000003653|1|1 Fellblade|
+000003654|1|1 Fellblade|
+000003655|1|1 Relic Contemptor Dreadnought|
+000003656|1|1 Relic Contemptor Dreadnought|
+000003657|1|1 Relic Contemptor Dreadnought|
+000003658|1|1 Relic Contemptor Dreadnought|
+000003659|1|1 Whirlwind Scorpius|
+000003660|1|1 Whirlwind Scorpius|
+000003661|1|1 Whirlwind Scorpius|
+000003662|1|1 Whirlwind Scorpius|
+000003663|1|1 Xiphon Interceptor|
+000003664|1|1 Xiphon Interceptor|
+000003665|1|1 Xiphon Interceptor|
+000003666|1|1 Xiphon Interceptor|
+000003667|1|1 Rapier Carrier|
+000003668|1|1 Rapier Carrier|
+000003669|1|1 Rapier Carrier|
+000003670|1|1 Rapier Carrier|
+000003671|1|1 Storm Eagle Gunship|
+000003672|1|1 Storm Eagle Gunship|
+000003673|1|1 Storm Eagle Gunship|
+000003674|1|1 Storm Eagle Gunship|
+000003675|1|1 Sicaran Venator|
+000003676|1|1 Sicaran Venator|
+000003677|1|1 Sicaran Venator|
+000003678|1|1 Sicaran Venator|
+000003679|1|1 Typhon|
+000003680|1|1 Typhon|
+000003681|1|1 Typhon|
+000003682|1|1 Typhon|
+000003683|1|1 Sicaran Punisher|
+000003684|1|1 Sicaran Punisher|
+000003685|1|1 Sicaran Punisher|
+000003686|1|1 Sicaran Punisher|
+000003687|1|1 Falchion|
+000003688|1|1 Falchion|
+000003689|1|1 Falchion|
+000003690|1|1 Falchion|
 000003691|1|1 Da Red Gobbo – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000003692|1|1 Grotmas Gitz – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000003693|1|1 Overlord with Translocation Shroud |
@@ -1513,6 +1645,122 @@
 000003715|1|1 Benefictus|
 000003716|1|1 Acolyte Leader|
 000003716|2|4-9 Acolyte Hybrids|
+000003717|1|1 Cadian Castellan|
+000003718|1|1 Cadian Commander|
+000003718|2|4 Cadian Veteran Guardsmen|
+000003719|1|One of the following:|
+000003719|2|1 Platoon Commander and 4 Veteran Guardsmen|
+000003719|3|OR|
+000003719|4|1 Platoon Commander, 2 Veteran Guardsmen and 1 Veteran Heavy Weapons Team|
+000003720|1|1 Primaris Psyker|
+000003721|1|1 Tank Commander|
+000003722|1|1 Death Korps Marshal|
+000003723|1|1 Death Rider Squadron Commander|
+000003724|1|1 Death Rider Commissar|
+000003725|1|1 Quartermaster Revenant|
+000003725|2|4 Medicae Servitors|
+000003726|1|1 Shock Trooper Sergeant and 9 Shock Troopers|
+000003726|2|OR|
+000003726|3|2 Shock Trooper Sergeants and 18 Shock Troopers|
+000003727|1|1 Jungle Fighter Sergeant and 9 Jungle Fighters|
+000003727|2|OR|
+000003727|3|2 Jungle Fighter Sergeants and 18 Jungle Fighters|
+000003728|1|1 Death Korps Watchmaster and 9 Death Korps Troopers|
+000003728|2|OR|
+000003728|3|2 Death Korps Watchmasters and 18 Death Korps Troopers|
+000003729|1|One of the following:|
+000003729|2|1 Sergeant and 9 Guardsmen|
+000003729|3|1 Sergeant, 7 Guardsmen and 1 Heavy Weapons Team|
+000003729|4|2 Sergeants and 18 Guardsmen|
+000003729|5|2 Sergeants, 16 Guardsmen and 1 Heavy Weapons Team|
+000003729|6|2 Sergeants, 14 Guardsmen and 2 Heavy Weapons Teams|
+000003730|1|1 Chimera|
+000003731|1|1 Taurox|
+000003732|1|1 Taurox Prime|
+000003733|1|1 Storm Chimera|
+000003734|1|1 Aegis Defence Line|
+000003735|1|1 Earthshaker Platform|
+000003736|1|1 Hydra Platform|
+000003737|1|1 Manticore Platform|
+000003738|1|1-2 Sabre Gun Platforms|
+000003739|1|1-3 Armoured Sentinels|
+000003740|1|1 Rough Rider Sergeant|
+000003740|2|4-9 Rough Riders|
+000003741|1|1 Baneblade|
+000003742|1|1 Banehammer|
+000003743|1|1 Banesword|
+000003744|1|1 Basilisk|
+000003745|1|1 Deathstrike|
+000003746|1|1 Doomhammer|
+000003747|1|2 Ordnance Teams|
+000003748|1|3 Heavy Weapons Teams|
+000003749|1|1 Hellhammer|
+000003750|1|1 Hellhound|
+000003751|1|1 Hydra|
+000003752|1|1 Kasrkin Sergeant|
+000003752|2|9 Kasrkin Troopers|
+000003753|1|1 Leman Russ Battle Tank|
+000003754|1|1 Leman Russ Demolisher|
+000003755|1|1 Leman Russ Eradicator|
+000003756|1|1 Leman Russ Executioner|
+000003757|1|1 Leman Russ Exterminator|
+000003758|1|1 Leman Russ Punisher|
+000003759|1|1 Leman Russ Vanquisher|
+000003760|1|1 Manticore|
+000003761|1|4 Munitorum Servitors|
+000003762|1|1 Master of Ordnance, 1 Officer of the Fleet and 1 Astropath.|
+000003763|1|1 Rogal Dorn Battle Tank|
+000003764|1|1-3 Scout Sentinels|
+000003765|1|1 Shadowsword|
+000003766|1|1 Stormlord|
+000003767|1|1 Stormsword|
+000003768|1|1 Wyvern|
+000003769|1|1 Carnodon|
+000003770|1|1 Colossus|
+000003771|1|1 Crassus|
+000003772|1|1 Cyclops Demolition Vehicle|
+000003773|1|1 Ridemaster|
+000003773|2|4-9 Death Riders|
+000003774|1|1 Earthshaker Carriage|
+000003775|1|1 Hades Breaching Drill|
+000003776|1|1 Macharius|
+000003777|1|1 Macharius Vanquisher|
+000003778|1|1 Macharius Vulcan|
+000003779|1|1 Malcador|
+000003780|1|1 Malcador Annihilator|
+000003781|1|1 Malcador Defender|
+000003782|1|1 Malcador Infernus|
+000003783|1|1 Medusa Carriage|
+000003784|1|1 Praetor|
+000003785|1|1-3 Rapier Laser Destroyers|
+000003786|1|1 Stormblade|
+000003787|1|1-3 Tarantula Sentry Guns|
+000003788|1|1 Trojan Support Vehicle|
+000003789|1|1 Valdor|
+000003790|1|1 Arkurian Stormhammer|
+000003791|1|1 Armageddon-pattern Medusa|
+000003792|1|1 Atlas Recovery Vehicle|
+000003793|1|1 Centaur Light Carrier|
+000003794|1|One of the following:|
+000003794|2|1 Grenadier Sergeant and 9 Grenadiers|
+000003794|3|1 Grenadier Sergeant, 7 Grenadiers and 1 Heavy Weapons Team|
+000003795|1|1 Dominus Armoured Siege Bombard|
+000003796|1|1 Elysian Drop Sentinel|
+000003797|1|3 Elysian Sniper Teams|
+000003798|1|1 Gorgon Heavy Transport|
+000003799|1|1 Griffon Mortar Carrier|
+000003800|1|1 Heavy Mortar Team|
+000003801|1|1 Heavy Quad Launcher Team|
+000003802|1|1 Macharius Omega|
+000003803|1|1 Minotaur|
+000003804|1|1 Mukaali Rider Sergeant|
+000003804|2|2 Mukaali Riders|
+000003805|1|1 Salamander Command Vehicle|
+000003806|1|1 Salamander Scout Vehicle|
+000003807|1|1 Sentinel Powerlifter|
+000003808|1|1 Stygies Destroyer Tank Hunter|
+000003809|1|1 Tauros Assault Vehicle|
+000003810|1|1 Tauros Venator|
 000003811|1|1 Celestian Sacresant Aveline – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
 000003812|1|1 Ministorum Priest|
 000003813|1|1 Terminator Justicar|
@@ -1566,3 +1814,77 @@
 000003835|1|1 Death Company Dreadnought|
 000003836|1|5-10 Death Company Marines|
 000003837|1|5-10  Death Company Marines with Jump Packs|
+000003838|1|1 Lieutenant Titus – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003839|1|1 Tech-Priest Dominus|
+000003840|1|1 Tech-Priest Manipulus|
+000003841|1|1 Skitarii Marshal|
+000003842|1|1 Skitarii Ranger Alpha|
+000003842|2|9 Skitarii Rangers|
+000003843|1|1 Skitarii Vanguard Alpha|
+000003843|2|9 Skitarii Vanguard|
+000003844|1|1 Cultist Firebrand |
+000003845|1|1 Cult Demagogue|
+000003845|2|1 Mindwitch|
+000003845|3|1 Iconarch|
+000003845|4|2 Blessed Blades|
+000003846|1|1 Traitor Enforcer|
+000003846|2|1 Traitor Ogryn|
+000003847|1|1 Renegade Enforcer|
+000003848|1|1 Rogue Psyker|
+000003849|1|1 Cultist Champion|
+000003849|2|9-19 Chaos Cultists|
+000003850|1|1 Cultist Champion|
+000003850|2|9-19 Chaos Cultists|
+000003851|1|3-6 Torments|
+000003851|2|5-10 Mutants|
+000003852|1|1 Fellgor Champion|
+000003852|2|9 Fellgor Beastmen|
+000003853|1|1 Traitor Sergeant|
+000003853|2|9 Traitor Guardsmen|
+000003854|1|4 Nightmare Hulks|
+000003854|2|3 Gellerpox Mutants|
+000003855|1|16 Mutoid Vermin|
+000003856|1|4 Negavolt Cultists|
+000003857|1|3 Renegade Heavy Weapons Teams|
+000003858|1|1 Ogryn Pack Master|
+000003858|2|3 Chaos Mauler Hounds|
+000003859|1|3 Renegade Ogryn Brutes|
+000003860|1|3 Renegade Plague Ogryns|
+000003861|1|1 Boss Nob|
+000003861|2|5 Breaka Boyz|
+000003862|1|1 Death Jester|
+000003863|1|1 Shadowseer|
+000003864|1|1 Solitaire – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003865|1|1 Troupe Master|
+000003866|1|1 Starweaver|
+000003867|1|2 Wraithbone Arches|
+000003868|1|2-4 Skyweavers|
+000003869|1|1 Lead Player|
+000003869|2|4-11 Players|
+000003870|1|1 Voidweaver|
+000003871|1|1 Watch Master|
+000003872|1|1 Watch Captain Artemis|
+000003873|1|1 Deathwatch Terminator Sergeant|
+000003873|2|4-9 Deathwatch Terminators|
+000003874|1|10 MODELS MAXIMUM|
+000003874|2|1 Kill Team Sergeant with Jump Pack|
+000003874|3|2‑9 Kill Team Intercessors with Jump Packs|
+000003874|4|0‑5 Kill Team Heavy Intercessors with Jump Packs|
+000003875|1|1 Chaplain Cassius – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003875|2|8 Kill Team Veterans:<br><ul style="list-style-type:circle;"><li>Vael Donatus</li><li>Zameon Gydrael</li><li>Rodricus Grytt</li><li>Antor Delassio</li><li>Edryc Setorax</li><li>Jensus Natorian</li><li>Drenn Redblade</li><li>Ennox Sorrlock</li></ul>|
+000003875|3|1 Kill Team Terminator (Garran Branatar)|
+000003875|4|1 Kill Team Biker (Jetek Suberei)|
+000003876|1|1 Visionary|
+000003876|2|4-9 Legionaries|
+000003877|1|1 Deathleaper – <span class="kwb">EPIC</span> <span class="kwb">HERO</span>|
+000003878|1|1 Parasite of Mortrex|
+000003879|1|1 Winged Hive Tyrant|
+000003880|1|1 Winged Tyranid Prime|
+000003881|1|10-20 Gargoyles|
+000003882|1|1 Tyrannocyte|
+000003883|1|1 Lictor|
+000003884|1|1 Mawloc|
+000003885|1|1 Neurolictor|
+000003886|1|3-6 Raveners|
+000003887|1|1 Trygon|
+000003888|1|3-6 Von Ryan’s Leapers|

@@ -92,9 +92,9 @@ export default function PopUp({trigger, setTrigger, setCreate,
                 </>
                 : null}
                 
-                <label htmlFor="">Select sub-Faction</label>
+                <label htmlFor="">Select Detachment</label>
                 <select name="subFactions" id="" onChange={changeSubFaction} className={styles.dropdown}>
-                    <option key="none" value='None'>Select a sub-Faction</option>
+                    <option key="none" value='None'>Select a Detachment</option>
                     <SubFactionChoice selectedArmy={selectedArmy} colour={colour} selectedChapter={selectedChapter}/>
                 </select>
                 <label htmlFor="">Army Name <span className={styles.Span}>- 20 char limit</span></label>

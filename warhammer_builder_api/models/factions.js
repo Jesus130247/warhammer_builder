@@ -50,6 +50,7 @@ function reformatData(data) {
 async function getFactionData() {
     let allFactions = await getFractionNames(filesArray[0])
     for (let factionId in allFactions) {
+        console.log(factionId)
         allFactions[factionId] = [...allFactions[factionId], await getFactionAbilities(filesArray[9], factionId)]
         allFactions[factionId] = [...allFactions[factionId], await getDetachmentEnhancements(filesArray[10], factionId)]
         allFactions[factionId] = [...allFactions[factionId], await getFactionStrategems(filesArray[15], factionId)]
@@ -58,8 +59,8 @@ async function getFactionData() {
 }
 
 async function getThisFactionsUnits(factionId) {
-    // let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
-    let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
+    let factionUnits = await getFactionUnits(filesArray[1],factionId) //first half
+    // let factionUnits = await getFactionUnits(filesArray[14],factionId) //second half
     for (let unitId in factionUnits) {
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitAbilities(filesArray[2], unitId)]
         factionUnits[unitId] = [...factionUnits[unitId] , await getUnitKeyWords(filesArray[3], unitId)]
@@ -72,7 +73,7 @@ async function getThisFactionsUnits(factionId) {
     }
     return factionUnits
 }
-// getThisFactionsUnits('AoI')
+
 async function getLeader(file, unitId) {
     const data = await readFile(file,'utf-8');
     const leader = reformatData(data).filter(data => data[0] === unitId)
@@ -93,19 +94,19 @@ async function getUnitName(file, unitId) {
 }
 async function getDetachmentEnhancements(file, factionId) {
     const data = await readFile(file, 'utf-8');
-    let factionEnhancement = reformatData(data).filter((data) => data[0] === factionId)
+    let factionEnhancement = reformatData(data).filter((data) => data[1] === factionId)
     let enhancementChoices = {}
     for (let enhancement of factionEnhancement) {
-        let detachment = enhancement[6]
+        let detachment = enhancement[4]
         if(enhancementChoices[detachment]) {
-            enhancementChoices[detachment].push([enhancement[2],enhancement[4], enhancement[5]]) // name of enhancment, rule, points cost
+            enhancementChoices[detachment].push([enhancement[2],enhancement[6], enhancement[3]]) // name of enhancment, rule, points cost
         } else {
             let detachmentRule = await getDetachmentAbilties(filesArray[11], factionId, detachment)
             if (detachmentRule) {
                 enhancementChoices[detachment] = [
-                    detachmentRule[0],
-                    detachmentRule[1] !== null ? detachmentRule[1] : undefined,
-                [enhancement[2], enhancement[4], enhancement[5]]
+                    detachmentRule[1],
+                    detachmentRule[0] !== null ? detachmentRule[0] : undefined,
+                    [enhancement[2],enhancement[6], enhancement[3]]
             ].filter(item => item !== undefined);
         } else {
             console.log('error: not saved:', detachmentRule, factionId, detachment)
@@ -114,7 +115,7 @@ async function getDetachmentEnhancements(file, factionId) {
     }
     return enhancementChoices
 }
-// getDetachmentEnhancements(filesArray[10], "SM")
+
 
 async function getDetachmentAbilties(file, factionId, detachment) {
     const data = await readFile(file, 'utf-8');
@@ -138,7 +139,7 @@ async function getFactionAbilities(file, factionId) {
     }
     return factionAbilityReturn
 }
-// getFactionAbilities(filesArray[9],'SM')
+
 async function getUnitCost(file, unitId) {
     const data = await readFile(file, 'utf-8');
     let unitCost = reformatData(data).filter((data) => data[0] === unitId)
@@ -171,7 +172,6 @@ async function getDatasheetOptions(file, unitId) {
         for (let wargear of wargearOptions) {
             options.push(wargear[3])
         }
-        // for (let options of wargearOptions)
         return options
     }
 }

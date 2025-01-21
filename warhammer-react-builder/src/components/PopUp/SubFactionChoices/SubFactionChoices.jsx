@@ -2,6 +2,8 @@ export default function SubFactionChoice({ selectedArmy, selectedChapter }) {
     if (!selectedArmy) return null;
 
     const possibleSubFactions = selectedArmy.faction_info[3]; // Object where keys are sub-faction names
+    
+    console.log(possibleSubFactions)
     let filteredSubFactions = [];
 
     if (selectedChapter !== "None" && selectedChapter !== "All Chapters") {
