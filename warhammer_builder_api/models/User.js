@@ -33,7 +33,7 @@ function saveArmy({user_id, faction_chosen_id, subfaction_chosen, army_name, poi
     (user_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array)
     Values ($1, $2, $3, $4, $5, $6, $7, $8) 
     RETURNING *;`
-    return db.query(sql, [user_id, faction_chosen_id, subfaction_chosen, trim(army_name), points, pointLimit, colour, user_army_array])
+    return db.query(sql, [user_id, faction_chosen_id, subfaction_chosen, army_name.trim(), points, pointLimit, colour, user_army_array])
 }
 
 function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, points, pointLimit, colour, user_army_array}) {
@@ -49,8 +49,7 @@ function updateArmy({army_id, faction_chosen_id, subfaction_chosen, army_name, p
     WHERE id = $1
     RETURNING *;
     `
-    return db.query(sql, [army_id, faction_chosen_id, subfaction_chosen, trim(army_name), points, pointLimit, colour, user_army_array])
-
+    return db.query(sql, [army_id, faction_chosen_id, subfaction_chosen, army_name.trim(), points, pointLimit, colour, user_army_array])
 }
 
 
